@@ -120,7 +120,6 @@ const id= storedUserData?._id
             <div className=" flex  w-[60%]  overflow-hidden py-12 px-16" >
       <div>
       <h1 className="  text-2xl font-bold mb-2">{parking.name}</h1>
-      <h1 className="  text-xl font-normal mb-8">{parking.loginId}</h1>
 
 
 

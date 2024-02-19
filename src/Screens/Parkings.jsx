@@ -12,7 +12,7 @@ const id = storedUserData._id
   const [isEditing, setIsEditing] = useState(false);
   useEffect(() => {
     const fetchGuardDetails = () => {
-      setloading(true);
+      // setloading(true);
       fetch(`http://localhost:7001/v1/api/parking/getparkings/${id}`)
         .then(response => {
           if (!response.ok) {
@@ -44,10 +44,10 @@ const id = storedUserData._id
   <div>
     {
       isEditing ? <div>
-        <ParkingForm />
-        <button onClick={()=>setIsEditing(false)}>close</button>
-      </div>
-        : <div className="container mx-auto px-20 py-6 bg-[#ffffff]">
+      <ParkingForm />
+      <button onClick={() => setIsEditing(false)}>close</button>
+    </div>
+    : <div className="container mx-auto px-20 py-6 bg-[#ffffff]">
           <div className='flex flex-row items-center justify-between'>
             <h1 className="text-xl text-gray-800 font-light mb-6">results for parkings</h1>
             <button onClick={add} >Add</button>
