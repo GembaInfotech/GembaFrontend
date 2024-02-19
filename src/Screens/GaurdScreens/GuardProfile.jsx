@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 // import image from '../../assets/gaurd.jpg'
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
@@ -6,19 +6,35 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const Profile = () => {
 
-  const parking = {
+  // const parking = {
 
-    "id": 1,
-    "name": " Guard",
-    "loginId": "Guard-sug-238",
-    "mobile": "123-456-7890",
-    "email": "john.doe@example.com",
-    "associateParking": "ABC Parking",
-    "address": "23-A, Mayur vihar, delhi",
-  }
+  //   "id": 1,
+  //   "name": " Guard",
+  //   "loginId": "Guard-sug-238",
+  //   "mobile": "123-456-7890",
+  //   "email": "john.doe@example.com",
+  //   "associateParking": "ABC Parking",
+  //   "address": "23-A, Mayur vihar, delhi",
+  // }
+  const [parking, setUserData]= useState({})
   const [isEditing, setIsEditing] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [editedParking, setEditedParking] = useState(parking);
+  const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
+  useEffect(() => {
+    // Retrieve user information from localStorage
+    if(!storedUserData)
+    {
+      window.location.href="/login/auth/vendor"
+      
+    }
+    if (storedUserData) {
+      setUserData(storedUserData);
+      setEditedParking(storedUserData);
+      console.log(storedUserData)
+    }
+  }, []);
+
   
   const handleEdit = () => {
     setIsEditing(true);
@@ -206,18 +222,8 @@ const Profile = () => {
 
           </div>
           <div className='px-72 py-8'>
-            <div className='flex  justify-between items-center'>
-            <p className="  py-2 text-sm font-bold">Phone:
-            </p>
-            <p className='py-2  text-sm'> {parking.mobile}</p>
-
-            </div>
-            <div className='flex  justify-between items-center'>
-            <p className="  py-2 text-sm font-bold">Parking:
-            </p>
-            <p className='py-2  text-sm'> {parking.associateParking}</p>
-
-            </div>
+        
+         
             <div className='flex  justify-between items-center'>
             <p className="  py-2 text-sm font-bold">Email:
             </p>
@@ -227,7 +233,7 @@ const Profile = () => {
             <div className='flex  justify-between items-center'>
             <p className="  py-2 text-sm font-bold">Address:
             </p>
-            <p className='py-2  text-sm'> {parking.address}</p>
+            <p className='py-2  text-sm'> {parking.parkingid}</p>
 
             </div>
             

@@ -38,7 +38,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login/auth/vendor" element={<Login />} />
 
-        <Route path="/login/auth/gaurd" element={<GaurdLogin />} />
+        <Route path="/login/auth/guard" element={<GaurdLogin />} />
 
         <Route path="/register" element={<SignUp />} />
 
@@ -54,7 +54,7 @@ function App() {
         <Route path="/gaurd/:id" element={<Layout><GaurdDetail /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
         <Route path="/guardBookings" element={<GLayout>< BookingsG /></GLayout>} />
-        <Route path="/associateParking" element={<GLayout>< AssociateParking /></GLayout>} />
+        <Route path="/associateParking/:id" element={<GLayout>< AssociateParking /></GLayout>} />
         <Route path="/generate" element={ <Reciept />}/>
         <Route path="/generatee/:detail" element={ <Ereciept />}/>
 

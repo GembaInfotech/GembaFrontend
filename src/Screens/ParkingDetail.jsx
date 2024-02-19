@@ -134,37 +134,53 @@ const ParkingDetail = () => {
 
         ) : (
           <div className="flex justify-between">
-            <div
-              className="flex overflow-hidden py-12"
-              style={{ height: "80vh" }}
-            >
-              <div>
-                <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
-                <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
+            <div className="flex overflow-hidden py-12" style={{ height: "96vh" }}>
+  <div>
+    <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
+    <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
 
-                <p className="py-4 px-6 text-sm">
-                  <span className="py-4 text-sm font-bold">Price:</span>{" "}
-                  {parking.capacity}
-                </p>
-                <p className="py-4 px-6 text-sm">
-                  <span className="py-4 text-sm font-bold">Area:</span>{" "}
-                  {parking.parkingArea}
-                </p>
+    {Object.entries(parking).map(([key, value]) => (
+      key !== 'id' && key !== 'associateGuard' && (
+        <p key={key} className="py-4 px-6 text-sm">
+          <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
+        </p>
+      )
+    ))}
+  </div>
 
-                <p className="py-4 px-6 text-sm">
-                  <span className="py-4 text-sm font-bold">City:</span>{" "}
-                  {parking.city}
-                </p>
+  <div>
+    <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
+      <MdEdit />
+    </button>
+    <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
+      <MdOutlineAddPhotoAlternate />
+    </button>
+    <div className="m-14 p-1">
+      {Object.entries(parking).map(([key, value]) => (
+        key === 'dateOfCreation' && (
+          <p key={key} className="py-4 px-6 text-sm">
+            <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
+          </p>
+        )
+      ))}
+      
+     
 
-                <p className="py-4 px-6 text-sm">
-                  <span className="py-4 text-sm font-bold">District:</span>{" "}
-                  {parking.district}
-                </p>
+      {parking.associateGuard && parking.associateGuard.name && (
+        <p className="py-4 px-6 text-sm">
+          <span className="py-4 text-sm font-bold">Guard: </span>
+          <Link to={`/gaurd/${parking.associateGuard?._id}`}>
+            <button className="px-1 bg-gray-300 py-1 m-1">view</button>
+          </Link>
+        </p>
+      )}
 
-                <p className="py-4 px-6 text-sm">
-                  <span className="py-4 text-sm font-bold">State:</span>{" "}
-                  {parking.state} </p>
+     
+    </div>
+  </div>
+</div>
 
+<<<<<<< Updated upstream
                 <p className="py-4 px-6 text-sm">
                   <span className="py-4 text-sm font-bold">Country:</span>{" "}
                   {parking.country}
@@ -243,6 +259,9 @@ const ParkingDetail = () => {
                 </div>
               </div>
             </div>
+=======
+          
+>>>>>>> Stashed changes
             <div>
               <div className="flex justify-center items-center p-4 ">
                 <button>

@@ -22,24 +22,19 @@ const GaurdLogin
   const handleSubmit = async (values) => {
     try {
       // Make a POST request to your API endpoint with form data
-      console.log("clicked")
-      console.log(values)
+   
 
-      const response = await axios.post('http://localhost:7001/v1/api/vendor/login', values);
-      console.log("clicked")
+      const response = await axios.post('http://localhost:7001/v1/api/guard/login', values);
 
-      // Handle successful response
+ 
       console.log('Data saved successfully:', response);
-      console.log(values)
-
-      localStorage.setItem('userData', JSON.stringify(response.data.data)); // Store user data in local storage
-           console.log(response.data.data)
-window.location.href="/home"
-
+if(response.data.Data)
+      localStorage.setItem('gaurdData', JSON.stringify(response.data.Data)); // Store user data in local storage
     } catch (error) {
       // Handle error
       console.error('Error saving data:', error);
     }
+    window.location.href="/GaurdHome"
   };
   return (
     <div className="flex flex-row justify-center items-center bg-white">

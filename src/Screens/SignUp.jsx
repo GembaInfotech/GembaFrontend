@@ -57,7 +57,7 @@ console.log("error")
                 <label htmlFor={key} className="block text-sm font-medium text-gray-700 capitalize">
                   {key}
                 </label>
-                <Field type={key === 'password' ? 'password' : 'text'} name={key} id={key} className="mt-1 p-1 w-full border-gray-300 bg-gray-200 rounded-md" />
+                <Field tye="text"  name={key} id={key} className="mt-1 p-1 w-full border-gray-300 bg-gray-200 rounded-md" />
                 <ErrorMessage name={key} component="div" className="text-red-500 text-sm" />
               </div>
             ))}
