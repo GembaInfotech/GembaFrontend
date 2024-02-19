@@ -32,7 +32,6 @@ const Ereciept = ({print}) => {
   </div>
 
   <h1 className='text-gray-400'>--------------------------</h1>
-<h3>{decodedDetail.name}</h3>
 
    </div>
  

@@ -6,7 +6,7 @@ import empty  from '.././assets/norecord.avif'
 import Spinner from '../Components/Animations/Spinner';
 const Parkings = () => {
   const storedUserData = JSON.parse(localStorage.getItem('userData'));
-const id = storedUserData._id
+const id = storedUserData?._id
   const [parkingData, setparkings] = useState([]);
   const [loading, setloading]=useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -41,8 +41,7 @@ const id = storedUserData._id
 
   return (
   loading ? <Spinner/> :      ( parkingData.length!=0) ?
-  <div>
-    {
+
       isEditing ? <div>
       <ParkingForm />
       <button onClick={() => setIsEditing(false)}>close</button>
@@ -72,11 +71,14 @@ const id = storedUserData._id
             ))}
           </div>
         </div>
-    }
-  </div>:  <div className='flex flex-col justify-center items-center'>
+    
+:    isEditing ? <div>
+<ParkingForm />
+<button onClick={()=>setIsEditing(false)}>close</button>
+</div> :<div className='flex flex-col justify-center items-center'>
   <div className='flex flex-col items-center  justify-between'>
             <h1 className="text-xl text-gray-800 font-light mb-6">results for parkings</h1>
-            <button onClick={add} className='bg-blue-600 p-1' ><h1 className='text-white'>Add Parking</h1></button>
+            <button onClick={()=>{add()}} className='bg-blue-600 p-1' ><h1 className='text-white'>Add Parking</h1></button>
           </div>          
           <img src={empty} alt="" />
   </div>

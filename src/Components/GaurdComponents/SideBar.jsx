@@ -12,6 +12,9 @@ import { FiDatabase } from "react-icons/fi";
 
 import { PiCarProfileFill } from "react-icons/pi";
 const SideBar = () => {
+  const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
+
+  const parkingid= storedUserData.parkingid;
   return (
     <div className="flex-row ">
         <div className="flex-row px-1 py-4">
@@ -27,8 +30,8 @@ const SideBar = () => {
             </Link>
           </div>
           <div  className="m-1 max-w-36 text-sm px-1 py-4   text-gray-600 hover:text-gray-800  rounded-sm">
-            <Link
-              to="/associateParking"
+            <Link to={`/associateParking/${parkingid}`}
+              
               className="text-white font-medium hover:text-gray-500 transition"
             >
          <div className="flex ">
