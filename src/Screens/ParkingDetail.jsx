@@ -5,12 +5,14 @@ import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import Gaurd from "../Components/Gaurd";
 
 const ParkingDetail = () => {
-  const {id} = useParams();
-  
-  
-  const [parking , setparkings]= useState({});
+  const { id } = useParams();
+
+
+  const [parking, setparkings] = useState({});
   useEffect(() => {
     const fetchGuardDetails = () => {
       fetch(`http://localhost:7001/v1/api/parking/${id}`)
@@ -21,8 +23,8 @@ const ParkingDetail = () => {
           return response.json();
         })
         .then(data => {
-        console.log(data.data);
-        setparkings(data.data)
+          console.log(data);
+          setparkings(data.data)
           // console.log(data); // Log the fetched data
         })
         .catch(error => {
@@ -31,27 +33,8 @@ const ParkingDetail = () => {
     };
 
     fetchGuardDetails();
-  }, []); 
+  }, []);
 
-  // const parking = {
-  //   id: 1,
-  //   name: "Rajiv Chowk Parking",
-  //   area: "Connaught Place, Delhi",
-  //   city: "Delhi",
-  //   district: "Central Delhi",
-  //   state: "Delhi",
-  //   country: "India",
-  //   pincode: "110001",
-  //   dateOfCreation: "2023-01-15",
-  //   price: "$12",
-  //   openingTime: "08:00 AM",
-  //   closingTime: "10:00 PM",
-  //   latitude: 28.6315,
-  //   longitude: 77.2167,
-  //   landmark: "Near City Hall",
-  //   capacity: 50,
-  //   guard: "Rajiv chowk"
-  // };
   const [accountDetails, setAccountDetails] = useState({
     manager: {
       name: "John Doe",
@@ -77,7 +60,12 @@ const ParkingDetail = () => {
   });
 
 
+
   const [isEditing, setIsEditing] = useState(false);
+  const [add, setaddgaurd] = useState(false);
+  const addgaurd = () => {
+    setaddgaurd(true)
+  }
   const [editedParking, setEditedParking] = useState(parking);
 
   const handleEdit = () => {
@@ -151,16 +139,16 @@ const ParkingDetail = () => {
               style={{ height: "80vh" }}
             >
               <div>
-                <h1 className="text-2xl font-bold mb-2">{parking.name}</h1>
-                <h1 className="text-xl font-normal mb-8">{parking.area}</h1>
+                <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
+                <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
 
                 <p className="py-4 px-6 text-sm">
                   <span className="py-4 text-sm font-bold">Price:</span>{" "}
-                  {parking.price}
+                  {parking.capacity}
                 </p>
                 <p className="py-4 px-6 text-sm">
                   <span className="py-4 text-sm font-bold">Area:</span>{" "}
-                  {parking.area}
+                  {parking.parkingArea}
                 </p>
 
                 <p className="py-4 px-6 text-sm">
@@ -175,7 +163,7 @@ const ParkingDetail = () => {
 
                 <p className="py-4 px-6 text-sm">
                   <span className="py-4 text-sm font-bold">State:</span>{" "}
-                  {data.contact}                </p>
+                  {parking.state} </p>
 
                 <p className="py-4 px-6 text-sm">
                   <span className="py-4 text-sm font-bold">Country:</span>{" "}
@@ -231,14 +219,21 @@ const ParkingDetail = () => {
                   </p>
 
                   <p className="py-4 px-6 text-sm">
+                    <span className="py-4 text-sm font-bold">Guard:</span>{" "}
+                    {parking.associateGuard && parking.associateGuard.name && <Link to={`/gaurd/${parking.associateGuard?._id}`}><button className="px-1 bg-gray-300 py-1 m-1">view</button>
+</Link>}
+                   
+                  </p>
+                  <p className="py-4 px-6 text-sm">
                     <span className="py-4 text-sm font-bold">Longitude:</span>{" "}
                     {parking.longitude}
                   </p>
 
+
                   <div className="py-4 px-6">
                     <span className="text-sm font-bold">Associate Guard:</span>{" "}
                     <span className="inline-block px-2 py-1 bg-blue-500 text-white rounded-sm">
-                      {parking.guard}
+
                     </span>
                   </div>
 
@@ -271,6 +266,14 @@ const ParkingDetail = () => {
         )}
       </div>
       <div className="">
+
+        <div className="mx-2">
+          <button onClick={addgaurd} className="bg-gray-400 p-2 ">Add Gaurd</button>
+          {
+            add && <Gaurd id={parking._id} />
+          }
+        </div>
+
         <h1 className="text-2xl font-bold mb-10">Associate Account Details</h1>
         <div className="flex flex-row m-4">
           {/* Manager Info */}

@@ -22,6 +22,11 @@ import GLayout from './Layout/GLayout'
 import BookingsG from './Screens/GaurdScreens/BookingScreens'
 import GuardProfile from './Screens/GaurdScreens/GuardProfile'
 import AssociateParking from './Screens/GaurdScreens/AssociateParking'
+import Reciept from './Components/Reciept'
+import Ereciept from './Components/Ereciept'
+import MainPage from './Screens/MainPage'
+import GaurdLogin from './Screens/GaurdScreens/GaurdLogin'
+import SignUp from './Screens/SignUp'
 function App() {
 
 
@@ -30,7 +35,12 @@ function App() {
        <Router>
       <Routes>
 
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login/auth/vendor" element={<Login />} />
+
+        <Route path="/login/auth/gaurd" element={<GaurdLogin />} />
+
+        <Route path="/register" element={<SignUp />} />
 
         <Route path="/home" element={<Layout><Profile /></Layout>} />
         <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
@@ -40,10 +50,14 @@ function App() {
         <Route path="/help" element={<Layout><Help /></Layout>} />
         <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
 
+
         <Route path="/gaurd/:id" element={<Layout><GaurdDetail /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
         <Route path="/guardBookings" element={<GLayout>< BookingsG /></GLayout>} />
         <Route path="/associateParking" element={<GLayout>< AssociateParking /></GLayout>} />
+        <Route path="/generate" element={ <Reciept />}/>
+        <Route path="/generatee/:detail" element={ <Ereciept />}/>
+
 
 
       </Routes>

@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import tailwindConfig from '../../tailwind.config';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { MdHome } from "react-icons/md";
-import img1 from '../assets/parking.webp';
-import img2 from '../assets/parking3.jpg';
 
-import img4 from '../assets/parking5.webp';
-
-import img3 from '../assets/parking.webp';
-
-
-
-import logo from '../assets/logo1.png';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string().required('Required'),
 });
 
-const Login = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const images = [img1, img2, img3, img4];
+const GaurdLogin
+ = () => {
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    }, 3000);
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   const initialValues = {
     email: '',
@@ -142,4 +123,5 @@ window.location.href="/home"
   );
 };
 
-export default Login;
+export default GaurdLogin
+;

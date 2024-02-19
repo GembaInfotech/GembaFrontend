@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState , useRef} from "react";
+import ReactToPrint from "react-to-print";
+import { Link } from "react-router-dom";
 
 const BookingsG = () => {
+
+
     const [currentPage, setCurrentPage] = useState(1);
     const [isEditing, setIsEditing] = useState(false);
     const [editedBooking, setEditedBooking] = useState(null);
@@ -217,11 +221,19 @@ const BookingsG = () => {
         },
     ];
 
+
     const handleEdit = (index) => {
         setEditedBooking(BookingDetails[index]);
         setIsEditing(true);
     };
-
+    
+      const detail = {
+        name: 'John Doe',
+        age: 30,
+        email: 'john@example.com'
+      };
+  
+      
     const handleSave = () => {
         // Handle save action, for now, just log the editedBooking
         console.log("Updated Booking Information:", editedBooking);
@@ -244,6 +256,7 @@ const BookingsG = () => {
 
     return (
         <div>
+
             {isEditing ? (
                 <div className="bg-[#ffffff] shadow-xl border border-gray-300 rounded-sm w-full duration-300 ease-in-out overflow-hidden p-12" style={{ height: "80vh" }}>
                     <form>
@@ -289,6 +302,15 @@ const BookingsG = () => {
                             >
                                 Cancel
                             </button>
+                            <Link  to={`/generatee/${encodeURIComponent(JSON.stringify(detail))}`}>   <button
+                                type="button"
+                                className="bg-gray-300 mx-6 text-gray-700 py-1 px-2 rounded-sm hover:bg-red-600 focus:outline-none"
+                            >
+                                Generate Bill
+                            </button> </Link>
+
+                          
+                           
                         </div>
                     </form>
                 </div>
@@ -314,7 +336,7 @@ const BookingsG = () => {
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto  rounded-sm">
+                    <div  className="overflow-x-auto  rounded-sm">
                         <table className="w-full">
                             <thead className="bg-[#edf1f7] p-1">
                                 <tr>

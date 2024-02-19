@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Reciept from "../Components/Reciept";
 
 const Transactions = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -281,6 +282,7 @@ const Transactions = () => {
                     <button key={i} onClick={() => paginate(i + 1)} className={`mx-1 px-3 py-1 rounded-2xl ${currentPage === i + 1 ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{i + 1}</button>
                 ))}
             </div>
+            <Reciept />
         </div>
     );
 };

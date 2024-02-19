@@ -205,11 +205,32 @@ const Profile = () => {
 
 
           </div>
-          <div className='px-32 py-8'>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Phone:</span> {parking.mobile}</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Associated Parking:</span> {parking.associateParking}</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Email:</span> {parking.email}</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Address:</span> {parking.address}</p>
+          <div className='px-72 py-8'>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Phone:
+            </p>
+            <p className='py-2  text-sm'> {parking.mobile}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Parking:
+            </p>
+            <p className='py-2  text-sm'> {parking.associateParking}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Email:
+            </p>
+            <p className='py-2  text-sm'> {parking.email}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Address:
+            </p>
+            <p className='py-2  text-sm'> {parking.address}</p>
+
+            </div>
+            
           </div>
         </div>
 
