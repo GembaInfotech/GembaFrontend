@@ -180,7 +180,7 @@ const ParkingDetail = () => {
                 </p>
               </div>
               {/* Display other details similarly */}
-              <div>
+              <div className="">
                 <button
                   onClick={handleEdit}
                   className="text-2xl font-normal text-gray-600 mt-2 px-16"
@@ -221,8 +221,8 @@ const ParkingDetail = () => {
                   <p className="py-4 px-6 text-sm">
                     <span className="py-4 text-sm font-bold">Guard:</span>{" "}
                     {parking.associateGuard && parking.associateGuard.name && <Link to={`/gaurd/${parking.associateGuard?._id}`}><button className="px-1 bg-gray-300 py-1 m-1">view</button>
-</Link>}
-                   
+                    </Link>}
+
                   </p>
                   <p className="py-4 px-6 text-sm">
                     <span className="py-4 text-sm font-bold">Longitude:</span>{" "}
