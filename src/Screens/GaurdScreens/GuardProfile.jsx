@@ -223,7 +223,36 @@ const Profile = () => {
           </div>
           <div className='px-72 py-8'>
         
-         
+          <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Name:
+            </p>
+            <p className='py-2  text-sm'> {parking.name}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Password:
+            </p>
+            <p className='py-2  text-sm'> {parking.password}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Aadhaar No.:
+            </p>
+            <p className='py-2  text-sm'> {parking.adhar}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Parking ID:
+            </p>
+            <p className='py-2  text-sm'> {parking.parkingid}</p>
+
+            </div>
+            <div className='flex  justify-between items-center'>
+            <p className="  py-2 text-sm font-bold">Contact Number:
+            </p>
+            <p className='py-2  text-sm'> {parking.contactNumber}</p>
+
+            </div>
             <div className='flex  justify-between items-center'>
             <p className="  py-2 text-sm font-bold">Email:
             </p>

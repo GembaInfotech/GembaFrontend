@@ -198,12 +198,7 @@ const AssociateParking = () => {
       </div>
       <div className="">
 
-        <div className="mx-2">
-          <button onClick={addgaurd} className="bg-gray-400 p-2 ">Add Gaurd</button>
-          {
-            add && <Gaurd id={parking._id} />
-          }
-        </div>
+        
 
         <h1 className="text-2xl font-bold mb-10">Associate Account Details</h1>
         <div className="flex flex-row m-4">

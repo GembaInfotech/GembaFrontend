@@ -1,244 +1,341 @@
-import { useState , useRef} from "react";
+import { useState ,useEffect, useRef} from "react";
 import ReactToPrint from "react-to-print";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const BookingsG = () => {
 
+    const formatDate = (dateTimeString, isParkingTime) => {
+        const format = isParkingTime ? "MMMM Do YYYY, h:mm:ss a" : "MMMM Do YYYY, h:mm:ss a";
+        console.log(moment(dateTimeString).format(format));
+        return moment(dateTimeString).format(format);
+    };
 
     const [currentPage, setCurrentPage] = useState(1);
     const [isEditing, setIsEditing] = useState(false);
-    const [editedBooking, setEditedBooking] = useState(null);
+    const [editedBooking, setEditedBooking] = useState({});
 
     const [BookingsPerPage] = useState(12);
-    const BookingDetails = [
-        {
-            "bookingId": 1,
-            "userName": "John Doe",
-            "bookingTime": "2024-02-08T09:00:00",
-            "bookingDuration": "2 hours",
-            "parkingTime": "2024-02-08T09:00:00",
-            "checkoutTime": "2024-02-08T11:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "02:00",
-            "bookingPrice": "$10",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 2,
-            "userName": "Alice Smith",
-            "bookingTime": "2024-02-08T10:30:00",
-            "bookingDuration": "1 hour",
-            "parkingTime": "2024-02-08T10:30:00",
-            "checkoutTime": "2024-02-08T11:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "01:00",
-            "bookingPrice": "$5",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 3,
-            "userName": "Emma Johnson",
-            "bookingTime": "2024-02-08T12:00:00",
-            "bookingDuration": "3 hours",
-            "parkingTime": "2024-02-08T12:00:00",
-            "checkoutTime": "2024-02-08T15:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "03:00",
-            "bookingPrice": "$15",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 4,
-            "userName": "Michael Brown",
-            "bookingTime": "2024-02-08T14:30:00",
-            "bookingDuration": "4 hours",
-            "parkingTime": "2024-02-08T14:30:00",
-            "checkoutTime": "2024-02-08T18:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "04:00",
-            "bookingPrice": "$20",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 5,
-            "userName": "Sophia Wilson",
-            "bookingTime": "2024-02-08T16:00:00",
-            "bookingDuration": "2 hours",
-            "parkingTime": "2024-02-08T16:00:00",
-            "checkoutTime": "2024-02-08T18:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "02:00",
-            "bookingPrice": "$10",
-            "exceedPrice": "$0",
-            "parkingStatus": "InProgress"
-        },
-        {
-            "bookingId": 6,
-            "userName": "Olivia Martinez",
-            "bookingTime": "2024-02-08T17:30:00",
-            "bookingDuration": "3 hours",
-            "parkingTime": "2024-02-08T17:30:00",
-            "checkoutTime": "2024-02-08T20:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "03:00",
-            "bookingPrice": "$15",
-            "exceedPrice": "$0",
-            "parkingStatus": "Requested"
-        },
-        {
-            "bookingId": 7,
-            "userName": "William Taylor",
-            "bookingTime": "2024-02-08T10:00:00",
-            "bookingDuration": "3 hours",
-            "parkingTime": "2024-02-08T10:00:00",
-            "checkoutTime": "2024-02-08T13:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "03:00",
-            "bookingPrice": "$15",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 8,
-            "userName": "Sophie Brown",
-            "bookingTime": "2024-02-08T13:30:00",
-            "bookingDuration": "1 hour",
-            "parkingTime": "2024-02-08T13:30:00",
-            "checkoutTime": "2024-02-08T14:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "01:00",
-            "bookingPrice": "$5",
-            "exceedPrice": "$0",
-            "parkingStatus": "InProgress"
-        },
-        {
-            "bookingId": 9,
-            "userName": "Henry Davis",
-            "bookingTime": "2024-02-08T15:00:00",
-            "bookingDuration": "2 hours",
-            "parkingTime": "2024-02-08T15:00:00",
-            "checkoutTime": "2024-02-08T17:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "02:00",
-            "bookingPrice": "$10",
-            "exceedPrice": "$0",
-            "parkingStatus": "Requested"
-        },
-        {
-            "bookingId": 10,
-            "userName": "Isabella Rodriguez",
-            "bookingTime": "2024-02-08T11:30:00",
-            "bookingDuration": "4 hours",
-            "parkingTime": "2024-02-08T11:30:00",
-            "checkoutTime": "2024-02-08T15:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "04:00",
-            "bookingPrice": "$20",
-            "exceedPrice": "$0",
-            "parkingStatus": "InProgress"
-        },
-        {
-            "bookingId": 11,
-            "userName": "Liam Martinez",
-            "bookingTime": "2024-02-08T14:00:00",
-            "bookingDuration": "3 hours",
-            "parkingTime": "2024-02-08T14:00:00",
-            "checkoutTime": "2024-02-08T17:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "03:00",
-            "bookingPrice": "$15",
-            "exceedPrice": "$0",
-            "parkingStatus": "Requested"
-        },
-        {
-            "bookingId": 12,
-            "userName": "Ethan Garcia",
-            "bookingTime": "2024-02-08T16:30:00",
-            "bookingDuration": "2 hours",
-            "parkingTime": "2024-02-08T16:30:00",
-            "checkoutTime": "2024-02-08T18:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "02:00",
-            "bookingPrice": "$10",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 13,
-            "userName": "Isabella Rodriguez",
-            "bookingTime": "2024-02-08T11:30:00",
-            "bookingDuration": "4 hours",
-            "parkingTime": "2024-02-08T11:30:00",
-            "checkoutTime": "2024-02-08T15:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "04:00",
-            "bookingPrice": "$20",
-            "exceedPrice": "$0",
-            "parkingStatus": "InProgress"
-        },
-        {
-            "bookingId": 14,
-            "userName": "Liam Martinez",
-            "bookingTime": "2024-02-08T14:00:00",
-            "bookingDuration": "3 hours",
-            "parkingTime": "2024-02-08T14:00:00",
-            "checkoutTime": "2024-02-08T17:00:00",
-            "exceedTime": "00:00",
-            "totalTime": "03:00",
-            "bookingPrice": "$15",
-            "exceedPrice": "$0",
-            "parkingStatus": "Requested"
-        },
-        {
-            "bookingId": 15,
-            "userName": "Ethan Garcia",
-            "bookingTime": "2024-02-08T16:30:00",
-            "bookingDuration": "2 hours",
-            "parkingTime": "2024-02-08T16:30:00",
-            "checkoutTime": "2024-02-08T18:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "02:00",
-            "bookingPrice": "$10",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-        {
-            "bookingId": 16,
-            "userName": "Ethan Garcia",
-            "bookingTime": "2024-02-08T16:30:00",
-            "bookingDuration": "2 hours",
-            "parkingTime": "2024-02-08T16:30:00",
-            "checkoutTime": "2024-02-08T18:30:00",
-            "exceedTime": "00:00",
-            "totalTime": "02:00",
-            "bookingPrice": "$10",
-            "exceedPrice": "$0",
-            "parkingStatus": "Completed"
-        },
-    ];
+    const [BookingDetails, setBookingDetails] = useState([]);
+    // const BookingDetails = [
+    //     {
+    //    _i: 1,
+    //         "userName": "John Doe",
+    //         "bookingTime": "2024-02-21T09:00:00",
+    //         "bookingDuration": "1 hours",
+    //         "parkingTime": "2024-02-20T09:00:00",
+    //         "checkoutTime": "2024-02-20T10:00:00",
+    //         "exceedTime": "00:00",
+    //         "totalTime": "01:00",
+    //         "bookingPrice": "$10",
+    //         "exceedPrice": "$0",
+    //         "parkingStatus": "Completed"
+    //     },
+    //     {
+    //    _i: 2,
+    //         "userName": "Alice Smith",
+    //         "bookingTime": "2024-02-08T10:30:00",
+    //         "bookingDuration": "1 hour",
+    //         "parkingTime": "2024-02-08T10:30:00",
+    //         "checkoutTime": "2024-02-08T11:30:00",
+    //         "exceedTime": "00:00",
+    //         "totalTime": "01:00",
+    //         "bookingPrice": "$5",
+    //         "exceedPrice": "$0",
+    //         "parkingStatus": "Completed"
+    //     },
+    //     {
+    //         "bookingId": 3,
+    //         "userName": "Emma Johnson",
+    //         "bookingTime": "2024-02-08T12:00:00",
+    //         "bookingDuration": "3 hours",
+    //         "parkingTime": "2024-02-08T12:00:00",
+    //         "checkoutTime": "2024-02-08T15:00:00",
+    //         "exceedTime": "00:00",
+    //         "totalTime": "03:00",
+    //         "bookingPrice": "$15",
+    //         "exceedPrice": "$0",
+    //         "parkingStatus": "Completed"
+    //     },
+    //     {
+    //         "bookingId": 4,
+    //         "userName": "Michael Brown",
+    //         "bookingTime": "2024-02-08T14:30:00",
+    //         "bookingDuration": "4 hours",
+    //         "parkingTime": "2024-02-08T14:30:00",
+    //         "checkoutTime": "2024-02-08T18:30:00",
+    //         "exceedTime": "00:00",
+    //         "totalTime": "04:00",
+    //         "bookingPrice": "$20",
+    //         "exceedPrice": "$0",
+    //         "parkingStatus": "Completed"
+    //     },
+    //     {
+    //         "bookingId": 5,
+    //         "userName": "Sophia Wilson",
+    //         "bookingTime": "2024-02-08T04:10:00",
+    //         "bookingDuration": "2 hours",
+    //         "parkingTime": "2024-02-08T04:10:00",
+    //         "checkoutTime": "2024-02-20T16:09:00",
+    //         "exceedTime": "00:00",
+    //         "totalTime": "02:00",
+    //         "bookingPrice": "$10",
+    //         "exceedPrice": "$0",
+    //         "parkingStatus": "InProgress"
+    //     },
+    // //     {
+    // //         "bookingId": 6,
+    // //         "userName": "Olivia Martinez",
+    // //         "bookingTime": "2024-02-08T17:30:00",
+    // //         "bookingDuration": "3 hours",
+    // //         "parkingTime": "2024-02-08T17:30:00",
+    // //         "checkoutTime": "2024-02-08T20:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "03:00",
+    // //         "bookingPrice": "$15",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Requested"
+    // //     },
+    // //     {
+    // //         "bookingId": 7,
+    // //         "userName": "William Taylor",
+    // //         "bookingTime": "2024-02-08T10:00:00",
+    // //         "bookingDuration": "3 hours",
+    // //         "parkingTime": "2024-02-08T10:00:00",
+    // //         "checkoutTime": "2024-02-08T13:00:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "03:00",
+    // //         "bookingPrice": "$15",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Completed"
+    // //     },
+    // //     {
+    // //         "bookingId": 8,
+    // //         "userName": "Sophie Brown",
+    // //         "bookingTime": "2024-02-08T13:30:00",
+    // //         "bookingDuration": "1 hour",
+    // //         "parkingTime": "2024-02-08T13:30:00",
+    // //         "checkoutTime": "2024-02-08T14:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "01:00",
+    // //         "bookingPrice": "$5",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "InProgress"
+    // //     },
+    // //     {
+    // //         "bookingId": 9,
+    // //         "userName": "Henry Davis",
+    // //         "bookingTime": "2024-02-08T15:00:00",
+    // //         "bookingDuration": "2 hours",
+    // //         "parkingTime": "2024-02-08T15:00:00",
+    // //         "checkoutTime": "2024-02-08T17:00:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "02:00",
+    // //         "bookingPrice": "$10",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Requested"
+    // //     },
+    // //     {
+    // //         "bookingId": 10,
+    // //         "userName": "Isabella Rodriguez",
+    // //         "bookingTime": "2024-02-08T11:30:00",
+    // //         "bookingDuration": "4 hours",
+    // //         "parkingTime": "2024-02-08T11:30:00",
+    // //         "checkoutTime": "2024-02-08T15:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "04:00",
+    // //         "bookingPrice": "$20",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "InProgress"
+    // //     },
+    // //     {
+    // //         "bookingId": 11,
+    // //         "userName": "Liam Martinez",
+    // //         "bookingTime": "2024-02-08T14:00:00",
+    // //         "bookingDuration": "3 hours",
+    // //         "parkingTime": "2024-02-08T14:00:00",
+    // //         "checkoutTime": "2024-02-08T17:00:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "03:00",
+    // //         "bookingPrice": "$15",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Requested"
+    // //     },
+    // //     {
+    // //         "bookingId": 12,
+    // //         "userName": "Ethan Garcia",
+    // //         "bookingTime": "2024-02-08T16:30:00",
+    // //         "bookingDuration": "2 hours",
+    // //         "parkingTime": "2024-02-08T16:30:00",
+    // //         "checkoutTime": "2024-02-08T18:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "02:00",
+    // //         "bookingPrice": "$10",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Completed"
+    // //     },
+    // //     {
+    // //         "bookingId": 13,
+    // //         "userName": "Isabella Rodriguez",
+    // //         "bookingTime": "2024-02-08T11:30:00",
+    // //         "bookingDuration": "4 hours",
+    // //         "parkingTime": "2024-02-08T11:30:00",
+    // //         "checkoutTime": "2024-02-08T15:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "04:00",
+    // //         "bookingPrice": "$20",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "InProgress"
+    // //     },
+    // //     {
+    // //         "bookingId": 14,
+    // //         "userName": "Liam Martinez",
+    // //         "bookingTime": "2024-02-08T14:00:00",
+    // //         "bookingDuration": "3 hours",
+    // //         "parkingTime": "2024-02-08T14:00:00",
+    // //         "checkoutTime": "2024-02-08T17:00:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "03:00",
+    // //         "bookingPrice": "$15",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Requested"
+    // //     },
+    // //     {
+    // //         "bookingId": 15,
+    // //         "userName": "Ethan Garcia",
+    // //         "bookingTime": "2024-02-08T16:30:00",
+    // //         "bookingDuration": "2 hours",
+    // //         "parkingTime": "2024-02-08T16:30:00",
+    // //         "checkoutTime": "2024-02-08T18:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "02:00",
+    // //         "bookingPrice": "$10",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Completed"
+    // //     },
+    // //     {
+    // //         "bookingId": 16,
+    // //         "userName": "Ethan Garcia",
+    // //         "bookingTime": "2024-02-08T16:30:00",
+    // //         "bookingDuration": "2 hours",
+    // //         "parkingTime": "2024-02-08T16:30:00",
+    // //         "checkoutTime": "2024-02-08T18:30:00",
+    // //         "exceedTime": "00:00",
+    // //         "totalTime": "02:00",
+    // //         "bookingPrice": "$10",
+    // //         "exceedPrice": "$0",
+    // //         "parkingStatus": "Completed"
+    // //     },
+    // ];
 
+    useEffect(() => {
+        const fetchGuardDetails = () => {
+          fetch(`http://localhost:7001/v1/api/booking/65d32bed77a295e912a381e4`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            })
+            .then(data => {
+              console.log(data);
+              setBookingDetails(data.data)
+              // console.log(data); // Log the fetched data
+            })
+            .catch(error => {
+              console.error('Error fetching guard details:', error);
+            });
+        };
+    
+        fetchGuardDetails();
+      }, []);
+    
+
+      const calculateExceedTime = (checkoutTime, bookingDuration) => {
+        const checkoutTimestamp = new Date(checkoutTime).getTime();
+        const bookingEndTimestamp = new Date(checkoutTime).getTime() - (parseInt(bookingDuration) * 60 * 1000); // Subtract booking duration in milliseconds
+      
+        const exceedTimeInMilliseconds = Math.max(0, checkoutTimestamp - bookingEndTimestamp);
+        const exceedTimeInSeconds = Math.floor(exceedTimeInMilliseconds / 1000);
+      
+        const hours = Math.floor(exceedTimeInSeconds / 3600);
+        const minutes = Math.floor((exceedTimeInSeconds % 3600) / 60);
+      
+        return { hours, minutes };
+      };
+    
+      const bookingsWithExceedTime = BookingDetails.map((booking) => {
+        const { hours, minutes } = calculateExceedTime(booking.checkoutTime, booking.bookingDuration);
+        const exceedPrice = hours > 0 || minutes > 0 ? `$${Math.round(hours + minutes / 60) * 5}` : "$0"; // Charge $5 per hour for exceed time
+    
+        return {
+          ...booking,
+          exceedTime: `${hours}H ${minutes}M`,
+          exceedPrice,
+        };
+      });
+    
+
+    
+    
 
     const handleEdit = (index) => {
-        setEditedBooking(BookingDetails[index]);
-        setIsEditing(true);
-    };
+  const selectedBooking = bookingsWithExceedTime[index];
+  setEditedBooking(selectedBooking);
+
+  setIsEditing(true);
+
+  // Log the selectedBooking in the callback function
+  setEditedBooking((prevBooking) => {
+    console.log("Selected Booking Information:", selectedBooking);
+    return prevBooking;
+  });
+};
+
     
       const detail = {
-        name: 'John Doe',
-        age: 30,
-        email: 'john@example.com'
+        "bookingId": 16,
+            "userName": "Ethan Garcia",
+            "bookingTime": "2024-02-08T16:30:00",
+            "bookingDuration": "2 hours",
+            "parkingTime": "2024-02-08T16:30:00",
+            "checkoutTime": "2024-02-08T18:30:00",
+            "exceedTime": "00:00",
+            "totalTime": "02:00",
+            "bookingPrice": "$10",
+            "exceedPrice": "$0",
+            "parkingStatus": "Completed"
       };
   
       
-    const handleSave = () => {
+      const handleSave = () => {
+        // Check if exceed time is greater than zero
+        const exceedTimeInMinutes = calculateExceedTime(editedBooking.checkoutTime).hours * 60 + calculateExceedTime(editedBooking.checkoutTime).minutes;
+    
+        if (exceedTimeInMinutes > 0) {
+            // Show confirmation popup
+            const confirmMessage = `Exceed time detected. Exceed amount: $${Math.round(exceedTimeInMinutes / 60) * 5}\nDo you want to mark the booking as Completed?`;
+    
+            if (window.confirm(confirmMessage)) {
+                // User clicked "OK," update booking status to "Completed"
+                setEditedBooking((prevBooking) => ({
+                    ...prevBooking,
+                    parkingStatus: "Completed",
+                }));
+            }
+        } else {
+            // Exceed time is zero, update booking status to "InProgress"
+            setEditedBooking((prevBooking) => ({
+                ...prevBooking,
+                parkingStatus: "InProgress",
+            }));
+        }
+    
         // Handle save action, for now, just log the editedBooking
         console.log("Updated Booking Information:", editedBooking);
         setIsEditing(false);
     };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -250,7 +347,14 @@ const BookingsG = () => {
 
     const indexOfLastBooking = currentPage * BookingsPerPage;
     const indexOfFirstBooking = indexOfLastBooking - BookingsPerPage;
-    const currentBookings = BookingDetails.slice(indexOfFirstBooking, indexOfLastBooking);
+    const currentBookings = BookingDetails.slice(
+        indexOfFirstBooking,
+        indexOfLastBooking
+    ).map((booking) => ({
+        ...booking,
+        parkingTime: formatDate(booking.parkingTime, true),
+        checkoutTime: formatDate(booking.checkoutTime, false),
+    }));
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -302,7 +406,7 @@ const BookingsG = () => {
                             >
                                 Cancel
                             </button>
-                            <Link  to={`/generatee/${encodeURIComponent(JSON.stringify(detail))}`}>   <button
+                            <Link  to={`/generatee/${encodeURIComponent(JSON.stringify(editedBooking))}`}>   <button
                                 type="button"
                                 className="bg-gray-300 mx-6 text-gray-700 py-1 px-2 rounded-sm hover:bg-red-600 focus:outline-none"
                             >
@@ -356,12 +460,12 @@ const BookingsG = () => {
                             <tbody className="text-gray-600  ">
                                 {currentBookings.map((Booking, index) => (
                                     <tr onClick={() => handleEdit(index)} key={index} className={index % 2 === 0 ? 'bg-white hover:bg-gray-200 duration-300' : 'hover:bg-gray-200 duration-300'}>
-                                        <td className="px-4 text-sm py-2 ">{Booking.bookingId}</td>
-                                        <td className="px-4 text-sm py-2">{Booking.userName}</td>
-                                        <td className="px-4 text-sm py-2">{Booking.bookingTime}</td>
+                                        <td className="px-4 text-sm py-2 ">{Booking._id}</td>
+                                        <td className="px-4 text-sm py-2">{Booking.enserId}</td>
+                                        <td className="px-4 text-sm py-2">{Booking.bparkingId}</td>
                                         <td className="px-4 text-sm py-2">{Booking.bookingDuration}</td>
-                                        <td className="px-4 text-sm py-2">{Booking.parkingTime}</td>
-                                        <td className="px-4 text-sm py-2">{Booking.checkoutTime}</td>
+                                        <td className="px-4 text-sm py-2">{Booking.timeIn}</td>
+                                        <td className="px-4 text-sm py-2">{Booking.timeOut}</td>
                                         <td className="px-4 text-sm py-2">{Booking.exceedTime}</td>
                                         <td className="px-4 text-sm py-2">{Booking.totalTime}</td>
                                         <td className="px-4 text-sm py-2">{Booking.bookingPrice}</td>

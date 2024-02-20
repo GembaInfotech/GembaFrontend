@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import ReactToPrint from "react-to-print";
 
 const Ereciept = ({print}) => {
-  const { detail } = useParams();
-  const decodedDetail = JSON.parse(decodeURIComponent(detail));  
-  
+
+  const { editedBooking } = useParams();
+console.log(editedBooking)
+  // Decode and parse the JSON data
   const compRef=useRef();
 
   return (
@@ -59,7 +60,7 @@ const Ereciept = ({print}) => {
  <div className='  m-2'>
    <div   className='flex flex-row justify-between' >
        <h1  className='text-sm font-normal  text-gray-600'>Amount </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>   10 Rs
+   <h1  className='text-[14px] font-normal  text-gray-600'> j
    </h1>
 
    </div>
@@ -75,7 +76,7 @@ const Ereciept = ({print}) => {
    <h1  className='text-sm font-semibold  text-gray-600'> Online Amt Paid </h1>
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'>  12 Rs
+   <h1  className='text-[14px] font-normal  text-gray-600'>  editedBooking[bookingPrice]
    </h1>
    </div>
   
