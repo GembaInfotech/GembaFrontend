@@ -203,16 +203,18 @@ const ParkingDetail = () => {
 
         )}
       </div>
-      <div className="">
+      <div className="bg-gray-100 p-2 my-2">
+
+       
+
+        <h1 className="text-2xl font-bold mb-10">Associate Account Details</h1>
 
         <div className="mx-2">
           <button onClick={addgaurd} className="bg-gray-400 p-2 ">Add Gaurd</button>
           {
-            add && <Gaurd id={parking._id} />
+            add && <Gaurd id={parking._id} fnc={addgaurd} />
           }
         </div>
-
-        <h1 className="text-2xl font-bold mb-10">Associate Account Details</h1>
         <div className="flex flex-row m-4">
           {/* Manager Info */}
           <div className="mb-8">

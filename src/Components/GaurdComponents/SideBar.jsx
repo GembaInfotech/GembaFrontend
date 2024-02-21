@@ -36,20 +36,22 @@ const SideBar = () => {
             >
          <div className="flex ">
               <h1 className="text-gray-800 text-sm py-1 px-2">  <SlLocationPin/></h1>
-                <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Parkings</h1>
+                <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Parking</h1>
                 </div>
             </Link>
           </div>
         
-          <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
+         
+      
+       <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
          
          <Link
-           to="/help"
-           className="text-white font-medium hover:text-gray-500 transition"
+           to="/guardBookings"
+           className="text-white font-medium hover:text-gray-500 transsition"
          >
            <div className="flex ">
-           <h1 className="text-gray-800 text-sm py-1 px-2">  <LuHelpingHand/></h1>
-             <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold"> Help </h1>
+           <h1 className="text-red-800 text-sm py-1 px-2">  <LuHelpingHand/></h1>
+             <h1 className="text-red-600 hover:text-red-800 hover:font-bold"> Incoming </h1>
              </div>
          </Link>
        </div>
@@ -60,8 +62,20 @@ const SideBar = () => {
            className="text-white font-medium hover:text-gray-500 transition"
          >
            <div className="flex ">
-           <h1 className="text-gray-800 text-sm py-1 px-2">  <FiDatabase/></h1>
-             <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Bookings</h1>
+           <h1 className="text-green-800 text-sm py-1 px-2">  <LuHelpingHand/></h1>
+             <h1 className="text-green-600 hover:text-green-800 hover:font-bold"> Parked </h1>
+             </div>
+         </Link>
+       </div>
+       <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
+         
+         <Link
+           to="/guardBookings"
+           className="text-white font-medium hover:text-gray-500 transition"
+         >
+           <div className="flex ">
+           <h1 className="text-gray-800 text-sm py-1 px-2">  <LuHelpingHand/></h1>
+             <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold"> Completed </h1>
              </div>
          </Link>
        </div>

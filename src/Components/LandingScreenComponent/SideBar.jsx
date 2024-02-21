@@ -80,10 +80,7 @@ const SideBar = () => {
            to="/vendorHome"
            className="text-white font-medium hover:text-gray-500 transition"
          >
-           <div className="flex ">
-           <h1 className="text-gray-800 text-sm py-1 px-2">  <FiDatabase/></h1>
-             <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  VendorSite</h1>
-             </div>
+           
          </Link>
        </div>
         </div>
