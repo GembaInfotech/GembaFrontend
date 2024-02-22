@@ -149,12 +149,7 @@ const AssociateParking = () => {
   </div>
 
   <div>
-    <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
-      <MdEdit />
-    </button>
-    <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
-      <MdOutlineAddPhotoAlternate />
-    </button>
+   
     <div className="m-14 p-1">
       {Object.entries(parking).map(([key, value]) => (
         key === 'dateOfCreation' && (
@@ -196,47 +191,7 @@ const AssociateParking = () => {
 
         )}
       </div>
-      <div className="">
-
-        
-
-        <h1 className="text-2xl font-bold mb-10">Associate Account Details</h1>
-        <div className="flex flex-row m-4">
-          {/* Manager Info */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-2">Manager Info</h2>
-            <p>Name: {accountDetails.manager.name}</p>
-            <p>Account Number: {accountDetails.manager.accountNumber}</p>
-            <p>Branch: {accountDetails.manager.branch}</p>
-            <p>IFSC Code: {accountDetails.manager.IFSCCode}</p>
-          </div>
-
-          {/* Associate Parking */}
-          <div className="mb-8 mx-20">
-            <h2 className="text-lg font-semibold mb-2">Associate Parking</h2>
-            <p>Name: {accountDetails.associateParking.name}</p>
-            <p>Location: {accountDetails.associateParking.location}</p>
-            <p>Capacity: {accountDetails.associateParking.capacity}</p>
-            <p>Price Per Hour: {accountDetails.associateParking.pricePerHour}</p>
-          </div>
-
-          {/* Expenses */}
-          <div className="mb-8 mr-20">
-            <h2 className="text-lg font-semibold mb-2">Expenses</h2>
-            <p>Guard Salary: {accountDetails.expenses.guardSalary}</p>
-            <p>Manager Salary: {accountDetails.expenses.managerSalary}</p>
-            <p>Parking Maintenance Cost: {accountDetails.expenses.parkingMaintenanceCost}</p>
-            <p>Other Cost: {accountDetails.expenses.otherCost}</p>
-          </div>
-
-          <div className="mb-8 ">
-            <h2 className="text-lg font-semibold mb-2">Revenue</h2>
-            <p>Total Revenue: {accountDetails.revenue.totalRevenue}</p>
-            <p>Start Date: {accountDetails.revenue.startDate}</p>
-            <p>End Date: {accountDetails.revenue.endDate}</p>
-          </div>
-        </div>
-      </div>
+  
 
     </div>
 

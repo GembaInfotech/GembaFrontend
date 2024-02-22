@@ -19,7 +19,9 @@ import ParkingDetail from './Screens/ParkingDetail'
 import GaurdDetail from './Screens/GaurdDetail'
 import GLayout from './Layout/GLayout'
 // import GLandingScreen from './Screens/GaurdScreens/GLandingScreen'
-import BookingsG from './Screens/GaurdScreens/BookingScreens'
+import IncomingBooking from './Screens/GaurdScreens/IncomingBooking'
+import ParkedBooking from './Screens/GaurdScreens/ParkedBooking'
+import CompletedBooking from './Screens/GaurdScreens/CompletedBooking'
 import GuardProfile from './Screens/GaurdScreens/GuardProfile'
 import AssociateParking from './Screens/GaurdScreens/AssociateParking'
 import Reciept from './Components/Reciept'
@@ -53,7 +55,9 @@ function App() {
 
         <Route path="/gaurd/:id" element={<Layout><GaurdDetail /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
-        <Route path="/guardBookings" element={<GLayout>< BookingsG /></GLayout>} />
+        <Route path="/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
+        <Route path="/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />
+        <Route path="/CompletedBooking" element={<GLayout>< CompletedBooking /></GLayout>} />
         <Route path="/associateParking/:id" element={<GLayout>< AssociateParking /></GLayout>} />
         <Route path="/generate" element={ <Reciept />}/>
         <Route path="/generatee/:detail" element={ <Ereciept />}/>

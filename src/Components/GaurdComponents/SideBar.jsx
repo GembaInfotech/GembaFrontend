@@ -46,7 +46,7 @@ const SideBar = () => {
        <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
          
          <Link
-           to="/guardBookings"
+           to="/IncomingBooking"
            className="text-white font-medium hover:text-gray-500 transsition"
          >
            <div className="flex ">
@@ -58,7 +58,7 @@ const SideBar = () => {
        <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
          
          <Link
-           to="/guardBookings"
+           to="/ParkedBooking"
            className="text-white font-medium hover:text-gray-500 transition"
          >
            <div className="flex ">
@@ -70,7 +70,7 @@ const SideBar = () => {
        <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
          
          <Link
-           to="/guardBookings"
+           to="/CompletedBooking"
            className="text-white font-medium hover:text-gray-500 transition"
          >
            <div className="flex ">
