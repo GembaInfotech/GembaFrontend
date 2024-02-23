@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
-import { MdEdit } from "react-icons/md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import image from "../../assets/parking2.jpg";
-import { MdOutlineAddPhotoAlternate } from "react-icons/md";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-// import Gaurd from "../Components/Gaurd";
 
 const AssociateParking = () => {
   const { id } = useParams();
-
 
   const [parking, setparkings] = useState({});
   useEffect(() => {
@@ -25,7 +20,6 @@ const AssociateParking = () => {
         .then(data => {
           console.log(data);
           setparkings(data.data)
-          // console.log(data); // Log the fetched data
         })
         .catch(error => {
           console.error('Error fetching guard details:', error);
@@ -35,66 +29,21 @@ const AssociateParking = () => {
     fetchGuardDetails();
   }, []);
 
-  const [accountDetails, setAccountDetails] = useState({
-    manager: {
-      name: "John Doe",
-      accountNumber: "1234567890",
-      branch: "Main Branch",
-      IFSCCode: "ABCD0123456"
-    },
-    associateParking: {
-      name: "ABC Parking Lot",
-      location: "XYZ Street, City",
-      capacity: 100,
-      pricePerHour: "$5"
-    },
-    revenue: {
-      totalRevenue: "$5000",
-    },
-    expenses: {
-      guardSalary: "$1000",
-      managerSalary: "$1500",
-      parkingMaintenanceCost: "$500",
-      otherCost: "$200"
-    }
-  });
-
-
-
   const [isEditing, setIsEditing] = useState(false);
-  const [add, setaddgaurd] = useState(false);
-  const addgaurd = () => {
-    setaddgaurd(true)
-  }
-  const [editedParking, setEditedParking] = useState(parking);
 
   const handleEdit = () => {
     setIsEditing(true);
-  };
-
-  const handleSave = () => {
-    // Handle save action, for now, just log the editedParking
-    console.log("Updated Parking Information:", editedParking);
-    setIsEditing(false);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditedParking((prevParking) => ({
-      ...prevParking,
-      [name]: value,
-    }));
   };
 
   return (
     <div className="container mx-auto px-16 pt-8">
       <div>
         {isEditing ? (
-          <div className="bg-[#ffffff] shadow-xl border border-gray-300 rounded-sm w-full duration-300 ease-in-out overflow-hidden p-12" style={{ height: "80vh" }}>
+          <div className="bg-white shadow-xl border border-gray-300 rounded-sm w-full duration-300 ease-in-out overflow-hidden p-12" style={{ height: "80vh" }}>
             <form>
               <div className="mb-8 grid grid-cols-3 gap-6">
                 {Object.keys(parking).map((key, index) => {
-                  if (key === "id") return null; // Skip rendering input field for id
+                  if (key === "id") return null;
                   return (
                     <div key={index} className="relative h-10 w-full">
                       <input
@@ -129,46 +78,32 @@ const AssociateParking = () => {
               </div>
             </form>
           </div>
-
-
-
         ) : (
           <div className="flex justify-between">
             <div className="flex overflow-hidden py-12" style={{ height: "96vh" }}>
-  <div>
-    <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
-    <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
-
-    {Object.entries(parking).map(([key, value]) => (
-      key !== 'id' && key !== 'associateGuard' && (
-        <p key={key} className="py-4 px-6 text-sm">
-          <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
-        </p>
-      )
-    ))}
-  </div>
-
-  <div>
-   
-    <div className="m-14 p-1">
-      {Object.entries(parking).map(([key, value]) => (
-        key === 'dateOfCreation' && (
-          <p key={key} className="py-4 px-6 text-sm">
-            <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
-          </p>
-        )
-      ))}
-      
-     
-
-    
-
-     
-    </div>
-  </div>
-</div>
-
-          
+              <div>
+                <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
+                <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
+                {Object.entries(parking).map(([key, value]) => (
+                  key !== 'id' && key !== 'associateGuard' && (
+                    <p key={key} className="py-4 px-6 text-sm">
+                      <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
+                    </p>
+                  )
+                ))}
+              </div>
+              <div>
+                <div className="m-14 p-1">
+                  {Object.entries(parking).map(([key, value]) => (
+                    key === 'dateOfCreation' && (
+                      <p key={key} className="py-4 px-6 text-sm">
+                        <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
+                      </p>
+                    )
+                  ))}
+                </div>
+              </div>
+            </div>
             <div>
               <div className="flex justify-center items-center p-4 ">
                 <button>
@@ -176,7 +111,6 @@ const AssociateParking = () => {
                     <MdKeyboardArrowLeft />
                   </h1>
                 </button>
-
                 <img src={image} className="w-72 h-96" alt="" />
                 <button>
                   <h1 className="pl-2">
@@ -185,16 +119,10 @@ const AssociateParking = () => {
                 </button>
               </div>
             </div>
-
           </div>
-
-
         )}
       </div>
-  
-
     </div>
-
   );
 };
 

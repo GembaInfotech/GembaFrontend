@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ReactToPrint from "react-to-print";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const IncomingBooking = () => {
   const [data, setData] = useState([]);
+  const { parkingId } = useParams();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [exceedPrice, setExceedPrice] = useState(false);
   const [showReceipt, setShowReceipt] = useState(false);
 
+  const popupRef = useRef(null); // Reference to the popup element
+
   const fetchGuardDetails = (carNumber) => {
     // Use the search term in the API request if it is provided
     const apiUrl = carNumber
-      ? `http://localhost:7001/v1/api/booking/bookings/?parkingId=65d32bed77a295e912a381e4&status=Incoming&CarNumber=${carNumber}`
-      : 'http://localhost:7001/v1/api/booking/bookings/?parkingId=65d32bed77a295e912a381e4&status=Incoming';
+      ? `http://localhost:7001/v1/api/bookings/bookings/?parkingId=${parkingId}&&status=Incoming&CarNumber=${carNumber}`
+      : `http://localhost:7001/v1/api/bookings/bookings/?parkingId=${parkingId}&&status=Incoming`;
 
     fetch(apiUrl)
       .then(response => {
@@ -48,12 +52,12 @@ const IncomingBooking = () => {
 
   const closePopup = () => {
     setSelectedBooking(null);
-    const requestData={
+    const requestData = {
       Status: "Parked"
-    }
-    const apiUrl = 
-        `http://localhost:7001/v1/api/booking/update/${selectedBooking._id}`
-    setShowReceipt(false); 
+    };
+    const apiUrl =
+      `http://localhost:7001/v1/api/bookings/update/${selectedBooking._id}`;
+    setShowReceipt(false);
     const fetchOptions = {
       method: 'PUT',
       headers: {
@@ -62,7 +66,7 @@ const IncomingBooking = () => {
       },
       body: JSON.stringify(requestData),
     };
-    
+
     // Perform the PUT request
     fetch(apiUrl, fetchOptions)
       .then(response => {
@@ -78,9 +82,22 @@ const IncomingBooking = () => {
       .catch(error => {
         console.error('Error updating booking details:', error);
       });
-};
-    // Close the receipt when closing the popup
+  };
 
+  const handleClickOutside = (event) => {
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+      // Click occurred outside the popup, close it
+      closePopup();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const collectReceipt = () => {
     setShowReceipt(true);
@@ -106,6 +123,7 @@ const IncomingBooking = () => {
   
     return { days, hours, minutes };
   };
+
   const calcMin = (time) => {
     const currentTime = Date.now();
   
@@ -167,44 +185,39 @@ const IncomingBooking = () => {
         </tbody>
       </table>
       {selectedBooking && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-md shadow-lg">
-      <h2 className="text-lg font-bold mb-4">Booking Details</h2>
-      <p>ID: {selectedBooking._id}</p>
-      <p>Status: {selectedBooking.status}</p>
-      <p>Time In: {new Date(selectedBooking.timeIn).toLocaleString()}   </p>
-      <p>Time Out: {new Date(selectedBooking.timeOut).toLocaleString()}</p>
-      <p>Booking Price: {selectedBooking.bookingPrice}</p>
-      <p>Car Number: {selectedBooking.CarNumber}</p>
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 cursor-pointer">
+          <div ref={popupRef} className="bg-white p-8 rounded-md shadow-lg cursor-auto w-[500px]">
+            <h2 className="text-lg font-bold mb-4">Booking Details</h2>
+            <p>ID: {selectedBooking._id}</p>
+            <p>Status: {selectedBooking.status}</p>
+            <p>Time In: {new Date(selectedBooking.timeIn).toLocaleString()}   </p>
+            <p>Time Out: {new Date(selectedBooking.timeOut).toLocaleString()}</p>
+            <p>Booking Price: {selectedBooking.bookingPrice}</p>
+            <p>Car Number: {selectedBooking.CarNumber}</p>
 
-      {/* Exceed Time calculation */}
-      <p>
-     {/* Exceed Time calculation */}
-     Exceed Time:
-{calculateExceedTime(selectedBooking.timeOut).days > 0 && (
-  <span>
-    {calculateExceedTime(selectedBooking.timeOut).days} days{' '}
-  </span>
-)}
-{calculateExceedTime(selectedBooking.timeOut).hours > 0 && (
-  <span>
-    {calculateExceedTime(selectedBooking.timeOut).hours} hours{' '}
-  </span>
-)}
-{calculateExceedTime(selectedBooking.timeOut).minutes > 0 && (
-  <span>
-    {calculateExceedTime(selectedBooking.timeOut).minutes} minutes
-  </span>
-)}
-{calculateExceedTime(selectedBooking.timeOut).minutes > 8 && (
-  <span className="text-red-500"> (Exceed Price)</span>
-)}
-
-        
-      </p>
-
-      
-     
+            {/* Exceed Time calculation */}
+            <p>
+              {/* Exceed Time calculation */}
+              Exceed Time:
+              {calculateExceedTime(selectedBooking.timeOut).days > 0 && (
+                <span>
+                  {calculateExceedTime(selectedBooking.timeOut).days} days{' '}
+                </span>
+              )}
+              {calculateExceedTime(selectedBooking.timeOut).hours > 0 && (
+                <span>
+                  {calculateExceedTime(selectedBooking.timeOut).hours} hours{' '}
+                </span>
+              )}
+              {calculateExceedTime(selectedBooking.timeOut).minutes > 0 && (
+                <span>
+                  {calculateExceedTime(selectedBooking.timeOut).minutes} minutes
+                </span>
+              )}
+              {calculateExceedTime(selectedBooking.timeOut).minutes > 8 && (
+                <span className="text-red-500"> (Exceed Price)</span>
+              )}
+            </p>
 
             <button
               onClick={closePopup}
@@ -212,11 +225,10 @@ const IncomingBooking = () => {
             >
               Confirm
             </button>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-)}
-
-  </div>
   );
 };
 

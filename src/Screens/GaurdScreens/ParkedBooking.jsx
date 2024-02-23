@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ReactToPrint from "react-to-print";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const CompletedBooking = () => {
+  const {parkingId}= useParams();
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -13,8 +14,8 @@ const CompletedBooking = () => {
   const fetchGuardDetails = (carNumber) => {
     // Use the search term in the API request if it is provided
     const apiUrl = carNumber
-      ? `http://localhost:7001/v1/api/booking/bookings/?parkingId=65d32bed77a295e912a381e4&status=Parked&CarNumber=${carNumber}`
-      : 'http://localhost:7001/v1/api/booking/bookings/?parkingId=65d32bed77a295e912a381e4&status=Parked';
+      ? `http://localhost:7001/v1/api/bookings/bookings/?parkingId=${parkingId}&&status=Parked&&CarNumber=${carNumber}`
+      : `http://localhost:7001/v1/api/bookings/bookings/?parkingId=${parkingId}&&status=Parked`;
 
     fetch(apiUrl)
       .then(response => {
@@ -52,7 +53,7 @@ const CompletedBooking = () => {
       Status: "Completed"
     }
     const apiUrl = 
-        `http://localhost:7001/v1/api/booking/update/${selectedBooking._id}`
+        `http://localhost:7001/v1/api/bookings/update/${selectedBooking._id}`
     setShowReceipt(false); 
     const fetchOptions = {
       method: 'PUT',
@@ -152,7 +153,7 @@ const CompletedBooking = () => {
       </table>
       {selectedBooking && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-md shadow-lg">
+          <div className="bg-white p-8 rounded-md shadow-lg cursor-auto w-[500px]">
       <h2 className="text-lg font-bold mb-4">Booking Details</h2>
       <p>ID: {selectedBooking._id}</p>
       <p>Status: {selectedBooking.status}</p>
