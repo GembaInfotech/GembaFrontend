@@ -3,6 +3,10 @@
 // import viteLogo from '/vite.svg'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Store from './Store/Store';
+import BookingList from './Components/BookingComponents/BookingList';
 
 
 import Login from './Screens/Login'
@@ -15,7 +19,8 @@ import Gaurds from './Screens/Gaurds'
 import Accounts from './Screens/Accounts'
 import Parkings from './Screens/Parkings'
 import Profile from './Screens/Profile'
-import ParkingDetail from './Screens/ParkingDetail'
+import ParkingDetail from './Screens/ParkingDetail' 
+
 import GaurdDetail from './Screens/GaurdDetail'
 import GLayout from './Layout/GLayout'
 // import GLandingScreen from './Screens/GaurdScreens/GLandingScreen'
@@ -30,10 +35,12 @@ import MainPage from './Screens/MainPage'
 import GaurdLogin from './Screens/GaurdScreens/GaurdLogin'
 import SignUp from './Screens/SignUp'
 function App() {
-
+  const queryClient = new QueryClient();
 
   return (
       <>
+      <Provider store={Store}>
+      <QueryClientProvider client={queryClient}>
        <Router>
       <Routes>
 
@@ -66,6 +73,8 @@ function App() {
 
       </Routes>
     </Router>
+    </QueryClientProvider>
+    </Provider>
       </>
   )
 }

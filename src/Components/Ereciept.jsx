@@ -9,9 +9,11 @@ const Ereciept = () => {
 
   const compRef = useRef();
   const [selectedBooking, setSelectedBooking] = useState(null);
+  const [CGST,SCGST]= useState()
 
   useEffect(() => {
     setSelectedBooking(decodedBooking);
+  
   }, [decodedBooking]);
 
   const print = () => {
@@ -20,7 +22,6 @@ const Ereciept = () => {
     // See: https://github.com/gregnb/react-to-print
     console.log('Printing:', selectedBooking);
   };
-
   return (
   
     <>
@@ -29,7 +30,7 @@ const Ereciept = () => {
 <div ref={compRef}  className='lg:mx-w-content xl:mx-auto border border-black  ' >
 
 <div className='flex flex-col justify-center items-center  mx-2'>
-   <h1 className='text-sm font-semibold font-mono text-gray-700'>RITESH INTERNATIONAL PARKING </h1>
+   <h1 className='text-sm font-semibold font-mono text-gray-700'>  {selectedBooking?.ParkingName} </h1>
    <h2  className='text-sm font-normal  text-gray-700'>365 INDUSTRIAL AREA -A</h2>
    <h3  className='text-sm font-normal  text-gray-700'>LUDHIANA</h3>
 
@@ -87,7 +88,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'>  3.6 
+   <h1  className='text-[14px] font-normal  text-gray-600'> {CGST}
    </h1>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -95,7 +96,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'>  3.6 
+   <h1  className='text-[14px] font-normal  text-gray-600'>  {selectedBooking?.bookingPrice*9/100} 
    </h1>
    </div>
 
@@ -105,7 +106,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>48
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.bookingPrice}
    </h1></div>
    
    </div>
@@ -126,7 +127,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>6
+   <h1  className='text-[14px] font-normal  text-gray-600'>5
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >

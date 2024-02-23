@@ -14,7 +14,8 @@ import { PiCarProfileFill } from "react-icons/pi";
 const SideBar = () => {
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
 
-  const parkingid= storedUserData.parkingid;
+  const parkingid= storedUserData?.parkingid;
+  console.log(parkingid)
   return (
     <div className="flex-row ">
         <div className="flex-row px-1 py-4">
