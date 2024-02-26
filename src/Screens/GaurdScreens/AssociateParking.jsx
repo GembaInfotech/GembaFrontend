@@ -3,31 +3,22 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import image from "../../assets/parking2.jpg";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+// components/ParkingList.js
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchParkingsAsync } from '../../SliceFolder/ParkingSlice/Parking';
+
+
 
 const AssociateParking = () => {
+  const dispatch = useDispatch();
+  const parking = useSelector(state => state.Parking.data);
+
   const { id } = useParams();
 
-  const [parking, setparkings] = useState({});
   useEffect(() => {
-    const fetchGuardDetails = () => {
-      fetch(`http://localhost:7001/v1/api/parking/${id}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-          setparkings(data.data)
-        })
-        .catch(error => {
-          console.error('Error fetching guard details:', error);
-        });
-    };
+    dispatch(fetchParkingsAsync());
+  }, [dispatch]);
 
-    fetchGuardDetails();
-  }, []);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -43,7 +34,7 @@ const AssociateParking = () => {
             <form>
               <div className="mb-8 grid grid-cols-3 gap-6">
                 {Object.keys(parking).map((key, index) => {
-                  if (key === "id") return null;
+                  if (key === "_id" && key==="location")  return null;
                   return (
                     <div key={index} className="relative h-10 w-full">
                       <input
@@ -80,17 +71,33 @@ const AssociateParking = () => {
           </div>
         ) : (
           <div className="flex justify-between">
-            <div className="flex overflow-hidden py-12" style={{ height: "96vh" }}>
+            <div className="flex overflow-hidden py-12 w-[70%]" style={{ height: "96vh" }}>
               <div>
                 <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
                 <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
-                {Object.entries(parking).map(([key, value]) => (
-                  key !== 'id' && key !== 'associateGuard' && key !== 'location' && (
-                    <p key={key} className="py-4 px-6 text-sm">
-                      <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
-                    </p>
-                  )
-                ))}
+                <div className="flex flex-wrap bg-gray-50 p-4 rounded-md">
+                  {Object.entries(parking).map(
+                    ([key, value]) =>
+                      key !== "_id" &&
+                      key !== "associateGuard" &&
+                      key !== "location" &&
+                      key !== "latitude" &&
+                      key !== "longitude" &&
+                      key !== "image" &&
+                      key !== "__v" && (
+                        <div
+                          key={key}
+                          className=" sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-4"
+                        >
+                          <p className="text-sm font-light">
+                            {key.charAt(0).toUpperCase() + key.slice(1)}
+                          </p>
+                          <p className="text-md font-medium py-1">{key === "openingTime" || key === "closingTime" ? new Date(value).toLocaleTimeString() : value}</p>
+                       
+                        </div>
+                      )
+                  )}
+                </div>
               </div>
               <div>
                 <div className="m-14 p-1">
@@ -105,7 +112,7 @@ const AssociateParking = () => {
               </div>
             </div>
             <div>
-              <div className="flex justify-center items-center p-4 ">
+              <div className="flex justify-center items-center p-4 mt-20 ">
                 <button>
                   <h1 className="pr-2">
                     <MdKeyboardArrowLeft />

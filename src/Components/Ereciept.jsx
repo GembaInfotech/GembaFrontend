@@ -3,75 +3,63 @@ import { useParams } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 import { PiCurrencyInr } from "react-icons/pi";
 
+
+
 const Ereciept = () => {
   const { detail } = useParams();
   const decodedBooking = JSON.parse(decodeURIComponent(detail));
 
   const compRef = useRef();
   const [selectedBooking, setSelectedBooking] = useState(null);
-  const [CGST,SCGST]= useState()
+ 
 
   useEffect(() => {
     setSelectedBooking(decodedBooking);
-  
   }, [decodedBooking]);
 
   const print = () => {
-    // Add your custom printing logic here
-    // For example, you can use the ReactToPrint API to trigger printing
-    // See: https://github.com/gregnb/react-to-print
     console.log('Printing:', selectedBooking);
   };
+  
+  const ADDON_AMOUNT = 10;
+  const CGST = selectedBooking?.bookingPrice * 0.09;
+  const SGST = Math.floor(ADDON_AMOUNT * 0.09)+1;
+  
+  const exceedPrice = (bookingPrice) => {
+    return bookingPrice + ADDON_AMOUNT + 2*CGST + 2*SGST;
+};
   return (
-  
     <>
-    <ReactToPrint trigger={() => <button onClick={print}>Print</button>} content={() => compRef.current} />
       <div className="flex justify-center">
-<div ref={compRef}  className='lg:mx-w-content xl:mx-auto border border-black  ' >
+        <div ref={compRef} className='lg:max-w-screen-xl xl:max-w-screen-2xl border border-black p-4'>
 
-<div className='flex flex-col justify-center items-center  mx-2'>
-   <h1 className='text-sm font-semibold font-mono text-gray-700'>  {selectedBooking?.ParkingName} </h1>
-   <h2  className='text-sm font-normal  text-gray-700'>365 INDUSTRIAL AREA -A</h2>
-   <h3  className='text-sm font-normal  text-gray-700'>LUDHIANA</h3>
+          <div className='flex flex-col justify-center items-center mx-2'>
+            <h1 className='text-lg font-semibold font-mono text-gray-700'>{selectedBooking?.parkingName}</h1>
+            <h3 className='text-sm font-normal text-gray-700'>LUDHIANA</h3>
+          </div>
 
-</div>
+          <div className='flex flex-col justify-center items-center mx-2'>
+            <h1 className='text-sm font-normal text-gray-600'><span>GSTIN</span> 03AAAVR87652N9V </h1>
+            <div className='flex flex-col items-center'>
+              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>Licence No</span> ARQ-933432 </h1>
+              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>State Code</span> 03 </h1>
+            </div>
+            <h1 className='text-gray-400'>--------------------------</h1>
+            <div className='flex fle-col items-center'>
+              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>Car Number</span> {selectedBooking?.CarNumber} </h1>
+            </div>
+          </div>
 
-<div className='flex flex-col justify-center items-center  mx-2'>
-   <h1  className='text-sm font-normal  text-gray-600'> <span>GSTIN</span> 03AAAVR87652N9V </h1>
-  
-  <div className='flex fle-col items-center'>
-  <h1  className='text-sm font-normal  text-gray-600 mx-1'> <span>Licence No</span> ARQ-933432 </h1>
-   <h1  className='text-sm font-normal  text-gray-600 mx-1'> <span>State Code</span> 03 </h1>
-   </div>
-
-  <h1 className='text-gray-400'>--------------------------</h1>
-
-    <div className='flex fle-col items-center'>
-    <h1  className='text-sm font-normal  text-gray-600 mx-1'> <span>Car Number</span> {selectedBooking?.CarNumber} </h1>
-    </div>
-   </div>
- 
-  
-
-
-   
-              
- <div className='  m-2'>
-   <div   className='flex flex-row justify-between' >
-       <h1  className='text-sm font-normal  text-gray-600'>In Time </h1>
-   <h1  className='text-[12px] font-normal  text-gray-600'>   {new Date(  selectedBooking?.timeIn).toLocaleString()}
-   </h1>
-
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>Out Time </h1>
-
-
-   <h1  className='text-[12px] font-normal  text-gray-600'>   {new Date(  selectedBooking?.timeOut).toLocaleString()}
-   </h1>
-   </div>
-  
- </div>
+          <div className='m-2'>
+            <div className='flex flex-row justify-between'>
+              <h1 className='text-sm font-normal text-gray-600'>In Time </h1>
+              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.timeIn).toLocaleString()}</h1>
+            </div>
+            <div className='flex flex-row justify-between'>
+              <h1 className='text-sm font-normal text-gray-600'>Out Time </h1>
+              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.timeOut).toLocaleString()}</h1>
+            </div>
+          </div>
 
  <div className='  m-2'>
    <div   className='flex flex-row justify-between' >
@@ -96,7 +84,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'>  {selectedBooking?.bookingPrice*9/100} 
+   <h1  className='text-[14px] font-normal  text-gray-600'>  {CGST}
    </h1>
    </div>
 
@@ -106,7 +94,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.bookingPrice}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.bookingPrice+CGST+CGST}
    </h1></div>
    
    </div>
@@ -124,10 +112,9 @@ const Ereciept = () => {
    <div   className='flex flex-row justify-between' >
    <h1  className='text-sm font-normal  text-gray-600'>AddOn Amt </h1>
 
-
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>5
+   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -135,7 +122,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'> 0.54
+   <h1  className='text-[14px] font-normal  text-gray-600'> {SGST}
    </h1>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -143,7 +130,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'> 0.54
+   <h1  className='text-[14px] font-normal  text-gray-600'> {SGST}
    </h1>
    </div>
 
@@ -153,7 +140,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>56
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? exceedPrice(selectedBooking.bookingPrice) : ''}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -162,7 +149,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>8  
+   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT+ 2*SGST}
    </h1></div>
    </div>
   
@@ -172,9 +159,12 @@ const Ereciept = () => {
 <h1 className='font-light text-sm text-center text-gray-400'>GEMBA SMART PARKING</h1>
 
 </div>
-
-<button className='hidden ' onClick={print}></button>
 </div>
+
+<div className="flex justify-center mt-4">
+<ReactToPrint trigger={() => <button onClick={print}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Print</button>} content={() => compRef.current} />
+        <button onClick={() => window.location.href = `../GuardScreen/CompletedBooking`} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
+      </div>
 </>
 
 

@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+
 function CompletedPopup({selectedBooking}) {
-        
+  const ADDON_AMOUNT = 10;
+  const exceedPrice = (bookingPrice) => {
+    // Calculate the total booking price with an additional amount
+    return bookingPrice + ADDON_AMOUNT;
+};   
       
   return (
 <div>
@@ -11,8 +16,7 @@ function CompletedPopup({selectedBooking}) {
 
   <p className="text-gray-700">Time In: {new Date(selectedBooking.timeIn).toLocaleString()}</p>
   <p className="text-gray-700">Time Out: {new Date(selectedBooking.timeOut).toLocaleString()}</p>
-  <p className="text-gray-700">Booking Price: {selectedBooking.bookingPrice }</p>
-
+  <p className="text-gray-700">Booking Price: {selectedBooking.status === "Completed" ? exceedPrice(selectedBooking.bookingPrice) : selectedBooking.bookingPrice}</p>
 </div>
   )
 }

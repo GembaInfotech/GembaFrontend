@@ -9,6 +9,8 @@ function ParkedPopup({selectedBooking}) {
       console.log(status)
       console.log(id)
         dispatch(updateBookingAsync({id,status}));
+        
+
     }
     const handleSearch = () => {
         // Trigger a fetch when the search button is clicked
