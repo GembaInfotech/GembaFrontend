@@ -38,18 +38,21 @@ const id = storedUserData?._id
     console.log("clicled")
     setIsEditing(true);
   }
+  const handleClose = () => {
+    setIsEditing(false);
+  }
 
   return (
   loading ? <Spinner/> :      ( parkingData.length!=0) ?
 
       isEditing ? <div>
-      <ParkingForm />
+      <ParkingForm handleClose={handleClose} />
       <button onClick={() => setIsEditing(false)}>close</button>
     </div>
     : <div className="container mx-auto px-20 py-6 bg-[#ffffff]">
           <div className='flex flex-row items-center justify-between'>
             <h1 className="text-xl text-gray-800 font-light mb-6">results for parkings</h1>
-            <button onClick={add} >Add</button>
+            <button onClick={add} className="bg-blue-500 text-white py-1 px-2 rounded-sm mx-2 hover:bg-blue-600 focus:outline-none" >Add</button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
             {parkingData.map(parking => (
@@ -74,7 +77,6 @@ const id = storedUserData?._id
     
 :    isEditing ? <div>
 <ParkingForm />
-<button onClick={()=>setIsEditing(false)}>close</button>
 </div> :<div className='flex flex-col justify-center items-center'>
   <div className='flex flex-col items-center  justify-between'>
             <h1 className="text-xl text-gray-800 font-light mb-6">results for parkings</h1>

@@ -18,10 +18,12 @@ const initialFormData = {
   longitude: ''
 };
 
-const ParkingForm = () => {
+const ParkingForm = ({handleClose}) => {
   const [formData, setFormData] = useState(initialFormData);
   const storedUserData = JSON.parse(localStorage.getItem('userData'));
-const id = storedUserData?._id;
+  const id = storedUserData?._id;
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -44,6 +46,9 @@ const id = storedUserData?._id;
     console.log(formData);
   };
 
+
+
+  
   return (
    <div>
      <form onSubmit={handleSubmit} className="bg-[#ffffff] shadow-xl border border-gray-300 rounded-sm w-full duration-300 ease-in-out overflow-hidden p-12" style={{ height: "96vh" }}>
@@ -66,6 +71,9 @@ const id = storedUserData?._id;
   </div>
   <div className="flex justify-center">
     <button type="submit" className="bg-blue-500 text-white py-1 px-2 rounded-sm mx-2 hover:bg-blue-600 focus:outline-none">Submit</button>
+    <button onClick={handleClose} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+  Close
+</button>
   </div>
 </form>
 
