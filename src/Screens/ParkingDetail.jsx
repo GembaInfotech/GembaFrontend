@@ -94,7 +94,7 @@ const ParkingDetail = () => {
             <form>
               <div className="mb-8 grid grid-cols-3 gap-6">
                 {Object.keys(parking).map((key, index) => {
-                  if (key === "id") return null; // Skip rendering input field for id
+                  if (key === "id" || key === "location") return null; // Skip rendering input field for id
                   return (
                     <div key={index} className="relative h-10 w-full">
                       <input
@@ -135,52 +135,43 @@ const ParkingDetail = () => {
         ) : (
           <div className="flex justify-between">
             <div className="flex overflow-hidden py-12" style={{ height: "96vh" }}>
-  <div>
-    <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
-    <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
+              <div>
+                <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
+                <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
 
-    {Object.entries(parking).map(([key, value]) => (
-      key !== 'id' && key !== 'associateGuard' && (
-        <p key={key} className="py-4 px-6 text-sm">
-          <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
-        </p>
-      )
-    ))}
-  </div>
+                {Object.entries(parking).map(([key, value]) => (
+                  key !== '_id' && key !== 'associateGuard' && key!== 'location' && (
+                    <p key={key} className="py-4 px-6 text-sm">
+                      <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
+                    </p>
+                  )
+                ))}
+              </div>
 
-  <div>
-    <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
-      <MdEdit />
-    </button>
-    <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
-      <MdOutlineAddPhotoAlternate />
-    </button>
-    <div className="m-14 p-1">
-      {Object.entries(parking).map(([key, value]) => (
-        key === 'dateOfCreation' && (
-          <p key={key} className="py-4 px-6 text-sm">
-            <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
-          </p>
-        )
-      ))}
-      
-     
+              <div>
+                <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
+                  <MdEdit />
+                </button>
+                <button onClick={handleEdit} className="text-2xl font-normal text-gray-600 mt-2 px-16">
+                  <MdOutlineAddPhotoAlternate />
+                </button>
+                <div className="m-14 p-1">
 
-      {parking.associateGuard && parking.associateGuard.name && (
-        <p className="py-4 px-6 text-sm">
-          <span className="py-4 text-sm font-bold">Guard: </span>
-          <Link to={`/gaurd/${parking.associateGuard?._id}`}>
-            <button className="px-1 bg-gray-300 py-1 m-1">view</button>
-          </Link>
-        </p>
-      )}
+                  {parking.associateGuard && parking.associateGuard.name && (
+                    <p className="py-4 px-6 text-sm">
+                      <span className="py-4 text-sm font-bold">Guard: </span>
+                      <Link to={`/gaurd/${parking.associateGuard?._id}`}>
+                        <button className="px-1 bg-gray-300 py-1 m-1">view</button>
+                      </Link>
+                    </p>
+                  )}
 
-     
-    </div>
-  </div>
-</div>
 
-          
+                </div>
+              </div>
+            </div>
+
+
             <div>
               <div className="flex justify-center items-center p-4 ">
                 <button>
@@ -205,9 +196,9 @@ const ParkingDetail = () => {
       </div>
       <div className="bg-gray-100 p-2 my-2">
 
-       
 
-        <h1 className="text-2xl font-bold mb-10">Associate Account Details</h1>
+
+        <h1 className="text-2xl font-bold mb-10"> Guard Details</h1>
 
         <div className="mx-2">
           <button onClick={addgaurd} className="bg-gray-400 p-2 ">Add Gaurd</button>
@@ -215,41 +206,7 @@ const ParkingDetail = () => {
             add && <Gaurd id={parking._id} fnc={addgaurd} />
           }
         </div>
-        <div className="flex flex-row m-4">
-          {/* Manager Info */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-2">Manager Info</h2>
-            <p>Name: {accountDetails.manager.name}</p>
-            <p>Account Number: {accountDetails.manager.accountNumber}</p>
-            <p>Branch: {accountDetails.manager.branch}</p>
-            <p>IFSC Code: {accountDetails.manager.IFSCCode}</p>
-          </div>
 
-          {/* Associate Parking */}
-          <div className="mb-8 mx-20">
-            <h2 className="text-lg font-semibold mb-2">Associate Parking</h2>
-            <p>Name: {accountDetails.associateParking.name}</p>
-            <p>Location: {accountDetails.associateParking.location}</p>
-            <p>Capacity: {accountDetails.associateParking.capacity}</p>
-            <p>Price Per Hour: {accountDetails.associateParking.pricePerHour}</p>
-          </div>
-
-          {/* Expenses */}
-          <div className="mb-8 mr-20">
-            <h2 className="text-lg font-semibold mb-2">Expenses</h2>
-            <p>Guard Salary: {accountDetails.expenses.guardSalary}</p>
-            <p>Manager Salary: {accountDetails.expenses.managerSalary}</p>
-            <p>Parking Maintenance Cost: {accountDetails.expenses.parkingMaintenanceCost}</p>
-            <p>Other Cost: {accountDetails.expenses.otherCost}</p>
-          </div>
-
-          <div className="mb-8 ">
-            <h2 className="text-lg font-semibold mb-2">Revenue</h2>
-            <p>Total Revenue: {accountDetails.revenue.totalRevenue}</p>
-            <p>Start Date: {accountDetails.revenue.startDate}</p>
-            <p>End Date: {accountDetails.revenue.endDate}</p>
-          </div>
-        </div>
       </div>
 
     </div>

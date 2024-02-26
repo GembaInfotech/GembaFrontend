@@ -60,12 +60,7 @@ const BookingSlice = createSlice({
       .addCase(addBookingAsync.fulfilled, (state, action) => {
         state.data.push(action.payload);
       })
-      .addCase(updateBookingAsync.fulfilled, (state, action) => {
-        const index = state.data.findIndex(booking => booking.id === action.payload.id);
-        if (index !== -1) {
-          state.data[index] = action.payload;
-        }
-      })
+     
       .addCase(deleteBookingAsync.fulfilled, (state, action) => {
         state.data = state.data.filter(booking => booking.id !== action.payload);
       });

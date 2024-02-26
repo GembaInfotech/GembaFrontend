@@ -9,6 +9,7 @@ function IncomingPopup({selectedBooking}) {
     console.log(status)
     console.log(id)
       dispatch(updateBookingAsync({id,status}));
+window.reload();
   }
   return (
 <div>

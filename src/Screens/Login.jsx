@@ -39,12 +39,14 @@ const Login = () => {
   };
 
   const handleSubmit = async (values) => {
+    console.log("clicked")
     try {
       // Make a POST request to your API endpoint with form data
       console.log("clicked")
       console.log(values)
 
       const response = await axios.post('http://localhost:7001/v1/api/vendor/login', values);
+      console.log("baba")
       console.log("clicked")
 
       // Handle successful response

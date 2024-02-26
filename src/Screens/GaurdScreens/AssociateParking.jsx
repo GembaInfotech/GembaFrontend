@@ -85,7 +85,7 @@ const AssociateParking = () => {
                 <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
                 <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
                 {Object.entries(parking).map(([key, value]) => (
-                  key !== 'id' && key !== 'associateGuard' && (
+                  key !== 'id' && key !== 'associateGuard' && key !== 'location' && (
                     <p key={key} className="py-4 px-6 text-sm">
                       <span className="py-4 text-sm font-bold">{key.charAt(0).toUpperCase() + key.slice(1)}:</span> {value}
                     </p>

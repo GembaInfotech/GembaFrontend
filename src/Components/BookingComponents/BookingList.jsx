@@ -7,6 +7,7 @@ import BookingTable from './BookingTable';
 const BookingList = ({status}) => {
   const dispatch = useDispatch();
   const bookings = useSelector(state => state.booking);
+  console.log(bookings)
 
   useEffect(() => {
     dispatch(fetchBookingsAsync({status:status}));
