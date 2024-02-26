@@ -75,7 +75,6 @@ const AssociateParking = () => {
               <div>
                 <h1 className="text-2xl font-bold mb-2">{parking.parkingName}</h1>
                 <h1 className="text-xl font-normal mb-8">{parking.parkingArea}</h1>
-<<<<<<< Updated upstream
                 <div className="flex flex-wrap bg-gray-50 p-4 rounded-md">
                   {Object.entries(parking).map(
                     ([key, value]) =>
@@ -99,7 +98,6 @@ const AssociateParking = () => {
                       )
                   )}
                 </div>
-=======
                 {Object.entries(parking).map(([key, value]) => (
                   key !== '_id' && key !== 'associateGuard' && key !== 'location' && key !=='image' && key !=='__v' &&(
                     <p key={key} className="py-4 px-6 text-sm">
@@ -107,7 +105,6 @@ const AssociateParking = () => {
                     </p>
                   )
                 ))}
->>>>>>> Stashed changes
               </div>
               <div>
                 <div className="m-14 p-1">
