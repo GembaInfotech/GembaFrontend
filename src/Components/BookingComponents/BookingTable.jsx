@@ -19,7 +19,6 @@ function BookingTable({booking, status}) {
     };
 
     const handleSearch = () => {
-        // Trigger a fetch when the search button is clicked
         fetchGuardDetails(searchTerm);
         console.log('Search term:', searchTerm);
     };

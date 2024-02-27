@@ -40,8 +40,7 @@ console.log("error")
     } catch (error) {
 
       console.error('Error:', error);
-      // Handle error and display appropriate message to the user
-    } finally {
+    } finally {appropriate
       setSubmitting(false);
     }
   };

@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'; // Import useDispatch hook
 import { MdEdit, MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { RiDeleteBin6Line } from 'react-icons/ri';
-// import '../GaurdScreens/Profile.css';
+import { updateGuardAsync } from '../../SliceFolder/GuardSlice/guard.jsx';
+import GuardForm from './GuardForm.jsx';
 
 const Profile = () => {
+  const dispatch = useDispatch(); // Initialize useDispatch hook
   const [parking, setParking] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedParking, setEditedParking] = useState({});
@@ -17,16 +20,24 @@ const Profile = () => {
       setParking(storedUserData);
       setEditedParking(storedUserData);
     }
-  }, [storedUserData]);
+  }, []);
 
   const handleEdit = () => {
     setIsEditing(true);
   };
 
   const handleSave = () => {
+    console.log("Name:", editedParking.name);
+    console.log("Adhar No.:", editedParking.adhar);
+    console.log("Contact Number:", editedParking.contactNumber);
+    console.log("Email:", editedParking.email);
+    console.log("Address:", editedParking.address);
+    dispatch(updateGuardAsync({id}));
     setParking(editedParking);
     setIsEditing(false);
     setEditedParking({});
+
+    
   };
 
   const handleChange = e => {
@@ -45,94 +56,13 @@ const Profile = () => {
   const handleRemoveImage = () => {
     setImageFile(null);
   };
+
   return (
-    <div className="container bg-gray-100">
+    <div className="container mx-auto py-12 w-3/3 ">
       {isEditing ? (
-        <div className="flex justify-center">
-        <div className="edit-form bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-            Name
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name"
-            type="text"
-            placeholder="Name"
-            value={editedParking.name}
-            onChange={handleChange}
-          />
+       <div>
+        <GuardForm id={storedUserData._id}  data={storedUserData} />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="adhar">
-            Adhar No.
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="adhar"
-            type="text"
-            placeholder="Adhar No."
-            value={editedParking.adhar}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="contactNumber">
-            Contact Number
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="contactNumber"
-            type="text"
-            placeholder="Contact Number"
-            value={editedParking.contactNumber}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="Email"
-            value={editedParking.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-            Address
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="address"
-            type="text"
-            placeholder="Address"
-            value={editedParking.address}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={handleSave}
-          >
-            Save
-          </button>
-          <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={() => setIsEditing(false)}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-      </div>
       
       ) : (
 
@@ -206,13 +136,8 @@ const Profile = () => {
     </div>
   </div>
 </div>
-
-
-
-
       )}
     </div>
   );
 };
-
 export default Profile;
