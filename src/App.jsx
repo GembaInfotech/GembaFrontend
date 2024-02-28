@@ -6,34 +6,31 @@ import './App.css'
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Store from './Store/Store';
-import BookingList from './Components/BookingComponents/BookingList';
+import BookingList from './Components/GaurdComponents/BookingComponent/BookingList';
 
 
-import Login from './Screens/Login'
+import Login from './Screens/Login/Login'
 // import LandingScreen from './Screens/LandingScreen'
 import Layout from './Layout/Layout'
 // import Child from './Screens/Child'
 import Help from './Screens/Help'
-import Transactions from './Screens/Transactions'
-import Gaurds from './Screens/Gaurds'
-import Accounts from './Screens/Accounts'
-import Parkings from './Screens/Parkings'
-import Profile from './Screens/Profile'
-import ParkingDetail from './Screens/ParkingDetail' 
+import Gaurds from './Screens/VendorScreens/GuardScreen/Gaurds'
+import Parkings from './Screens/VendorScreens/ParkingScreen/Parkings'
+import Profile from './Screens/VendorScreens/ProfileScreen/VendorProfile'
+import ParkingDetail from './Screens/VendorScreens/ParkingScreen/ParkingScreen' 
 
-import GaurdDetail from './Screens/GaurdDetail'
+import GaurdDetail from './Screens/VendorScreens/GuardScreen/GaurdScreen'
 import GLayout from './Layout/GLayout'
-// import GLandingScreen from './Screens/GaurdScreens/GLandingScreen'
-import IncomingBooking from './Screens/GaurdScreens/IncomingBooking'
-import ParkedBooking from './Screens/GaurdScreens/ParkedBooking'
-import CompletedBooking from './Screens/GaurdScreens/CompletedBooking'
-import GuardProfile from './Screens/GaurdScreens/GuardProfile'
-import AssociateParking from './Screens/GaurdScreens/AssociateParking'
-import Reciept from './Components/Reciept'
-import Ereciept from './Components/Ereciept'
-import MainPage from './Screens/MainPage'
-import GaurdLogin from './Screens/GaurdScreens/GaurdLogin'
-import SignUp from './Screens/SignUp'
+// import GLandingScreen from './Screens/GaurdScreens/ProfileScrfeen/GLandingScreen'
+import IncomingBooking from './Screens/GaurdScreens/BookingScreen/IncomingScreen/IncomingBooking'
+import ParkedBooking from './Screens/GaurdScreens/BookingScreen/ParkedScreen/ParkedBooking'
+import CompletedBooking from './Screens/GaurdScreens/BookingScreen/CompletedScreen/CompletedBooking'
+import GuardProfile from './Screens/GaurdScreens/ProfileScreen/GuardProfile'
+import AssociateParking from './Screens/GaurdScreens/ParkingScreen/ParkingScreen'
+import Ereciept from './Components/GaurdComponents/BookingComponent/Ereciept'
+import MainPage from './Screens/Login/MainPage'
+import GaurdLogin from './Screens/Login/GaurdLogin'
+import SignUp from './Screens/Login/SignUp'
 function App() {
   const queryClient = new QueryClient();
 
@@ -46,31 +43,23 @@ function App() {
 
         <Route path="/" element={<MainPage />} />
         <Route path="/login/auth/vendor" element={<Login />} />
-
         <Route path="/login/auth/guard" element={<GaurdLogin />} />
-
         <Route path="/register" element={<SignUp />} />
-
         <Route path="/home" element={<Layout><Profile /></Layout>} />
         <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
-        <Route path="/accounts" element={<Layout><Accounts /></Layout>} />
+        {/* <Route path="/accounts" element={<Layout><Accounts /></Layout>} /> */}
         <Route path="/gaurds" element={<Layout><Gaurds /></Layout>} />
-        <Route path="/transactions" element={<Layout><Transactions /></Layout>} />
+        {/* <Route path="/transactions" element={<Layout><Transactions /></Layout>} /> */}
         <Route path="/help" element={<Layout><Help /></Layout>} />
         <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
-
-
         <Route path="/gaurd/:id" element={<Layout><GaurdDetail /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
         <Route path="/:parkingId/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
         <Route path="/:parkingId/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />
         <Route path="/:parkingId/CompletedBooking" element={<GLayout>< CompletedBooking /></GLayout>} />
         <Route path="/associateParking/:id" element={<GLayout>< AssociateParking /></GLayout>} />
-        <Route path="/generate" element={ <Reciept />}/>
+        {/* <Route path="/generate" element={ <Reciept />}/> */}
         <Route path="/generatee/:detail" element={ <Ereciept />}/>
-
-
-
       </Routes>
     </Router>
     </QueryClientProvider>

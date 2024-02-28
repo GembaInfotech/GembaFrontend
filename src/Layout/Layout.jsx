@@ -1,6 +1,6 @@
 
 import React, { Children } from 'react'
-import LandingScreen from '../Screens/LandingScreen';
+import LandingScreen from '../Screens/Login/LandingScreen';
 function Layout({children}) {
   return (
     <>

@@ -1,7 +1,7 @@
 
 import React, { Children } from 'react'
-import LandingScreen from '../Screens/LandingScreen';
-import GLandingScreen from '../Screens/GaurdScreens/GLandingScreen';
+import LandingScreen from '../Screens/Login/LandingScreen';
+import GLandingScreen from '../Screens/GaurdScreens/ProfileScreen/GLandingScreen';
 function GLayout({children}) {
   return (
     <>
