@@ -58,7 +58,7 @@ const Profile = () => {
   };
 
   return (
-    loading ? <Spinner /> :
+    
       <div className="container mx-auto  px-16 py-8">
         {isEditing ? (
             <div
@@ -128,10 +128,10 @@ const Profile = () => {
           </div>
         )}
         <section className='py-4 flex px-8'>
-          <a href='/parkings'><Card color={"bg-[#e6f0ff]"} name="4 parkings" /></a>
-          <Card color={"bg-blue-200"} name="9 accounts" />
+          {/* <a href='/parkings'><Card color={"bg-[#e6f0ff]"} name="4 parkings" /></a> */}
+          {/* <Card color={"bg-blue-200"} name="9 accounts" />
           <Card color={"bg-slate-200"} name="407$ revenue" />
-          <Card color={"bg-[#c2daff]"} name="986 bookings" />
+          <Card color={"bg-[#c2daff]"} name="986 bookings" /> */}
         </section>
         <ToastContainer />
       </div>
