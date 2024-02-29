@@ -4,11 +4,14 @@ import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-
-
 function BookingTable({booking, status}) {
     const [searchTerm, setSearchTerm] = useState('');
+    const [filteredBookings, setFilteredBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
+
+    useEffect(() => {
+        setFilteredBookings(booking);
+    }, [booking]);
 
     const openPopup = (booking) => {
         setSelectedBooking(booking);
@@ -18,9 +21,17 @@ function BookingTable({booking, status}) {
         setSelectedBooking(null);
     };
 
-    const handleSearch = () => {
-        fetchGuardDetails(searchTerm);
-        console.log('Search term:', searchTerm);
+    const handleSearch = (searchTerm) => {
+        const filtered = booking.filter(item =>
+            item.CarNumber.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredBookings(filtered);
+    };
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setSearchTerm(value);
+        handleSearch(value);
     };
 
     const handleClickOutside = (event) => {
@@ -35,6 +46,7 @@ function BookingTable({booking, status}) {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [selectedBooking]);
+
     const ADDON_AMOUNT = 10;
     const exceedPrice = (bookingPrice) => {
         // Calculate the total booking price with an additional amount
@@ -43,22 +55,21 @@ function BookingTable({booking, status}) {
 
     return (
         <div className="container mx-auto">
-           <div className="mb-4 flex justify-center items-center">
-    <input
-        type="text"
-        placeholder="Search by vehicle number"
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-        className="p-2 border rounded-md mr-2 mt-4 bg-slate-100"
-    />
-    <button
-                    onClick={handleSearch}
+            <div className="mb-4 flex justify-center items-center">
+                <input
+                    type="text"
+                    placeholder="Search by vehicle number"
+                    value={searchTerm}
+                    onChange={handleChange}
+                    className="p-2 border rounded-md mr-2 mt-4 bg-slate-100"
+                />
+                <button
                     className="bg-slate-200 text-black p-2 rounded-md mt-4 hover:animate-bounce"
+                    disabled
                 >
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-</div>
-
+            </div>
 
             <table className="table-auto w-full">
                 <thead className="bg-gray-200">
@@ -73,7 +84,7 @@ function BookingTable({booking, status}) {
                     </tr> 
                 </thead>
                 <tbody>
-                    {booking.map((item, index) => (
+                    {filteredBookings.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
                             <td className="border px-4 py-2">{index + 1}</td>
                             <td className="border px-4 py-2">{item.CarNumber}</td>  
@@ -95,3 +106,4 @@ function BookingTable({booking, status}) {
 }
 
 export default BookingTable;
+`   `
