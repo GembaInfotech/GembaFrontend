@@ -6,23 +6,25 @@ export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
   async () => {
     const response = await fetchParkings();
+
     return response;
   }
 );
 
 export const addParkingAsync = createAsyncThunk(
   'Parkings/add',
-  async (ParkingData) => {
-    const response = await createParking(ParkingData);
+  async ({ParkingData, vendorId}) => {
+    const response = await createParking({ParkingData, vendorId});
     return response.data;
   }
 );
 
 export const updateParkingAsync = createAsyncThunk(
   'Parkings/update',
-  async ({ id, status }) => {
-    const response = await updateParkingAPI(id, status);
-    return response.data;
+  async ({ id, updatedData }) => {
+     const response = await updateParkingAPI({id, updatedData});
+     console.log(response)
+    return response;
   }
 );
 
@@ -61,10 +63,12 @@ const ParkingSlice = createSlice({
         state.data.push(action.payload);
       })
       .addCase(updateParkingAsync.fulfilled, (state, action) => {
-        const index = state.data.findIndex(Parking => Parking.id === action.payload.id);
-        if (index !== -1) {
-          state.data[index] = action.payload;
-        }
+       
+        // const index = state.data.findIndex(Parking => Parking._id === action.payload._id);
+        // if (index !== -1) {
+        //     // Assuming 'status' is the property you want to update
+        //     state.data[index].status = action.payload.status;
+        // }
       })
       .addCase(deleteParkingAsync.fulfilled, (state, action) => {
         state.data = state.data.filter(Parking => Parking.id !== action.payload);
@@ -72,4 +76,15 @@ const ParkingSlice = createSlice({
   },
 });
 
+
+
 export default ParkingSlice.reducer;
+export const parkingById = (state, id) => {
+  if (state.Parking && state.Parking.data && state.Parking.data.parkings) {
+    console.log(state.Parking.data.parkings.find(data => data._id === id));
+    return state.Parking.data.parkings.find(data => data._id === id);
+  }
+  return null; // Return null if the parking data is not found
+};
+export  const parkings = state =>state.Parking.data;
+

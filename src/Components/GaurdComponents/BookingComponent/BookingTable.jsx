@@ -64,7 +64,7 @@ function BookingTable({booking, status}) {
                     className="p-2 border rounded-md mr-2 mt-4 bg-slate-100"
                 />
                 <button
-                    className="bg-slate-200 text-black p-2 rounded-md mt-4 hover:animate-bounce"
+                    className="bg-slate-300 text-black py-2 px-3 rounded-md mt-4 "
                     disabled
                 >
                     <FontAwesomeIcon icon={faSearch} />
@@ -72,27 +72,28 @@ function BookingTable({booking, status}) {
             </div>
 
             <table className="table-auto w-full">
-                <thead className="bg-gray-200">
+                <thead className="bg-gray-800">
                     <tr>
-                        <th className="px-4 py-2">Serial No.</th>
-                        <th className="px-4 py-2">Car Number</th>
-                        <th>Parking Name</th>
-                        <th className="px-4 py-2">Time In</th>
-                        <th className="px-4 py-2">Time Out</th>
-                        <th className="px-4 py-2">Status</th>
-                        <th className="px-4 py-2">Booking Price</th>
+                        <th className="px-4 text-white py-2">Serial No.</th>
+                        <th className="px-4 text-white py-2">Car Number</th>
+                        <th className="px-4 text-white py-2">Parking Name</th>
+
+                        <th className="px-4 text-white py-2">Time In</th>
+                        <th className="px-4 text-white py-2">Time Out</th>
+                        <th className="px-4 text-white py-2">Status</th>
+                        <th className="px-4 text-white py-2">Booking Price</th>
                     </tr> 
                 </thead>
                 <tbody>
                     {filteredBookings.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
-                            <td className="border px-4 py-2">{index + 1}</td>
-                            <td className="border px-4 py-2">{item.CarNumber}</td>  
-                            <td className="border px-4 py-2">{item.parkingName}</td>  
-                            <td className="border px-4 py-2">{new Date(item.timeIn).toLocaleTimeString()}</td>
-                            <td className="border px-4 py-2">{new Date(item.timeOut).toLocaleTimeString()}</td>
-                            <td className="border px-4 py-2">{item.status}</td>
-                            <td className="border px-4 py-2">
+                            <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{item.CarNumber}</td>  
+                            <td className="border px-4 text-sm font-semibold py-2">{item.parkingName}</td>  
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.timeIn).toLocaleTimeString()}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.timeOut).toLocaleTimeString()}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">
                                 {status === "Completed" ? exceedPrice(item.bookingPrice) : item.bookingPrice}
                             </td>
                         </tr>

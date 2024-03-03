@@ -34,7 +34,7 @@ const GaurdDetail = () => {
     fetchGuardDetails();
   }, []);
 
-  const excludedFields = ['_id', '__v', 'image'];
+  const excludedFields = ['_id', '__v', 'image', 'parkingid', 'password'];
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -68,7 +68,9 @@ const GaurdDetail = () => {
   };
 
   return (
-  loading ? <Spinner/> : <div className="container mx-auto  px-16 py-8">
+  loading ? <h1>he
+
+  </h1> : <div className="container mx-auto  px-16 py-8">
   {isEditing ? (
     <div
       className=" bg-[#ffffff] shadow-xl border border-gray-300 rounded-sm w-full   duration-300 ease-in-out   overflow-hidden p-12"
@@ -76,23 +78,26 @@ const GaurdDetail = () => {
     >
       <form>
         <div className="mb-8 grid grid-cols-3 gap-6">
-          {Object.keys(parking).map((key, index) => {
-            if (key === "id") return null; // Skip rendering input field for id
-            return (
-              <div key={index} className="relative h-10 w-full">
+          {Object.entries(parking)
+          .filter(([key]) => !excludedFields.includes(key)) // Exclude the specified fields
+          .map(([key, value]) => (
+          
+              <div key={key} className="relative h-10 w-full">
                 <input
                   type="text"
                   name={key}
-                  value={editedParking[key]}
+                  value={value}
                   onChange={handleChange}
                   className="peer h-full w-full bg-slate-50 rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
                 />
                 <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-900 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-800">
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                  {key}
                 </label>
               </div>
-            );
-          })}
+        
+            ))}
+           
+          
         </div>
         <div className="flex justify-center">
           <button
@@ -114,44 +119,25 @@ const GaurdDetail = () => {
       
     </div>
   ) : (
-    <div className="">
-      <div className="flex justify-between ">
-        <div className="px-16">
-          <div className="flex justify-center w-[100%] items-center p-8 ">
-            <img src={image} className="w-48 h-48 rounded-full" alt="" />
-          </div>
-        </div>
-        <div className=" flex  w-[60%]  overflow-hidden py-12 px-16">
-          <div>
-            <h1 className="  text-2xl font-bold mb-2">{parking.name}</h1>
-            <h1 className="  text-xl font-normal mb-8">
-              {parking.loginId}
-            </h1>
-          </div>
-        </div>
-        <button
-          onClick={handleEdit}
-          className="text-2xl font-normal text-gray-600 mt--96  pl-16"
-        >
-          <MdEdit />
-        </button>
-      </div>
-      <div className="px-32 py-8">
-        {Object.entries(parking)
-          .filter(([key]) => !excludedFields.includes(key)) // Exclude the specified fields
-          .map(([key, value]) => (
-            <div key={key} className="flex flex-row items-center px-32 justify-between">
-               <p className="text-sm font-semibold p-2">
-         {key}
-            </p>
-            <p className="text-sm">
-         {value}
-            </p>
+    <div>
+                   <h1 className="font-light text-xl mb-2">Guard Details</h1>
+                   <div className='flex justify-between bg-gray-100 h-[80%] '>
+                <div className='flex justify-center  items-center p-2 '>
+                  <img src={image} className='w-48 h-48 rounded-full' alt="" />
+              
+              </div>
+               <div className='px-2 py-8'>
+               <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Name:</span> {parking.name}</p>
+
+              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Phone:</span> {parking.contact}</p>
+              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Email:</span> {parking.email}</p>
+              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Address:</span> {parking.address}</p>
             </div>
-           
-          ))}
-      </div>
+              <button onClick={handleEdit} className='text-2xl font-normal text-gray-600   px-8' ><MdEdit /></button>
+            </div>
     </div>
+   
+    
   )}
 
 <ToastContainer/>

@@ -6,19 +6,23 @@ const instance = axios.create({
 });
 
 export const fetchParkings = async () => {
-  const response = await instance.get(`/parking/65db201120e5cfa49800791e`);
+  console.log("Ca;;ed");
+  const response = await instance.get(`/vendor/getParking/65e167cf98e123ee1649d73c`);
   return response.data.data;
 };
 
-export const createParking = async (ParkingData) => {
-  const response = await instance.post('/Parkings/Parkings', ParkingDataz);
+export const createParking = async ({ParkingData, vendorId}) => {
+  console.log(ParkingData)
+  const response = await instance.post(`/parking/register/${vendorId}`, {ParkingData});
+  console.log(response);
   return response.data;
 };
 
 
-  export const updateParking = async (id, status) => {
-    console.log(status)
-    const response = await instance.put(`/Parkings/update/${id}`, { Status: status });
+  export const updateParking = async ({id, updatedData}) => {
+    console.log(updatedData)
+    const response = await instance.put(`/parking/update/${id}`, { updatedData });
+    console.log(response);
     return response.data;
   };
   

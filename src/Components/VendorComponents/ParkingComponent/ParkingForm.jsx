@@ -1,84 +1,111 @@
-import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
+import { addParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 
-const initialFormData = {
-  parkingName: '',
-  parkingArea: '',
-  city: '',
-  state: '',
-  country: '',
-  pincode: '',
-  landmark: '',
-  capacity: '',
-  openingTime: '',
-  closingTime: '',
-  latitude: '',
-  longitude: ''
-};
+import * as Yup from 'yup';
 
-const ParkingForm = ({handleClose}) => {
-  const [formData, setFormData] = useState(initialFormData);
-  const storedUserData = JSON.parse(localStorage.getItem('userData'));
-  const id = storedUserData?._id;
+const ParkingForm = () => {
+  const dispatch= useDispatch();
+  const initialValues = {
+    pn: '',
+    pa: '',
+    city: '',
+    st: '',
+    country: '',
+    pc: '',
+    ln: '',
+    sc: '',
+    price: '',
+    ep: '',
+    mt: '',
+    met: '',
+    sub: false,
+    lc:[],
+    lm: '',
+    cc: '',
 
+  };
+  const headers = {
+    pn: 'Parking Name',
+    pa: 'Location',
+    city: 'City',
+    st: 'State',
+    country: 'Country',
+    pc: 'Pincode',
+    ln: 'Licence No.',
+    sc: 'Subscription code',
+    price: 'Price',
+    ep: 'Exceed Price',
+    mt: 'Minimum Time',
+    met: 'Minimum Exceed Time',
+    sub: "Subscription",
+    lm: 'LandMark',
+    cc: 'Capacity',
+    lc:'Cordinates'
+    
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        `http://localhost:7001/v1/api/parking/createparking/${id}`,
-        formData
-      );
 
-      console.log('parking saved:', response);
-      toast.success('Information Saved Successfully');
+  const validationSchema = Yup.object().shape({
+    pn: Yup.string().required('Parking name is required'),
+    pa: Yup.string().required('Parking area is required'),
+    city: Yup.string().required('City is required'),
+    st: Yup.string().required('State is required'),
+    country: Yup.string().required('Country is required'),
+    pc: Yup.number().required('Pincode is required'),
+    ln: Yup.string().required('License number is required'),
+    sc: Yup.string().required('State code is required'),
+    price: Yup.number().required('Price is required'),
+    ep: Yup.number().required('Exceed price is required'),
+    mt: Yup.number().required('Minimum time is required'),
+    met: Yup.number().required('Minimum exceed time is required'),
+    lm: Yup.string().required('Landmark is required'),
+    cc: Yup.number().required('Capacity is required'),
 
-    } catch (error) {
-      console.error('Error updating guard:', error);
-    }
-    console.log(formData);
+  });
+
+  const handleSubmit = (ParkingData) => {
+    console.log(ParkingData);
+    const vendorId="65e167cf98e123ee1649d73c";
+    dispatch(addParkingAsync({ParkingData, vendorId}))
+
   };
 
-
-
-  
   return (
-   <div>
-     <form onSubmit={handleSubmit} className="bg-[#ffffff] shadow-xl border border-gray-300 rounded-sm w-full duration-300 ease-in-out overflow-hidden p-12" style={{ height: "96vh" }}>
-  <div className="mb-8 grid grid-cols-3 gap-6">
-    {Object.keys(formData).map((fieldName, index) => (
-      <div key={index} className="relative h-10 w-full">
-        <input
-          className="peer h-full w-full bg-slate-50 rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
-          id={fieldName}
-          type="text"
-          name={fieldName}
-          value={formData[fieldName]}
-          onChange={handleChange}
-        />
-        <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-900 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-800">
-          {fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}
-        </label>
-      </div>
-    ))}
-  </div>
-  <div className="flex justify-center">
-    <button type="submit" className="bg-blue-500 text-white py-1 px-2 rounded-sm mx-2 hover:bg-blue-600 focus:outline-none">Submit</button>
-    <button onClick={handleClose} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-  Close
-</button>
-  </div>
-</form>
-
-    <ToastContainer/>
-   </div>
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => (
+         <Form className="grid gap-1  md:grid-cols-4 p-4">
+         {Object.entries(initialValues).map(([key, value]) => (
+           <div key={key} className="mb-2">
+             <label htmlFor={key} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+               {headers[key]}
+             </label>
+             <Field
+               name={key}
+               type={key === 'ot' || key === 'ct' ? 'time' : 'text'}
+               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder={key === 'ot' || key === 'ct' ? 'HH:MM' : ''}
+               required
+             />
+             <ErrorMessage name={key} component="div" className="text-red-600 mt-1" />
+           </div>
+         ))}
+         <button
+           type="submit"
+         >
+           Submit
+         </button>
+       </Form>
+    
+        )}
+      </Formik>
+    </div>
   );
 };
 

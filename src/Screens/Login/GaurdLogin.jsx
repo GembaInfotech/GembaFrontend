@@ -28,8 +28,8 @@ const GaurdLogin
 
  
       console.log('Data saved successfully:', response);
-if(response.data.Data)
-      localStorage.setItem('gaurdData', JSON.stringify(response.data.Data)); // Store user data in local storage
+if(response.data.data)
+      localStorage.setItem('gaurdData', JSON.stringify(response.data.data)); // Store user data in local storage
     } catch (error) {
       // Handle error
       console.error('Error saving data:', error);

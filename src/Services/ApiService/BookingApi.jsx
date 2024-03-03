@@ -6,19 +6,22 @@ const instance = axios.create({
 });
 
 export const fetchBookings = async ({status}) => {
-  const response = await instance.get(`/bookings/bookings/?parkingId=65db201120e5cfa49800791e&status=${status}`);
+  const response = await instance.get(`/booking/?parkingId=65e175e107cb14328aec98cb&status=${status}`);
   return response.data.data;
 };
 
-export const createBooking = async (bookingData) => {
-  const response = await instance.post('/bookings/bookings', bookingData);
-  return response.data;
-};
-
+// export const fetchBookingsParked = async ({status}) => {
+//   const response = await instance.get(`/booking/?parkingId=65e175e107cb14328aec98cb&status=${status}`);
+//   return response.data.data;
+// };
+// export const fetchBookingsCompleted = async ({status}) => {
+//   const response = await instance.get(`/booking/?parkingId=65e175e107cb14328aec98cb&status=${status}`);
+//   return response.data.data;
+// };
 
   export const updateBooking = async (id, status) => {
     console.log(status)
-    const response = await instance.put(`/bookings/update/${id}`, { Status: status });
+    const response = await instance.put(`/booking/status/${id}`, { status: status });
     return response.data;
   };
   

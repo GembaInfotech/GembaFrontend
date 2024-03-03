@@ -1,6 +1,6 @@
 // features/booking/BookingSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchBookings, createBooking, updateBooking as updateBookingAPI, deleteBooking as deleteBookingAPI } from '../../Services/ApiService/BookingApi';
+import { fetchBookings, updateBooking as updateBookingAPI, deleteBooking as deleteBookingAPI } from '../../Services/ApiService/BookingApi';
 
 export const fetchBookingsAsync = createAsyncThunk(
   'bookings/fetch',

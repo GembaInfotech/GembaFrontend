@@ -1,91 +1,54 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import { MdBookmarks } from "react-icons/md";
-import { IoIosSettings } from "react-icons/io";
+import React, { useState } from 'react';
+import { Link, useLocation } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { MdAccountBalance } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
-import { IoMan } from "react-icons/io5";
-
 import { LuHelpingHand } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
 
-import { PiCarProfileFill } from "react-icons/pi";
 const SideBar = () => {
+  const location = useLocation();
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
-    <div className="flex-row ">
-        <div className="flex-row px-1 py-4">
-          <div  className="m-1 max-w-36 text-sm px-1 py-4   text-gray-600 hover:text-gray-800  rounded-sm">
-            <Link
-              to="/home"
-              className="text-white font-medium hover:text-gray-500 transition"
-            >
-         <div className="flex ">
-              <h1 className="text-gray-800 text-sm py-1 px-2">  <CgProfile/></h1>
-                <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Profile</h1>
-                </div>
-            </Link>
-          </div>
-          <div  className="m-1 max-w-36 text-sm px-1 py-4   text-gray-600 hover:text-gray-800  rounded-sm">
-            <Link
-              to="/parkings"
-              className="text-white font-medium hover:text-gray-500 transition"
-            >
-         <div className="flex ">
-              <h1 className="text-gray-800 text-sm py-1 px-2">  <SlLocationPin/></h1>
-                <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Parkings</h1>
-                </div>
-            </Link>
-          </div>
-         
-          <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
-         
-            <Link
-              to="/accounts"
-              className="text-white font-medium hover:text-gray-500 transition"
-            >
-              <div className="flex ">
-              <h1 className="text-gray-800 text-sm py-1 px-2">  <MdAccountBalance/></h1>
-                <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Accounts</h1>
-                </div>
-            </Link>
-          </div>
-          <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
-         
-         <Link
-           to="/transactions"
-           className="text-white font-medium hover:text-gray-500 transition"
-         >
-           <div className="flex ">
-           <h1 className="text-gray-800 text-sm py-1 px-2">  <FiDatabase/></h1>
-             <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold">  Transactions</h1>
-             </div>
-         </Link>
-       </div>
-          <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
-         
-         <Link
-           to="/help"
-           className="text-white font-medium hover:text-gray-500 transition"
-         >
-           <div className="flex ">
-           <h1 className="text-gray-800 text-sm py-1 px-2">  <LuHelpingHand/></h1>
-             <h1 className="text-gray-600 hover:text-gray-800 hover:font-bold"> Help </h1>
-             </div>
-         </Link>
-       </div>
-       <div className="m-1 text-sm px-1 max- py-4 w-36  text-gray-600 hover:text-gray-800 rounded-sm">
-         
-         <Link
-           to="/vendorHome"
-           className="text-white font-medium hover:text-gray-500 transition"
-         >
-           
-         </Link>
-       </div>
-        </div>
+    <div className="flex flex-col h-full justify-between">
+      <div className="py-4">
+        <Link to="/home" className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <CgProfile className={`mr-2 text-white text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Profile
+        </Link>
+        <Link to="/parkings" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkings' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkings' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Parkings
+        </Link>
+        <Link to="/accounts" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <MdAccountBalance className={`mr-2 text-white text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Accounts
+        </Link>
+        <Link to="/transactions" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Transactions
+        </Link>
+        <Link to="/help" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <LuHelpingHand className={`mr-2 text-white text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Help
+        </Link>
       </div>
-  )
+      <div className="p-4">
+        {/* You can place additional content here */}
+      </div>
+      <button
+        onClick={toggleCollapse}
+        className="block xl:hidden bg-gray-200 text-gray-800 py-2 px-4 text-sm font-semibold uppercase"
+      >
+        {isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
+      </button>
+    </div>
+  );
 }
 
-export default SideBar
+export default SideBar;

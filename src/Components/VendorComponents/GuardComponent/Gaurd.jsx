@@ -2,10 +2,12 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useParams } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Gaurd = ({id}) => {
+const Gaurd = () => {
+  const {parkingId} =useParams();
   const initialValues = {
     name: '',
     email: '',
@@ -31,7 +33,7 @@ const Gaurd = ({id}) => {
     try {
         // Make POST request to the API endpoint
         const response = await axios.post(
-          `http://localhost:7001/v1/api/guard/createGuard/${id}`,
+          `http://localhost:7001/v1/api/guard/register/${parkingId}`,
           values
         );
         
