@@ -5,14 +5,14 @@ import { fetchBookingsAsync } from '../../../SliceFolder/BookingSlice/Booking';
 import BookingTable from './BookingTable';
 // import { fetchBookingsCompleted, fetchBookingsParked } from '../../../Services/ApiService/BookingApi';
 
-const BookingList = ({status}) => {
+const BookingList = ({parkingid, status}) => {
   const dispatch = useDispatch();
   const bookings = useSelector(state => state.booking);
   console.log(bookings)
 
   useEffect(() => {
    
-    dispatch(fetchBookingsAsync({status:status}));
+    dispatch(fetchBookingsAsync({parkingid:parkingid,status:status}));
   }, [dispatch]);
 
   return (

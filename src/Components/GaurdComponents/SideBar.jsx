@@ -10,6 +10,7 @@ import { FaCircleCheck } from "react-icons/fa6";
 const SideBar = () => {
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
   const parkingid = storedUserData?.parkingid;
+  console.log(parkingid)
 
   return (
     <div className="flex flex-col h-full justify-between">

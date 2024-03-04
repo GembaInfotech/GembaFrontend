@@ -59,8 +59,9 @@ function ParkingPage({ parking, edit=true }) {
           </Link>:          <Link to={`/createGuard/${parking._id}`}> <ActionButton name="Add Guard"/> </Link>
 
         }
-       
+       <Link to={`/createGuard/${parking._id}`}> <ActionButton name="Add Guard"/> </Link>
         </div>
+        
       }
 
 

@@ -66,9 +66,9 @@ function App() {
         <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
         <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
-        <Route path="/:parkingId/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
-        <Route path="/:parkingId/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />
-        <Route path="/:parkingId/CompletedBooking" element={<GLayout>< CompletedBooking /></GLayout>} />
+        <Route path="/:parkingid/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
+        <Route path="/:parkingid/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />
+        <Route path="/:parkingid/CompletedBooking" element={<GLayout>< CompletedBooking /></GLayout>} />
         <Route path="/associateParking/:id" element={<GLayout>< AssociateParking /></GLayout>} />
         {/* <Route path="/generate" element={ <Reciept />}/> */}
         <Route path="/generatee/:detail" element={ <Ereciept />}/>
