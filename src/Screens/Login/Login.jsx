@@ -41,7 +41,6 @@ const Login = () => {
   const handleSubmit = async (values) => {
     console.log("clicked")
     try {
-      // Make a POST request to your API endpoint with form data
       console.log("clicked")
       console.log(values)
 
@@ -49,16 +48,15 @@ const Login = () => {
       console.log("baba")
       console.log("clicked")
 
-      // Handle successful response
       console.log('Data saved successfully:', response);
       console.log(values)
 
-      localStorage.setItem('userData', JSON.stringify(response.data.data)); // Store user data in local storage
+      localStorage.setItem('userData', JSON.stringify(response.data.data)); 
            console.log(response.data.data)
 window.location.href="/home"
 
     } catch (error) {
-      // Handle error
+
       console.error('Error saving data:', error);
     }
   };

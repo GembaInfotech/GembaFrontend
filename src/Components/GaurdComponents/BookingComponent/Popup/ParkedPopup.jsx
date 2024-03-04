@@ -9,8 +9,6 @@ function ParkedPopup({selectedBooking}) {
       console.log(status)
       console.log(id)
         dispatch(updateBookingAsync({id,status}));
-        
-
     }
     const handleSearch = () => {
         // Trigger a fetch when the search button is clicked
@@ -41,25 +39,25 @@ function ParkedPopup({selectedBooking}) {
   return (
 <div>
 <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
-<p className="text-gray-700">Car Number: {selectedBooking.CarNumber}</p>
-  <p className="text-gray-700">Time In: {new Date(selectedBooking.timeIn).toLocaleString()}</p>
-  <p className="text-gray-700">Time Out: {new Date(selectedBooking.timeOut).toLocaleString()}</p>
+<p className="text-gray-700">Car Number: {selectedBooking.num}</p>
+  <p className="text-gray-700">Time In: {new Date(selectedBooking.In).toLocaleString()}</p>
+  <p className="text-gray-700">Time Out: {new Date(selectedBooking.out).toLocaleString()}</p>
   <p className="text-gray-700">Status: {selectedBooking.status}</p>
-  <p className="text-gray-700">Booking Price: {selectedBooking.bookingPrice}</p>
+  <p className="text-gray-700">Booking Price: {selectedBooking.price}</p>
 
   {/* Exceed Time calculation */}
   <p className="text-gray-700">
     Exceed Time:
-    {calculateExceedTime(selectedBooking.timeOut).days > 0 && (
-      <span>{calculateExceedTime(selectedBooking.timeOut).days} days </span>
+    {calculateExceedTime(selectedBooking.out).days > 0 && (
+      <span>{calculateExceedTime(selectedBooking.out).days} days </span>
     )}
-    {calculateExceedTime(selectedBooking.timeOut).hours > 0 && (
-      <span>{calculateExceedTime(selectedBooking.timeOut).hours} hours </span>
+    {calculateExceedTime(selectedBooking.out).hours > 0 && (
+      <span>{calculateExceedTime(selectedBooking.out).hours} hours </span>
     )}
-    {calculateExceedTime(selectedBooking.timeOut).minutes > 0 && (
-      <span>{calculateExceedTime(selectedBooking.timeOut).minutes} minutes</span>
+    {calculateExceedTime(selectedBooking.out).minutes > 0 && (
+      <span>{calculateExceedTime(selectedBooking.out).minutes} minutes</span>
     )}
-    {calculateExceedTime(selectedBooking.timeOut).minutes > 8 && (
+    {calculateExceedTime(selectedBooking.out).minutes > 8 && (
       <span className="text-red-500"> (₹5)</span>
     )}
   </p>

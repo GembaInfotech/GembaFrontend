@@ -63,12 +63,7 @@ const ParkingSlice = createSlice({
         state.data.push(action.payload);
       })
       .addCase(updateParkingAsync.fulfilled, (state, action) => {
-       
-        // const index = state.data.findIndex(Parking => Parking._id === action.payload._id);
-        // if (index !== -1) {
-        //     // Assuming 'status' is the property you want to update
-        //     state.data[index].status = action.payload.status;
-        // }
+
       })
       .addCase(deleteParkingAsync.fulfilled, (state, action) => {
         state.data = state.data.filter(Parking => Parking.id !== action.payload);

@@ -7,7 +7,7 @@ const dispatch = useDispatch();
         name: data.name,
         adhar: data.adhar,
         mob: data.mob,
-        mail: data.email,
+        mail: data.mail,
         add: data.add
     });
 
@@ -24,12 +24,10 @@ const dispatch = useDispatch();
     console.log('Form submitted:', GuardData);
     dispatch(updateGuardAsync({ id, GuardData }))
         .then(() => {
-            // Reload the page after successful update
             window.location.reload();
         })
         .catch((error) => {
             console.error('Error updating guard:', error);
-            // Handle error if needed
         });
 };
     const handleCancel = () => {

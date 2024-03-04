@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from "../../../assets/gaurd.jpg";
-
-
 const Gaurds = () => {
-
 
   const [guardData, setGuard] = useState([]);
 const [loading, setloading] =useState(false);
@@ -47,8 +44,8 @@ const [loading, setloading] =useState(false);
            <div className="py-3 px-2 ">
              <h2 className="text-xl font-semibold mb-1">{parking.name}</h2>
              <p className="text-gray-600 text-sm mb-1"><span className="font-bold">Adhar:</span> {parking.adhar}</p>
-             <p className="text-gray-600 text-sm mb-1"><span className="font-bold">Contact No.:</span> {parking.contactNumber}</p>
-             <p className="text-gray-600 text-sm mb-1"><span className="font-bold">Email:</span> {parking.email}</p>
+             <p className="text-gray-600 text-sm mb-1"><span className="font-bold">Contact No.:</span> {parking.mob}</p>
+             <p className="text-gray-600 text-sm mb-1"><span className="font-bold">Email:</span> {parking.mail}</p>
            </div></Link>
        </div>
      ))}

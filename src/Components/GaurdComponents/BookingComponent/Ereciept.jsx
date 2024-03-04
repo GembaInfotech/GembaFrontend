@@ -67,7 +67,7 @@ const Ereciept = () => {
    
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.bookingPrice}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.price}
    </h1></div>
    
    </div>

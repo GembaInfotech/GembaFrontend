@@ -12,27 +12,17 @@ const SignupSchema = Yup.object().shape({
 
 const GaurdLogin
  = () => {
-
-
-
-  
-
   const initialValues = {
     mail: '',
     password: ''
   };
-
   const handleSubmit = async (values) => {
     try {
-      // Make a POST request to your API endpoint with form data
-   
-
       const response = await axios.post('http://localhost:7001/v1/api/guard/login', values);
 
- 
       console.log('Data saved successfully:', response);
 if(response.data.data)
-      localStorage.setItem('gaurdData', JSON.stringify(response.data.data)); // Store user data in local storage
+      localStorage.setItem('gaurdData', JSON.stringify(response.data.data)); 
     } catch (error) {
       // Handle error
       console.error('Error saving data:', error);
