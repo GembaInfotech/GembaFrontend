@@ -18,8 +18,8 @@ function Parkings() {
 
   return (
     <div className='p-2 max-sm:p-1'>
-     <div className='flex justify-between'>
-     <h1 className='font-light text-2xl'>Results for Parking</h1>
+     <div className='flex justify-between items-center  bg-gray-300 rounded-sm'>
+     <h1 className="font-light text-xl  p-1"> Results for Parking</h1>
       <Link to='/create'>
       <ActionButton name="Add" />
       </Link>

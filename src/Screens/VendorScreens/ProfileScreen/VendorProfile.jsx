@@ -108,7 +108,7 @@ const Profile = () => {
         ) : (
       
           <div>
-          <h1 className="font-light text-xl mb-2"> Profile</h1>
+          <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Profile</h1>
           <div className='flex justify-between bg-gray-100 h-[80%] '>
        <div className='flex justify-center  items-center p-2 '>
          <img src={image} className='w-48 h-48 rounded-full' alt="" />

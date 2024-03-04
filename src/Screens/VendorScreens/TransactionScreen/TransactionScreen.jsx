@@ -28,9 +28,9 @@ const status = "Completed";
  
 
   return (
-    <div>
-      <h1 className='p-1 text-xl font-light'>Transaction</h1>
-        <div className='p-2'> <label htmlFor="parkingDropdown">Select Parking:</label>
+    <div className='px-2 py-2'>
+          <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Transactions</h1>
+        <div className=''> <label htmlFor="parkingDropdown">Select Parking:</label>
       <select id="parkingDropdown" onChange={handleParkingChange} value={value || '' } className='bg-gray-100 mx-1 p-2 border border-white rounded-md'>
         <option value="" disabled>Select a parking</option>
         {data.parkings.map((parking, index) => (

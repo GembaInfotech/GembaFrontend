@@ -5,7 +5,7 @@ import ActionButton from '../../Tools/ActionButton';
 function ParkingPage({ parking, edit=true }) {
   return (
     <div className='p-2 max-sm:p-1'>
-            <h1 className="font-light text-xl mb-2">Parking Details</h1>
+          <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Details</h1>
 
        {
         edit &&    <Link to={`/update/${parking._id}`}>
@@ -59,7 +59,6 @@ function ParkingPage({ parking, edit=true }) {
           </Link>:          <Link to={`/createGuard/${parking._id}`}> <ActionButton name="Add Guard"/> </Link>
 
         }
-       <Link to={`/createGuard/${parking._id}`}> <ActionButton name="Add Guard"/> </Link>
         </div>
         
       }
