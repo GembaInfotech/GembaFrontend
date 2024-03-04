@@ -25,8 +25,8 @@ const Ereciept = () => {
   const CGST = selectedBooking?.bookingPrice * 0.09;
   const SGST = Math.floor(ADDON_AMOUNT * 0.09)+1;
   
-  const exceedPrice = (bookingPrice) => {
-    return bookingPrice + ADDON_AMOUNT + 2*CGST + 2*SGST;
+  const exceedPrice = (price) => {
+    return price + ADDON_AMOUNT + 2*CGST + 2*SGST;
 };
   return (
     <>
@@ -34,7 +34,7 @@ const Ereciept = () => {
         <div ref={compRef} className='lg:max-w-screen-xl xl:max-w-screen-2xl border border-black p-4'>
 
           <div className='flex flex-col justify-center items-center mx-2'>
-            <h1 className='text-lg font-semibold font-mono text-gray-700'>{selectedBooking?.parkingName}</h1>
+            <h1 className='text-lg font-semibold font-mono text-gray-700'>{selectedBooking?.pn}</h1>
             <h3 className='text-sm font-normal text-gray-700'>LUDHIANA</h3>
           </div>
 
@@ -46,18 +46,18 @@ const Ereciept = () => {
             </div>
             <h1 className='text-gray-400'>--------------------------</h1>
             <div className='flex fle-col items-center'>
-              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>Car Number</span> {selectedBooking?.CarNumber} </h1>
+              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>Car Number</span> {selectedBooking?.num} </h1>
             </div>
           </div>
 
           <div className='m-2'>
             <div className='flex flex-row justify-between'>
               <h1 className='text-sm font-normal text-gray-600'>In Time </h1>
-              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.timeIn).toLocaleString()}</h1>
+              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.In).toLocaleString()}</h1>
             </div>
             <div className='flex flex-row justify-between'>
               <h1 className='text-sm font-normal text-gray-600'>Out Time </h1>
-              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.timeOut).toLocaleString()}</h1>
+              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.out).toLocaleString()}</h1>
             </div>
           </div>
 
@@ -94,7 +94,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.bookingPrice+CGST+CGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.price+CGST+CGST}
    </h1></div>
    
    </div>
@@ -140,12 +140,12 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? exceedPrice(selectedBooking.bookingPrice) : ''}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? exceedPrice(selectedBooking.price) : ''}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
    <h1  className='text-sm font-semibold  text-gray-600'>To be Paid </h1>
-
+ 
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>

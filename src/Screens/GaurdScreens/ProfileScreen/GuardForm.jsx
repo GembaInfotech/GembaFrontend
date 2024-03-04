@@ -6,9 +6,9 @@ const dispatch = useDispatch();
     const [GuardData, setGuardData] = useState({
         name: data.name,
         adhar: data.adhar,
-        contactNumber: data.contactNumber,
-        email: data.email,
-        address: data.address
+        mob: data.mob,
+        mail: data.email,
+        add: data.add
     });
 
     const handleChange = (e) => {
@@ -78,7 +78,7 @@ const dispatch = useDispatch();
                             id="contactNumber"
                             type="text"
                             placeholder="Contact Number"
-                            value={GuardData.contactNumber}
+                            value={GuardData.mob}
                             onChange={handleChange}
                             required
                         />
@@ -92,7 +92,7 @@ const dispatch = useDispatch();
                             id="email"
                             type="email"
                             placeholder="Email"
-                            value={GuardData.email}
+                            value={GuardData.mail}
                             onChange={handleChange}
                             required
                         />
@@ -106,7 +106,7 @@ const dispatch = useDispatch();
                             id="address"
                             type="text"
                             placeholder="Address"
-                            value={GuardData.address}
+                            value={GuardData.add}
                             onChange={handleChange}
                             required
                         />

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email address').required('Required'),
+  mail: Yup.string().mail('Invalid email address').required('Required'),
   password: Yup.string().required('Required'),
 });
 
@@ -14,8 +14,11 @@ const GaurdLogin
  = () => {
 
 
+
+  
+
   const initialValues = {
-    email: '',
+    mail: '',
     password: ''
   };
 

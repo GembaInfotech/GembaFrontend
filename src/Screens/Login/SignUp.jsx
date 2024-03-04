@@ -9,17 +9,17 @@ import axios from 'axios';
 const SignUp = () => {
   const initialValues = {
     name: '',
-    contact: '',
-    email: '',
-    address: '',
+    mob: '',
+    mail: '',
+    add: '',
     password: '',
   };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
-    contact: Yup.string().required('Contact is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    address: Yup.string().required('Address is required'),
+    mob: Yup.string().required('Contact is required'),
+    mail: Yup.string().email('Invalid email').required('Email is required'),
+    add: Yup.string().required('Address is required'),
     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
   });
 

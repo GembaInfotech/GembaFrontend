@@ -48,9 +48,9 @@ function BookingTable({booking, status}) {
     }, [selectedBooking]);
 
     const ADDON_AMOUNT = 10;
-    const exceedPrice = (bookingPrice) => {
+    const exceedPrice = (price) => {
         // Calculate the total booking price with an additional amount
-        return bookingPrice + ADDON_AMOUNT;
+        return price + ADDON_AMOUNT;
     };
 
     return (
@@ -88,13 +88,13 @@ function BookingTable({booking, status}) {
                     {filteredBookings.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
                             <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.CarNumber}</td>  
-                            <td className="border px-4 text-sm font-semibold py-2">{item.parkingName}</td>  
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.timeIn).toLocaleTimeString()}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.timeOut).toLocaleTimeString()}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{item.num}</td>  
+                            <td className="border px-4 text-sm font-semibold py-2">{item.pn}</td>  
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleTimeString()}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.out).toLocaleTimeString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
                             <td className="border px-4 text-sm font-semibold py-2">
-                                {status === "Completed" ? exceedPrice(item.bookingPrice) : item.bookingPrice}
+                                {status === "Completed" ? exceedPrice(item.price) : item.price}
                             </td>
                         </tr>
                     ))}

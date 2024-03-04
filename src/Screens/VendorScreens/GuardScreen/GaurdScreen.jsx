@@ -129,9 +129,9 @@ const GaurdDetail = () => {
                <div className='px-2 py-8'>
                <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Name:</span> {parking.name}</p>
 
-              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Phone:</span> {parking.contact}</p>
-              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Email:</span> {parking.email}</p>
-              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Address:</span> {parking.address}</p>
+              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Phone:</span> {parking.mob}</p>
+              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Email:</span> {parking.mail}</p>
+              <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Address:</span> {parking.add}</p>
             </div>
               <button onClick={handleEdit} className='text-2xl font-normal text-gray-600   px-8' ><MdEdit /></button>
             </div>

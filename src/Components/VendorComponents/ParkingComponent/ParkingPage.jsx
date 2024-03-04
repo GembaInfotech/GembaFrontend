@@ -46,7 +46,7 @@ function ParkingPage({ parking, edit=true }) {
       <h1 className='text-xl font-light mb-1 '>Timing Information</h1>
 
       <p className='text-sm font-semibold text-gray-700 p-1'>Opening Time: {parking.ot}</p>
-           <p className='text-sm font-semibold text-gray-700 p-1'>Closing Time: {parking.ct}</p>
+           <p className='text-sm font-semibold text-gray-700 p-1'>Closing Time: {parking.assg}</p>
       </div>
           
       {

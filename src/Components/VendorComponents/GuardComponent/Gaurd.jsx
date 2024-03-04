@@ -10,21 +10,21 @@ const Gaurd = () => {
   const {parkingId} =useParams();
   const initialValues = {
     name: '',
-    email: '',
+    mail: '',
     password: '',
     adhar: '',
-    contactNumber: '',
-    address: '',
+    mob: '',
+    add: '',
     image: ''
   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email address').required('Email is required'),
+    mail: Yup.string().email('Invalid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
     adhar: Yup.string().required('Aadhar number is required'),
-    contactNumber: Yup.number().required('Contact number is required'),
-    address: Yup.string().required('Address is required'),
+    mob: Yup.number().required('Contact number is required'),
+    add: Yup.string().required('Address is required'),
     image: Yup.string().url('Invalid URL')
   });
 
