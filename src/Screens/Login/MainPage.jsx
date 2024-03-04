@@ -4,8 +4,8 @@ import img from '../../../src/assets/parkingg.png'
 const MainPage = () => {
   return (
     <div className='flex justify-center items-center h-screen bg-gray-100'>
-      <div className='flex flex-row w-10/12 bg-white shadow-lg rounded-lg overflow-hidden '>
-        <div className='w-1/2 bg-gray-200 p-8'>
+      <div className='flex flex-row  bg-white shadow-lg rounded-lg overflow-hidden '>
+        <div className='w-3/4 bg-gray-200 p-8'>
           {/* Left Side Content (Placeholder for Image or Illustration) */}
 
           {/* <h2 className='text-2xl  font-bold mb-4'>Welcome to our Parking Application</h2>

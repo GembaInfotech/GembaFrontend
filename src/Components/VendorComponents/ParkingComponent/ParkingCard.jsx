@@ -6,9 +6,9 @@ function ParkingCard({ parking }) {
 
     <div className='p-2 flex justify-between  mt-2 max-sm:m-1 max-sm:p-1 bg-gray-100 rounded-md'>
     <div>
-    <p className='font-normal  text-gray-700 '>{parking.pn}</p>
-      <p className='font-normal  text-gray-700 ' >{parking.pa}</p>
-      <p className='font-normal  text-gray-700 '>{parking.city}</p>
+    <p className='font-semibold   text-gray-700 '>{parking.pn}</p>
+      <p className='font-semibold  text-gray-700 ' >{parking.pa}</p>
+      <p className='font-semibold  text-gray-700 '>{parking.city}</p>
     </div>
    <div className='flex items-center '>
    <Link to={`/parking/${parking._id}`}>
