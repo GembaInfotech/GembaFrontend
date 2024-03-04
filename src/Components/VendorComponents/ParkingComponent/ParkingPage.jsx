@@ -54,7 +54,7 @@ function ParkingPage({ parking, edit=true }) {
         <h1 className='text-xl font-light mb-2 '>Guard Information</h1>
 
         {
-   (       parking.assg  ) ?  <Link to={`/guard/${parking.assg}`}>
+             parking.assg ?  <Link to={`/guard/${parking.assg}`}>
         <ActionButton name="View Guard"/>
           </Link>:          <Link to={`/createGuard/${parking._id}`}> <ActionButton name="Add Guard"/> </Link>
 
@@ -62,6 +62,9 @@ function ParkingPage({ parking, edit=true }) {
        
         </div>
       }
+
+
+
 
           </div>
       

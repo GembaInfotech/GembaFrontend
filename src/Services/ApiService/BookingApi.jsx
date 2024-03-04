@@ -5,8 +5,9 @@ const instance = axios.create({
   baseURL: 'http://localhost:7001/v1/api',
 });
 
-export const fetchBookings = async ({status}) => {
-  const response = await instance.get(`/booking/?parkingId=65e175e107cb14328aec98cb&status=${status}`);
+export const fetchBookings = async ({parkingid, status}) => {
+  console.log(parkingid);
+  const response = await instance.get(`/booking/?parkingid=${parkingid}&status=${status}`);
   return response.data.data;
 };
 

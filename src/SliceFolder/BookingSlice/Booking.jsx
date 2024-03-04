@@ -4,8 +4,9 @@ import { fetchBookings, updateBooking as updateBookingAPI, deleteBooking as dele
 
 export const fetchBookingsAsync = createAsyncThunk(
   'bookings/fetch',
-  async ({status}) => {
-    const response = await fetchBookings({status});
+  async ({parkingid, status}) => {
+    console.log(status);
+    const response = await fetchBookings({parkingid, status});
     return response;
   }
 );

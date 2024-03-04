@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const SignupSchema = Yup.object().shape({
-  mail: Yup.string().mail('Invalid email address').required('Required'),
+  mail: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
 });
 

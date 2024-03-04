@@ -31,6 +31,7 @@ import MainPage from './Screens/Login/MainPage'
 import GaurdLogin from './Screens/Login/GaurdLogin'
 import SignUp from './Screens/Login/SignUp'
 import ParkingForm from './Components/VendorComponents/ParkingComponent/ParkingForm';
+import TransactionScreen from './Screens/VendorScreens/TransactionScreen/TransactionScreen';
 function App() {
   const queryClient = new QueryClient();
 
@@ -51,7 +52,7 @@ function App() {
         <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
         {/* <Route path="/accounts" element={<Layout><Accounts /></Layout>} /> */}
         <Route path="/gaurds" element={<Layout><Gaurds /></Layout>} />
-        {/* <Route path="/transactions" element={<Layout><Transactions /></Layout>} /> */}
+        <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
         <Route path="/help" element={<Layout><Help /></Layout>} />
         <Route path="/update/:id" element={<Layout>< UpdateParkingForm /></Layout>} />
 
