@@ -16,7 +16,7 @@ function TransactionTable({booking, status, parking}) {
 
     }
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto max-h-48 ">
             <table className="table-auto w-full">
                 <thead className="bg-gray-800">
                     <tr>
@@ -24,9 +24,7 @@ function TransactionTable({booking, status, parking}) {
                         <th className="px-4 text-white py-2">Car Number</th>
                         <th className="px-4 text-white py-2">Parking Name</th>
 
-                        <th className="px-4 text-white py-2">Time In</th>
-                        <th className="px-4 text-white py-2">Time Out</th>
-                        <th className="px-4 text-white py-2">Status</th>
+                        <th className="px-4 text-white py-2">Date</th>
                         <th className="px-4 text-white py-2">Booking Price</th>
                     </tr> 
                 </thead>
@@ -36,9 +34,7 @@ function TransactionTable({booking, status, parking}) {
                             <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{item.num}</td>  
                             <td className="border px-4 text-sm font-semibold py-2">{item.pn}</td>  
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleTimeString()}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.out).toLocaleTimeString()}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleDateString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">
                                 {status === "Completed" ? exceedPrice(item.price) : item.price}
                             </td>
@@ -46,7 +42,10 @@ function TransactionTable({booking, status, parking}) {
                     ))}
                 </tbody>
             </table>
-    <h1 className='text-xl font-semibold'> Net Income   {income}</h1>
+
+            <div className='p-2 bg-gray-100 my-4 min-h-72'>
+            <h1 className='text-xl font-semibold'> Net Income :  {income}</h1>
+                </div> 
             
         </div>
     );
