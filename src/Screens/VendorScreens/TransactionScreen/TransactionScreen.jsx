@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TransactionTable from '../../../Components/TransactionComponents/TransactionTable';
 import {parkings} from '../../../SliceFolder/ParkingSlice/Parking';
 import {useDispatch,useSelector } from 'react-redux';
+import { fetchParkingsAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 import { fetchBookingsAsync } from '../../../SliceFolder/BookingSlice/Booking';
 
 
@@ -13,8 +14,11 @@ function TransactionScreen() {
   const data = useSelector(parkings);
  
   const bookings = useSelector((state)=>state.booking.data)
-
-  console.log(bookings);
+  const status = useSelector((state) => state.Parking.status);
+  useEffect(() => {
+    if ((status == "idle"))
+      dispatch(fetchParkingsAsync());
+  }, [dispatch]);
   const handleParkingChange = (event) => {
     const selectedValue = event.target.value;
     setSelectedParking(selectedValue);
