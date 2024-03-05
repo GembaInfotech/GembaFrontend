@@ -49,7 +49,6 @@ function BookingTable({booking, status}) {
 
     const ADDON_AMOUNT = 10;
     const exceedPrice = (price) => {
-        // Calculate the total booking price with an additional amount
         return price + ADDON_AMOUNT;
     };
 
@@ -82,6 +81,9 @@ function BookingTable({booking, status}) {
                         <th className="px-4 text-white py-2">Time Out</th>
                         <th className="px-4 text-white py-2">Status</th>
                         <th className="px-4 text-white py-2">Booking Price</th>
+                        <th className="px-4 text-white py-2">CGST</th>
+                        <th className="px-4 text-white py-2">SGST</th>
+                        <th className="px-4 text-white py-2">Total</th>     
                     </tr> 
                 </thead>
                 <tbody>
@@ -96,6 +98,9 @@ function BookingTable({booking, status}) {
                             <td className="border px-4 text-sm font-semibold py-2">
                                 {status === "Completed" ? exceedPrice(item.price) : item.price}
                             </td>
+                            <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.cgst)}</td>  
+                            <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.sgst)}</td> 
+                            <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.price+2*item.sgst)}</td>
                         </tr>
                     ))}
                 </tbody>

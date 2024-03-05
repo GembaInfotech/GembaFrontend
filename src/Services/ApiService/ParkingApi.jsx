@@ -6,7 +6,7 @@ const instance = axios.create({
 });
 
 export const fetchParkings = async () => {
-  console.log("Ca;;ed");
+  console.log("called")
   const response = await instance.get(`/vendor/getParking/65e56461728ff51fd4874126`);
   return response.data.data;
 };

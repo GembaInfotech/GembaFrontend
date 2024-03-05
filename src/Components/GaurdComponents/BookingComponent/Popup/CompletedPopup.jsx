@@ -12,11 +12,11 @@ function CompletedPopup({selectedBooking}) {
 <div>
 <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
   <p className="text-gray-700 text-green-500">Status: {selectedBooking.status}</p>
-  <p className="text-gray-700">Car Number: {selectedBooking.CarNumber}</p>
+  <p className="text-gray-700">Car Number: {selectedBooking.num}</p>
 
-  <p className="text-gray-700">Time In: {new Date(selectedBooking.timeIn).toLocaleString()}</p>
-  <p className="text-gray-700">Time Out: {new Date(selectedBooking.timeOut).toLocaleString()}</p>
-  <p className="text-gray-700">Booking Price: {selectedBooking.status === "Completed" ? exceedPrice(selectedBooking.bookingPrice) : selectedBooking.bookingPrice}</p>
+  <p className="text-gray-700">Time In: {new Date(selectedBooking.In).toLocaleString()}</p>
+  <p className="text-gray-700">Time Out: {new Date(selectedBooking.out).toLocaleString()}</p>
+  <p className="text-gray-700">Booking Price: {selectedBooking.status === "Completed" ? exceedPrice(selectedBooking.price) : selectedBooking.price}</p>
 </div>
   )
 }
