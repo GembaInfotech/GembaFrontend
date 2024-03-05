@@ -3,6 +3,7 @@ import TransactionTable from '../../../Components/TransactionComponents/Transact
 import {parkings} from '../../../SliceFolder/ParkingSlice/Parking';
 import {useDispatch,useSelector } from 'react-redux';
 import { fetchBookingsAsync } from '../../../SliceFolder/BookingSlice/Booking';
+import { fetchParkingsAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 
 
 function TransactionScreen() {
@@ -13,6 +14,12 @@ function TransactionScreen() {
   const data = useSelector(parkings);
  
   const bookings = useSelector((state)=>state.booking.data)
+
+  const status = useSelector((state) => state.Parking.status);
+  useEffect(() => {
+    if ((status == "idle"))
+      dispatch(fetchParkingsAsync());
+  }, [dispatch]);
 
   console.log(bookings);
   const handleParkingChange = (event) => {
@@ -33,7 +40,7 @@ const status = "Completed";
         <div className=''> <label htmlFor="parkingDropdown">Select Parking:</label>
       <select id="parkingDropdown" onChange={handleParkingChange} value={value || '' } className='bg-gray-100 mx-1 p-2 border border-white rounded-md'>
         <option value="" disabled>Select a parking</option>
-        {data.parkings.map((parking, index) => (
+        {data?.parkings?.map((parking, index) => (
           <option key={index} value={parking._id}>
             {parking.pn}
           </option>
