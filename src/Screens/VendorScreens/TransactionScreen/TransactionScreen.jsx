@@ -11,6 +11,7 @@ function TransactionScreen() {
   const [income , setIncome] = useState();
 
   const data = useSelector(parkings);
+ 
   const bookings = useSelector((state)=>state.booking.data)
 
   console.log(bookings);
@@ -26,7 +27,6 @@ const status = "Completed";
   };
 
  
-
   return (
     <div className='px-2 py-2'>
           <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Transactions</h1>

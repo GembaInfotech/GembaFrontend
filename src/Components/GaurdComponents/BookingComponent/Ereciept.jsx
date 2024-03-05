@@ -6,7 +6,9 @@ import { PiCurrencyInr } from "react-icons/pi";
 
 
 const Ereciept = () => {
-  const { detail } = useParams();
+  const { detail, etInminn,ep } = useParams();
+
+  const etInmin = JSON.parse(decodeURIComponent(etInminn));
   const decodedBooking = JSON.parse(decodeURIComponent(detail));
 
   const compRef = useRef();
@@ -15,18 +17,18 @@ const Ereciept = () => {
 
   useEffect(() => {
     setSelectedBooking(decodedBooking);
-  }, [decodedBooking]);
+  }, [detail]);
 
   const print = () => {
     console.log('Printing:', selectedBooking);
   };
   
-  const ADDON_AMOUNT = 10;
-  const CGST = selectedBooking?.bookingPrice * 0.09;
-  const SGST = Math.floor(ADDON_AMOUNT * 0.09)+1;
+  const ADDON_AMOUNT = etInmin*ep;
+  const SGSTE = Math.ceil( ep*etInmin*0.09);
+  const SGST = Math.ceil(selectedBooking?.sgst);
   
-  const exceedPrice = (price) => {
-    return price + ADDON_AMOUNT + 2*CGST + 2*SGST;
+  const exceedPrice = () => {
+    return  ADDON_AMOUNT + 2*SGSTE + 2*SGST;
 };
   return (
     <>
@@ -76,7 +78,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'> {CGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'> {SGST}
    </h1>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -84,7 +86,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'>  {CGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'>  {SGST}
    </h1>
    </div>
 
@@ -94,7 +96,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.price+CGST+CGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.price+SGST*2}
    </h1></div>
    
    </div>
@@ -105,7 +107,7 @@ const Ereciept = () => {
  <div className='  m-2'>
    <div   className='flex flex-row justify-between' >
        <h1  className='text-sm font-normal  text-gray-600'>Exceed Time </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>  47 min
+   <h1  className='text-[14px] font-normal  text-gray-600'> {etInmin*10} min
    </h1>
 
    </div>
@@ -114,7 +116,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{ep*etInmin}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -122,7 +124,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'> {SGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'> {SGSTE}
    </h1>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -130,7 +132,7 @@ const Ereciept = () => {
    
 
 
-   <h1  className='text-[14px] font-normal  text-gray-600'> {SGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'> {SGSTE}
    </h1>
    </div>
 
@@ -140,7 +142,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? exceedPrice(selectedBooking.price) : ''}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? selectedBooking.price+exceedPrice(selectedBooking.price) : ''}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -149,7 +151,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT+ 2*SGST}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT+ 2*SGSTE}
    </h1></div>
    </div>
   
@@ -163,7 +165,7 @@ const Ereciept = () => {
 
 <div className="flex justify-center mt-4">
 <ReactToPrint trigger={() => <button onClick={print}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Print</button>} content={() => compRef.current} />
-        <button onClick={() => window.location.href = `../GuardScreen/CompletedBooking`} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
+        <button onClick={() => window.location.reload()} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
       </div>
 </>
 

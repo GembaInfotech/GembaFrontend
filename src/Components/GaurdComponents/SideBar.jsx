@@ -5,12 +5,17 @@ import { SlLocationPin } from 'react-icons/sl';
 import { MdIncompleteCircle } from "react-icons/md";
 import { BiSolidParking } from "react-icons/bi";
 import { FaCircleCheck } from "react-icons/fa6";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 
 
 const SideBar = () => {
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
   const parkingid = storedUserData?.parkingid;
-  console.log(parkingid)
+
+  const handleLogout = () => {
+    localStorage.removeItem('gaurdData');
+    window.location.href = '/';
+  };
 
   return (
     <div className="flex flex-col h-full justify-between">
@@ -36,7 +41,11 @@ const SideBar = () => {
           <FaCircleCheck className={`mr-2 text-white text-gray-600 ${location.pathname === `/${parkingid}/CompletedBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Completed
         </Link>
-        
+
+        <div onClick={handleLogout} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 `}>
+          <RiLogoutCircleRLine className={`mr-2 text-white text-gray-600`} />
+          Logout
+        </div>
 
       </div>
     </div>

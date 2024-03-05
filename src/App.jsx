@@ -69,9 +69,9 @@ function App() {
         <Route path="/:parkingid/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
         <Route path="/:parkingid/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />
         <Route path="/:parkingid/CompletedBooking" element={<GLayout>< CompletedBooking /></GLayout>} />
-        <Route path="/associateParking/:id" element={<GLayout>< AssociateParking /></GLayout>} />
+        <Route path="/associateParking/:parkingid" element={<GLayout>< AssociateParking /></GLayout>} />
         {/* <Route path="/generate" element={ <Reciept />}/> */}
-        <Route path="/generatee/:detail" element={ <Ereciept />}/>
+        <Route path="/generatee/:detail/:etInminn/:ep" element={ <Ereciept />}/>
       </Routes>
     </Router>
     </QueryClientProvider>

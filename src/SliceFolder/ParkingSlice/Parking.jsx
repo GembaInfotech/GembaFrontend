@@ -74,10 +74,9 @@ const ParkingSlice = createSlice({
 
 
 export default ParkingSlice.reducer;
-export const parkingById = (state, id) => {
+export const parkingById = (state, parkingid) => {
   if (state.Parking && state.Parking.data && state.Parking.data.parkings) {
-    console.log(state.Parking.data.parkings.find(data => data._id === id));
-    return state.Parking.data.parkings.find(data => data._id === id);
+    return state.Parking.data.parkings.find(data => data._id === parkingid);
   }
   return null; // Return null if the parking data is not found
 };

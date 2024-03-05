@@ -6,8 +6,9 @@ const instance = axios.create({
 });
 
 export const fetchBookings = async ({parkingid, status}) => {
-  console.log(parkingid);
   const response = await instance.get(`/booking/?parkingid=${parkingid}&status=${status}`);
+  console.log(response.data.data);
+  console.log(status);
   return response.data.data;
 };
 

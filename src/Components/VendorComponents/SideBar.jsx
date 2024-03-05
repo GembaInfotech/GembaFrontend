@@ -5,6 +5,7 @@ import { MdAccountBalance } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import { LuHelpingHand } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 
 const SideBar = () => {
   const location = useLocation();
@@ -12,6 +13,11 @@ const SideBar = () => {
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    window.location.href = '/';
   };
 
   return (
@@ -37,6 +43,11 @@ const SideBar = () => {
           <LuHelpingHand className={`mr-2 text-white text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Help
         </Link>
+
+        <div onClick={handleLogout} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 `}>
+          <RiLogoutCircleRLine className={`mr-2 text-white text-gray-600`} />
+          Logout
+        </div>
       </div>
       <div className="p-4">
         {/* You can place additional content here */}

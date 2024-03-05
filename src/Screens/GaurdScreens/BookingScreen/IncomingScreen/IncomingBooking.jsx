@@ -3,7 +3,6 @@ import BookingList from '../../../../Components/GaurdComponents/BookingComponent
 import { useParams } from 'react-router-dom';
 const IncomingBooking = () => {
   const {parkingid}= useParams();
-  console.log(parkingid);
    
   return (
 <BookingList parkingid={parkingid} status="Incoming"/>

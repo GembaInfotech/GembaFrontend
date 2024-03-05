@@ -9,8 +9,8 @@ import ParkingPage from "../../../Components/VendorComponents/ParkingComponent/P
 const AssociateParking = () => {
 
   const dispatch =useDispatch()
-  const { id } = useParams();
-  const data = useSelector((state) => parkingById(state, id));
+  const { parkingid } = useParams();
+  const data = useSelector((state) => parkingById(state, parkingid));
 
   useEffect(() => {
     dispatch(fetchParkingsAsync());
