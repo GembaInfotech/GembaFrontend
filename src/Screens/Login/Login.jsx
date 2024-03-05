@@ -14,6 +14,7 @@ const Login = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [img1, img2, img3, img4];
   useEffect(() => {
+    
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
     }, 3000);
