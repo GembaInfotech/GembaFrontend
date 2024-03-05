@@ -173,5 +173,8 @@ const Ereciept = () => {
    
   )
 }
+ 
+
+
 
 export default Ereciept
