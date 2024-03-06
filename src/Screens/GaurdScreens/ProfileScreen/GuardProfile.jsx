@@ -6,7 +6,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (!storedUserData) {
-      window.location.href = "/login/auth/vendor";
+      window.location.href = "/login/auth/guard";
     } else {
       setGuard(storedUserData);
     }

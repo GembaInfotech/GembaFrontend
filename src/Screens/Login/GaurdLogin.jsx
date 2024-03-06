@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import PulseLoader from "react-spinners/PulseLoader";
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,22 +14,28 @@ const SignupSchema = Yup.object().shape({
 
 const GaurdLogin
  = () => {
+
+const [loading , setLoading] = useState();
+   
   const initialValues = {
     mail: '',
     password: ''
   };
   const handleSubmit = async (values) => {
+    setLoading(true);
+
     try {
       const response = await axios.post('http://localhost:7001/v1/api/guard/login', values);
 
       console.log('Data saved successfully:', response);
 if(response.data.data)
       localStorage.setItem('gaurdData', JSON.stringify(response.data.data)); 
+      window.location.href="/GaurdHome"
+       
     } catch (error) {
       // Handle error
       console.error('Error saving data:', error);
     }
-    window.location.href="/GaurdHome"
   };
   return (
     <div className="flex flex-row justify-center items-center bg-white">
@@ -95,7 +103,8 @@ if(response.data.data)
                  type="submit"
                  className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                >
-                 Sign in
+               {loading ?        <PulseLoader color="#fff" />
+       : <h1>Login</h1>}
                </button>
               
              </Form>

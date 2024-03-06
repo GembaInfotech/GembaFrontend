@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import PulseLoader from "react-spinners/PulseLoader";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MdHome } from 'react-icons/md';
@@ -13,6 +14,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   useEffect(() => {
@@ -35,8 +37,8 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (values) => {
-    console.log("f");
-    try {
+setLoading(true);  
+  try {
       if (!validateEmail(values.mail)) {
         throw new Error('Enter valid email');
       } else if (values.password.length < 3) {
@@ -59,6 +61,7 @@ const LoginForm = () => {
         throw new Error('Unexpected error occurred');
       }
     } catch (error) {
+      setLoading(false);
       let errorMessage = 'An error occurred.';
 
       if (error.response) {
@@ -129,7 +132,8 @@ const LoginForm = () => {
                   type="submit"
                   className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Sign in
+                  {loading ?        <PulseLoader color="#fff" />
+       : <h1>Login</h1>}
                 </button>
                 <p className="text-sm font-medium text-gray-600">
                   Don’t have an account yet?{' '}
