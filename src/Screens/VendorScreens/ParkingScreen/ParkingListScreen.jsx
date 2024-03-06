@@ -10,8 +10,9 @@ function Parkings() {
   const data = useSelector(parkings);
   const status = useSelector((state) => state.Parking.status);
   useEffect(() => {
+    const id = "65e56461728ff51fd4874126"
     if (!(status == "succeeded"))
-      dispatch(fetchParkingsAsync());
+      dispatch(fetchParkingsAsync({id}));
   }, [dispatch]);
 
   console.log(data);

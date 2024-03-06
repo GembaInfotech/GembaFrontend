@@ -19,10 +19,10 @@ function IncomingPopup({selectedBooking}) {
 <p className="text-gray-700">Car Number: {selectedBooking.num}</p>
   <p className="text-gray-700">Time In: {new Date(selectedBooking.In).toLocaleString()}</p>
   <p className="text-gray-700">Time Out: {new Date(selectedBooking.out).toLocaleString()}</p>
-  <p className="text-gray-700">Booking Price: {selectedBooking.price}</p>
+  <p className="text-gray-700">Booking Price: {selectedBooking.price+2*selectedBooking.sgst}</p>
   <p className="text-gray-700">Status: {selectedBooking.status}</p>
   <div className="flex mt-4">
-      <button onClick={()=>update(selectedBooking._id, "Parked")} className="bg-green-500 text-white p-2 rounded-full mr-2 hover:bg-green-700">Confirm</button>
+      <button onClick={()=>update(selectedBooking._id, "Parked")} className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700">Confirm</button>
       
   </div>
 </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,7 @@ function BookingTable({booking, status}) {
 
     const handleSearch = (searchTerm) => {
         const filtered = booking.filter(item =>
-            item.CarNumber.toLowerCase().includes(searchTerm.toLowerCase())
+            item.num.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredBookings(filtered);
     };
@@ -46,12 +46,7 @@ function BookingTable({booking, status}) {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [selectedBooking]);
-
-    const ADDON_AMOUNT = 10;
-    const exceedPrice = (price) => {
-        return price + ADDON_AMOUNT;
-    };
-
+    
     return (
         <div className="container mx-auto">
             <div className="mb-4 flex justify-center items-center">
@@ -81,8 +76,11 @@ function BookingTable({booking, status}) {
                         <th className="px-4 text-white py-2">Time Out</th>
                         <th className="px-4 text-white py-2">Status</th>
                         <th className="px-4 text-white py-2">Booking Price</th>
-                        <th className="px-4 text-white py-2">CGST</th>
-                        <th className="px-4 text-white py-2">SGST</th>
+                        {status!="Completed" && <th className="px-4 text-white py-2">SGST</th>}
+                        {status!="Completed" && <th className="px-4 text-white py-2">CGST</th>}
+                       
+                        {status=="Completed" &&<th className="px-4 text-white py-2">Exceed Price </th>
+}
                         <th className="px-4 text-white py-2">Total</th>     
                     </tr> 
                 </thead>
@@ -95,12 +93,15 @@ function BookingTable({booking, status}) {
                             <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleTimeString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{new Date(item.out).toLocaleTimeString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
+                            
+                            <td className="border px-4 text-sm font-semibold py-2">{status=="Completed"?Math.floor(item.price+2*item.sgst):item.price}</td>
+                            {status!="Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.sgst}</td>}
+                        {status!="Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.cgst}</td>}
+
+                            { status== "Completed" && <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.tp-(item.price+2*item.sgst))}</td>}
                             <td className="border px-4 text-sm font-semibold py-2">
-                                {status === "Completed" ? exceedPrice(item.price) : item.price}
+                                {status === "Completed" ? item.tp: Math.floor(item.price+2*item.sgst)}
                             </td>
-                            <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.cgst)}</td>  
-                            <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.sgst)}</td> 
-                            <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.price+2*item.sgst)}</td>
                         </tr>
                     ))}
                 </tbody>

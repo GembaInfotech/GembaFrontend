@@ -1,6 +1,7 @@
 // components/BookingList.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PulseLoader from "react-spinners/PulseLoader";
 import { fetchBookingsAsync } from '../../../SliceFolder/BookingSlice/Booking';
 import BookingTable from './BookingTable';
 // import { fetchBookingsCompleted, fetchBookingsParked } from '../../../Services/ApiService/BookingApi';
@@ -19,12 +20,16 @@ const BookingList = ({parkingid, status}) => {
   }, [ dispatch]);
 
   return (
-    <div>
-      {
-        loading ? <div className='bg-gray-100 rounded-md max-h-64 max-w-96 flex justify-center items-center'> <h2>Loading....</h2></div>: <BookingTable status={status} booking={bookings.data} />
+   
+      
+        loading ?  
+        <div className='flex justify-center items-center min-h-screen'>       <PulseLoader color="#000" />
+        </div>
+        
+        : <BookingTable status={status} booking={bookings.data} />
 
-      }
-    </div>
+      
+
   );
 };
 

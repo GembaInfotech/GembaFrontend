@@ -16,7 +16,7 @@ function CompletedPopup({selectedBooking}) {
 
   <p className="text-gray-700">Time In: {new Date(selectedBooking.In).toLocaleString()}</p>
   <p className="text-gray-700">Time Out: {new Date(selectedBooking.out).toLocaleString()}</p>
-  <p className="text-gray-700">Booking Price: {selectedBooking.status === "Completed" ? exceedPrice(selectedBooking.price) : selectedBooking.price}</p>
+  <p className="text-gray-700">Booking Price: {selectedBooking.status === "Completed" ? selectedBooking.tp : selectedBooking.price}</p>
 </div>
   )
 }

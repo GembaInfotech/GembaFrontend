@@ -14,7 +14,7 @@ const Profile = () => {
 
   return (
     <div className="  p-2  ">
-      <h1 className="font-light text-xl mb-2">Guard Details</h1>
+      <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Guard Details</h1>
       <div className='flex justify-between bg-gray-100 h-[80%] '>
         <div className='px-2 py-2'>
           <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Name:</span> {guard.name}</p>

@@ -4,8 +4,8 @@ import { fetchParkings, createParking, updateParking as updateParkingAPI, delete
 
 export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
-  async () => {
-    const response = await fetchParkings();
+  async ({id}) => {
+    const response = await fetchParkings({id});
 
     return response;
   }

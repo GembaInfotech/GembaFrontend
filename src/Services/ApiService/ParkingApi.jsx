@@ -5,9 +5,9 @@ const instance = axios.create({
   baseURL: 'http://localhost:7001/v1/api',
 });
 
-export const fetchParkings = async () => {
+export const fetchParkings = async ({id}) => {
   console.log("called")
-  const response = await instance.get(`/vendor/getParking/65e56461728ff51fd4874126`);
+  const response = await instance.get(`/vendor/getParking/${id}`);
   return response.data.data;
 };
 

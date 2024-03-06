@@ -7,6 +7,11 @@ import { fetchParkingsAsync, parkingById } from '../../../../SliceFolder/Parking
 function ParkedPopup({ selectedBooking }) {
   const { parkingid } = useParams();
   const [loading, setLoading] = useState(true);
+const [tp, setTp] = useState(0);
+
+
+
+
 
   const etInMin = (days, hours, minutes) => {
     const etInmin = (days * 24 * 60) + (hours * 60) + minutes
@@ -26,9 +31,7 @@ function ParkedPopup({ selectedBooking }) {
 
   }, [dispatch]);
 
-  const update = (id, status) => {
-    dispatch(updateBookingAsync({ id, status }));
-  }
+
   
   const calculateExceedTime = (checkoutTime) => {
     const currentTime = Date.now();
@@ -48,7 +51,14 @@ function ParkedPopup({ selectedBooking }) {
 
   const etInminn = calculateExceedTime(selectedBooking.out).etInmin;
   
-  
+  const update =   (id, status) => {
+
+    const val=selectedBooking.price+2*selectedBooking.sgst + Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + Math.ceil(0.18*Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) )
+    console.log(val);
+    setTp(val);
+
+  dispatch(updateBookingAsync({ id, status, tp:val }));
+}
   return (
     <div>
       {
@@ -58,7 +68,7 @@ function ParkedPopup({ selectedBooking }) {
           <p className="text-gray-700">Time In: {new Date(selectedBooking.In).toLocaleString()}</p>
           <p className="text-gray-700">Time Out: {new Date(selectedBooking.out).toLocaleString()}</p>
           <p className="text-gray-700">Status: {selectedBooking.status}</p>
-          <p className="text-gray-700">Booking Price: {selectedBooking.price}</p>
+          <p className="text-gray-700">Booking Price: {selectedBooking.price+2*selectedBooking.sgst}</p>
 
           <p className="text-gray-700">
             Exceed Time:
@@ -74,7 +84,7 @@ function ParkedPopup({ selectedBooking }) {
 
           </p>
           <p>Collect : {calculateExceedTime(selectedBooking.out).etInmin > 0.8 && (
-            <span className="text-red-500">{Math.floor(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))}</span>
+            <span className="text-red-500">{Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) }+ tax({Math.ceil(0.18*Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))) })= {Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + Math.ceil(0.18*Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) )}</span>
           )}</p>
 
           <div className="flex mt-4">
@@ -84,9 +94,11 @@ function ParkedPopup({ selectedBooking }) {
                 state: { selectedBooking },
               }}
             >
-              <button onClick={() => update(selectedBooking._id, "Completed")} className="bg-green-500 text-white p-2 rounded-full mr-2 hover:bg-green-700">Collect</button>
+                        <button onClick={() => update(selectedBooking._id, "Completed")} className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700">Confirm</button>
+
             </Link>
           </div>
+
 
         </div>
       }

@@ -13,7 +13,8 @@ const AssociateParking = () => {
   const data = useSelector((state) => parkingById(state, parkingid));
 
   useEffect(() => {
-    dispatch(fetchParkingsAsync());
+    const id= "65e56461728ff51fd4874126"
+    dispatch(fetchParkingsAsync({id}));
   }, [dispatch]);
 
   return (

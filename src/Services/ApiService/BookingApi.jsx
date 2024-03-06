@@ -21,9 +21,9 @@ export const fetchBookings = async ({parkingid, status}) => {
 //   return response.data.data;
 // };
 
-  export const updateBooking = async (id, status) => {
-    console.log(status)
-    const response = await instance.put(`/booking/status/${id}`, { status: status });
+  export const updateBooking = async (id, status, tp) => {
+    console.log(status, tp)
+    const response = await instance.put(`/booking/status/${id}`, { status: status , tp });
     return response.data;
   };
   

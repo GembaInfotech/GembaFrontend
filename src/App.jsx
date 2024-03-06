@@ -32,6 +32,7 @@ import GaurdLogin from './Screens/Login/GaurdLogin'
 import SignUp from './Screens/Login/SignUp'
 import ParkingForm from './Components/VendorComponents/ParkingComponent/ParkingForm';
 import TransactionScreen from './Screens/VendorScreens/TransactionScreen/TransactionScreen';
+import NotFound from './Components/Utils/NotFound';
 function App() {
   const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ function App() {
         <Route path="/associateParking/:parkingid" element={<GLayout>< AssociateParking /></GLayout>} />
         {/* <Route path="/generate" element={ <Reciept />}/> */}
         <Route path="/generatee/:detail/:etInminn/:ep" element={ <Ereciept />}/>
+        <Route path="*" element={ <NotFound/> } />
       </Routes>
     </Router>
     </QueryClientProvider>
