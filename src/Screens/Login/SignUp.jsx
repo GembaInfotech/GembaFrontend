@@ -25,7 +25,7 @@ const SignUp = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await axios.post('http://localhost:7001/v1/api/vendor/register', values);
+      const response = await axios.post('https://backend-2-v1ta.onrender.com/v1/api/vendor/register', values);
       if (response.status === 201) {
         toast.success('Signup successful! Please check your email for further instructions.');
 

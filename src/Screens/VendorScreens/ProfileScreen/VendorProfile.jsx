@@ -35,7 +35,7 @@ const Profile = () => {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:7001/v1/api/vendor/${id}`,
+        `https://backend-2-v1ta.onrender.com/v1/api/vendor/${id}`,
         editedParking
       );
 

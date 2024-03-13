@@ -45,7 +45,7 @@ setLoading(true);
         throw new Error('Enter valid password');
       }
       console.log("g");
-      const response = await axios.post('http://localhost:7001/v1/api/vendor/login', values);
+      const response = await axios.post('https://backend-2-v1ta.onrender.com/v1/api/vendor/login', values);
       console.log(response)
       if (response.status === 200) {
         const responseData = response.data;

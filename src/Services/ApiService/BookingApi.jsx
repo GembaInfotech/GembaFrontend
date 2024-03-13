@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:7001/v1/api',
+  baseURL: 'https://backend-2-v1ta.onrender.com/v1/api',
 });
 
 export const fetchBookings = async ({parkingid, status}) => {

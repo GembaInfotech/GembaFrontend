@@ -10,7 +10,7 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2RjMjI3OGQyYTQ5
     const fetchData = async () => {
     
       try {
-        const response = await fetch(`http://localhost:7001/v1/api/vendor/getparking/${id}`, {
+        const response = await fetch(`https://backend-2-v1ta.onrender.com/v1/api/vendor/getparking/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

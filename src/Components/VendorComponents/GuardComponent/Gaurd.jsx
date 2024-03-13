@@ -33,7 +33,7 @@ const Gaurd = () => {
     try {
         // Make POST request to the API endpoint
         const response = await axios.post(
-          `http://localhost:7001/v1/api/guard/register/${parkingId}`,
+          `https://backend-2-v1ta.onrender.com/v1/api/guard/register/${parkingId}`,
           values
         );
         

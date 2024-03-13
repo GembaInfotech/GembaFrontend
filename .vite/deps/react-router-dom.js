@@ -21644,7 +21644,7 @@ function createMemoryHistory(options) {
     },
     createHref,
     createURL(to) {
-      return new URL(createHref(to), "http://localhost");
+      return new URL(createHref(to), "https://backend-2-v1ta.onrender.com");
     },
     encodeLocation(to) {
       let path = typeof to === "string" ? parsePath(to) : to;

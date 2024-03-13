@@ -10,7 +10,6 @@ function IncomingPopup({selectedBooking}) {
     console.log(status)
     console.log(id)
       dispatch(updateBookingAsync({id,status}));
-      window.location.href=`/${id}/IncomingBooking`
   }
   return (
 <div>

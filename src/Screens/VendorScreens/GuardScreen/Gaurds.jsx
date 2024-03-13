@@ -8,7 +8,7 @@ const [loading, setloading] =useState(false);
   useEffect(() => {
     const fetchGuardDetails = () => {
       setloading(true);
-      fetch('http://localhost:7001/v1/api/guard/getguards')
+      fetch('https://backend-2-v1ta.onrender.com/v1/api/guard/getguards')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');

@@ -13,7 +13,7 @@ const GaurdDetail = () => {
   useEffect(() => {
     const fetchGuardDetails = () => {
       setloading(true);
-      fetch(`http://localhost:7001/v1/api/guard/${id}`)
+      fetch(`https://backend-2-v1ta.onrender.com/v1/api/guard/${id}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -46,7 +46,7 @@ const GaurdDetail = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:7001/v1/api/guard/${id}`,
+        `https://backend-2-v1ta.onrender.com/v1/api/guard/${id}`,
         editedParking
       );
 
