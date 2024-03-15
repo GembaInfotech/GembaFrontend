@@ -2,16 +2,30 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import CrudButton from '../../Tools/crudButton';
 import ActionButton from '../../Tools/ActionButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 function ParkingPage({ parking, edit=true }) {
+  const dispatch = useDispatch();
+
+  const handleDelete =(id)=>{
+    dispatch(deleteParkingAsync(id))
+  }
   return (
     <div className='p-2 max-sm:p-1'>
           <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Details</h1>
 
        {
-        edit &&    <Link to={`/update/${parking._id}`}>
-        <CrudButton name="Update" />
+        edit &&   <div className='flex flex-row '>
+           <Link to={`/update/${parking._id}`}>
+        <CrudButton  name="Update" />
        </Link>
+        <button onClick={()=> { handleDelete(parking._id)}}>
+        <CrudButton name="Delete" />
+        </button>
+          </div>
        }
+              
+
          <div  >
         <div className='bg-gray-100 my-2 p-2'>
           <h1 className='text-xl font-light mb-1 '>Basic Information</h1>
@@ -45,8 +59,8 @@ function ParkingPage({ parking, edit=true }) {
       <div className='bg-gray-100 my-2 p-2'>
       <h1 className='text-xl font-light mb-1 '>Timing Information</h1>
 
-      <p className='text-sm font-semibold text-gray-700 p-1'>Opening Time: {parking.ot}</p>
-           <p className='text-sm font-semibold text-gray-700 p-1'>Closing Time: {parking.assg}</p>
+      <p className='text-sm font-semibold text-gray-700 p-1'>Latitude: {parking.lc.cord[0]}</p>
+           <p className='text-sm font-semibold text-gray-700 p-1'>Longitude: {parking.lc.cord[1]}</p>
       </div>
           
       {

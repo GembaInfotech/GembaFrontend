@@ -3,8 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PulseLoader from "react-spinners/PulseLoader";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { MdHome } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
+ 
 import { BiX, BiHide, BiShowAlt } from 'react-icons/bi';
 
 
@@ -17,6 +18,8 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate= useNavigate();
+
   useEffect(() => {
     let timer;
     if (errorMessage) {
@@ -38,6 +41,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values) => {
 setLoading(true);  
+console.log("clicked");
   try {
       if (!validateEmail(values.mail)) {
         throw new Error('Enter valid email');
@@ -45,15 +49,16 @@ setLoading(true);
         throw new Error('Enter valid password');
       }
       console.log("g");
-      const response = await axios.post('https://backend-2-v1ta.onrender.com/v1/api/vendor/login', values);
+      const response = await axios.post('http://localhost:7001/v1/api/vendor/login', values);
       console.log(response)
       if (response.status === 200) {
         const responseData = response.data;
         if (responseData.data) {
-          console.log("h");
-          localStorage.setItem('userData', JSON.stringify(responseData.data));
-          console.log(responseData.data);
-          window.location.href = "/home";
+          console.log(responseData.data.token);
+   
+          localStorage.setItem('token', JSON.stringify(responseData.data.token));
+          navigate('/home')
+
         } else {
           throw new Error('No data received from server');
         }

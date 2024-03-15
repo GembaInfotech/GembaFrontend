@@ -13,8 +13,9 @@ export const fetchParkingsAsync = createAsyncThunk(
 
 export const addParkingAsync = createAsyncThunk(
   'Parkings/add',
-  async ({ParkingData, vendorId}) => {
-    const response = await createParking({ParkingData, vendorId});
+  async ({values}) => {
+    const ParkingData= values;
+    const response = await createParking({ParkingData});
     return response.data;
   }
 );

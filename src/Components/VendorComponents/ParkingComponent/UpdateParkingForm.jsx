@@ -11,15 +11,20 @@ function UpdateParkingForm() {
     country: 'Country',
     pc: 'Pincode',
     ln: 'Licence No.',
-    sc: 'Subscription code',
+    sc: 'State code',
     price: 'Price',
     ep: 'Exceed Price',
     mt: 'Minimum Time',
     met: 'Minimum Exceed Time',
     sub: "Subscription",
+    subc:"Subscription Code",
+    subamt:"Subscription Amount",
     lm: 'LandMark',
     cc: 'Capacity',
-    lc:'Cordinates'
+    latiude:'Latitude',
+    longitude:'Longitude',
+    currentstatus:'currentstatus',
+    description:'description'
     
 
   };

@@ -1,8 +1,8 @@
 // services/api.js
 import axios from 'axios';
-
+import getToken from '../../Hooks/getToken';
 const instance = axios.create({
-  baseURL: 'https://backend-2-v1ta.onrender.com/v1/api',
+  baseURL: 'http://localhost:7001/v1/api',
 });
 
 export const fetchParkings = async ({id}) => {
@@ -11,9 +11,14 @@ export const fetchParkings = async ({id}) => {
   return response.data.data;
 };
 
-export const createParking = async ({ParkingData, vendorId}) => {
+export const createParking = async ({ParkingData}) => {
   console.log(ParkingData)
-  const response = await instance.post(`/parking/register/${vendorId}`, {ParkingData});
+  const token = await  getToken();
+  const response = await instance.post(`/parking/register`, {ParkingData}, {
+    headers: {
+      'Authorization': `Bearer ${token}` 
+    }
+  });
   console.log(response);
   return response.data;
 };
@@ -28,5 +33,5 @@ export const createParking = async ({ParkingData, vendorId}) => {
   
 
 export const deleteParking = async (id) => {
-  await instance.delete(`/Parkings/${id}`);
+  await instance.delete(`/parking/${id}`);
 };

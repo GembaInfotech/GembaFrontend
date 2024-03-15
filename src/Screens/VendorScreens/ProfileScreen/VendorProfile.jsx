@@ -11,7 +11,8 @@ const Profile = () => {
   const [editedParking, setEditedParking] = useState(parking);
   const [isEditing, setIsEditing] = useState(false);
   const [shouldReload, setShouldReload] = useState(false);
-
+  const token = JSON.parse(localStorage.getItem('token'));
+  console.log(token)
   const storedUserData = JSON.parse(localStorage.getItem('userData'));
   const excludedFields = ['_id', '__v', 'image', 'token', 'password', 'parkings', 'gaurds', 'verificationToken', 'verified'];
 
