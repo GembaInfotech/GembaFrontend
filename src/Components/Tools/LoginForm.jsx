@@ -5,7 +5,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 import axios from 'axios';
 import { MdHome } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
- 
 import { BiX, BiHide, BiShowAlt } from 'react-icons/bi';
 
 
@@ -25,7 +24,7 @@ const LoginForm = () => {
     if (errorMessage) {
       timer = setTimeout(() => {
         setErrorMessage('');
-      }, 6000); // Adjust the duration (in milliseconds) as needed
+      }, 6000); 
     }
     return () => clearTimeout(timer);
   }, [errorMessage]);
@@ -41,20 +40,16 @@ const LoginForm = () => {
 
   const handleSubmit = async (values) => {
 setLoading(true);  
-console.log("clicked");
   try {
       if (!validateEmail(values.mail)) {
         throw new Error('Enter valid email');
       } else if (values.password.length < 3) {
         throw new Error('Enter valid password');
       }
-      console.log("g");
       const response = await axios.post('http://localhost:7001/v1/api/vendor/login', values);
-      console.log(response)
       if (response.status === 200) {
         const responseData = response.data;
         if (responseData.data) {
-          console.log(responseData.data.token);
    
           localStorage.setItem('token', JSON.stringify(responseData.data.token));
           navigate('/home')

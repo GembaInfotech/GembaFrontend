@@ -54,7 +54,6 @@ const [tp, setTp] = useState(0);
   const update =   (id, status) => {
 
     const val=selectedBooking.price+2*selectedBooking.sgst + Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + Math.ceil(0.18*Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) )
-    console.log(val);
     setTp(val);
 
   dispatch(updateBookingAsync({ id, status, tp:val }));

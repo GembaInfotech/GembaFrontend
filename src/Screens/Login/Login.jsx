@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 import img1 from '../../assets/parking.webp';
 import img2 from '../../assets/parking3.jpg';
@@ -11,9 +11,19 @@ import LoginForm from '../../Components/Tools/LoginForm';
 
 
 const Login = () => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [img1, img2, img3, img4];
   useEffect(() => {
+   
+    const checkToken = async ()=>{
+      
+    const token = await JSON.parse(localStorage.getItem('token'));
+    if(token)
+    navigate('/home')
+
+    }
+  checkToken();
     
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));

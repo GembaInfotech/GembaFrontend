@@ -20,7 +20,6 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2RjMjI3OGQyYTQ5
         }
         const jsonData = await response.json();
         setData(jsonData);
-        console.log(jsonData)
       } catch (error) {
         console.error('Error fetching data:', error);
       } 

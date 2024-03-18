@@ -27,7 +27,6 @@ const [loading , setLoading] = useState();
     try {
       const response = await axios.post('https://backend-2-v1ta.onrender.com/v1/api/guard/login', values);
 
-      console.log('Data saved successfully:', response);
 if(response.data.data)
       localStorage.setItem('gaurdData', JSON.stringify(response.data.data)); 
       window.location.href="/GaurdHome"

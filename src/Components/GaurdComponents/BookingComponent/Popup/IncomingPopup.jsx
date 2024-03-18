@@ -6,9 +6,7 @@ import { updateBookingAsync } from '../../../../SliceFolder/BookingSlice/Booking
 function IncomingPopup({selectedBooking}) {
   const dispatch = useDispatch();
   const update=(id, status)=>{
-    console.log("called")
-    console.log(status)
-    console.log(id)
+   
       dispatch(updateBookingAsync({id,status}));
   }
   return (

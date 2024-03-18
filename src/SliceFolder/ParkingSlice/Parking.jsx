@@ -4,18 +4,17 @@ import { fetchParkings, createParking, updateParking as updateParkingAPI, delete
 
 export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
-  async ({id}) => {
-    const response = await fetchParkings({id});
-
+  async () => {
+    const response = await fetchParkings();
     return response;
   }
 );
 
 export const addParkingAsync = createAsyncThunk(
   'Parkings/add',
-  async ({values}) => {
-    const ParkingData= values;
-    const response = await createParking({ParkingData});
+  async ({ values }) => {
+    const ParkingData = values;
+    const response = await createParking({ ParkingData });
     return response.data;
   }
 );
@@ -23,8 +22,7 @@ export const addParkingAsync = createAsyncThunk(
 export const updateParkingAsync = createAsyncThunk(
   'Parkings/update',
   async ({ id, updatedData }) => {
-     const response = await updateParkingAPI({id, updatedData});
-     console.log(response)
+    const response = await updateParkingAPI({ id, updatedData });
     return response;
   }
 );
@@ -81,5 +79,5 @@ export const parkingById = (state, parkingid) => {
   }
   return null; // Return null if the parking data is not found
 };
-export  const parkings = state =>state.Parking.data;
+export const parkings = state => state.Parking;
 

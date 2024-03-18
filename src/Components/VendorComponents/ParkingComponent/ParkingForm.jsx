@@ -73,9 +73,63 @@ const CustomInput = ({ name, label }) => {
 
 const renderInputFields = (values) => {
   return Object.keys(values).map((key) => {
+    if(key=="mt")
+    {
+      return  <div key={key}>
+      <label htmlFor={key} className="block text-gray-700 text-sm font-bold mb-1">{key}</label>
+         <Field
+          as="select"
+          name={key}
+          id={key}
+          type="text"
+          className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" >
+        <option value="1">1 hr</option>
+        <option value="2">2 hr</option>
+        <option value="3">3 hr</option>
+        </Field>
+        <ErrorMessage name={key} component="div" className="text-red-500 text-xs mt-1" />
+
+      </div>
+    }
+    else if(key=="met")
+    {
+      return  <div key={key}>
+      <label htmlFor={key} className="block text-gray-700 text-sm font-bold mb-1">{key}</label>
+         <Field
+          as="select"
+          name={key}
+          id={key}
+          type="text"
+          className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" 
+          >
+        <option value="10">10 minutes</option>
+        <option value="20">20 minutes</option>
+        <option value="30">30 minutes</option>     
+        </Field>
+        <ErrorMessage name={key} component="div" className="text-red-500 text-xs mt-1" />
+
+      </div>
+    }
+    else if(key=="sub")
+    {
+      return  <div key={key}>
+      <label htmlFor={key} className="block text-gray-700 text-sm font-bold mb-1">{key}</label>
+         <Field
+          as="select"
+          name={key}
+          id={key}
+          type="text"
+          className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" 
+          >
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </Field>
+        <ErrorMessage name={key} component="div" className="text-red-500 text-xs mt-1" />
+      </div>
+    }
+
     return (
       <div key={key} >
-
         <CustomInput label={key} name={key} />
       </div>
     );
@@ -84,42 +138,29 @@ const renderInputFields = (values) => {
 
 const ParkingForm = () => {
   const dispatch = useDispatch();
-
   const handleSubmit = (values) => {
-    // Handle form submission
-    
   const { longitude, latitude } = values;
-  
-  // Convert latitude and longitude strings to numbers
   const lng = parseFloat(longitude);
   const lat = parseFloat(latitude);
-  
-  // Create lc object
   const lc = {
     type: "Point",
     cord: [lat, lng]
   };
-  
-  // Update values with lc field
   values.lc = lc;
-  
-  console.log(values);
    dispatch(addParkingAsync({values}))
-  
   };
   return (
+
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
+      onSubmit={handleSubmit} >
+     
       {({ values }) => (
         <Form>
             <div  className="grid grid-cols-4 md:grid-cols-4 gap-3 p-2 m-1">  {renderInputFields(values)}</div>
-        
-          <button type="submit" >   <h1 className='bg-gray-800 px-4 py-1 mx-1 rounded-md w-fit text-white font-normal hover:bg-black  text-sm'>Submit</h1>
-</button>
-        </Form>
+              <button type="submit" >   <h1 className='bg-gray-800 px-4 py-1 mx-1 rounded-md w-fit text-white font-normal hover:bg-black  text-sm'>Submit</h1></button>
+         </Form>
       )}
     </Formik>
   );

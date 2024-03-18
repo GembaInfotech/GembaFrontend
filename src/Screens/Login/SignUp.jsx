@@ -34,13 +34,12 @@ const SignUp = () => {
       }
       if (response.status === 205) {
         toast.error('Email Already Exists. Please try with another email.');
-console.log("error")
         resetForm();
       }
     } catch (error) {
 
       console.error('Error:', error);
-    } finally {appropriate
+    } finally {
       setSubmitting(false);
     }
   };

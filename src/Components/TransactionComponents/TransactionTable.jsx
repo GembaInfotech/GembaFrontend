@@ -24,7 +24,6 @@ function TransactionTable({booking, status, parking}) {
         booking.map((booking, index)=>{
        amt+=booking.tp;
         })
-        console.log(amt);
         setIncome(amt);
 
     }
@@ -35,7 +34,6 @@ function TransactionTable({booking, status, parking}) {
         booking.map((booking, index)=>{
        cgst+= (booking.tp*0.18)
         })
-        console.log(cgst);
         setCGST(cgst);
 
     }
@@ -46,7 +44,6 @@ function TransactionTable({booking, status, parking}) {
         booking.map((booking, index)=>{
        sgst+= (booking.tp*0.18)
         })
-        console.log(sgst);
         setSGST(sgst);
 
     }
@@ -62,8 +59,7 @@ function TransactionTable({booking, status, parking}) {
      <h1 className='text-sm font-semibold'> Net Income (Total Income - Total GST) :  {Math.floor(income- (cgst+sgst))}</h1>
          </div> 
 
-        { status!="succeeded"?<div className='flex justify-center items-center h-[500px]'>       <PulseLoader color="#000" />
-       </div> :
+      
      <table className="table-auto w-full">
          <thead className="bg-gray-800">
              <tr>
@@ -98,7 +94,7 @@ function TransactionTable({booking, status, parking}) {
                  </tr>
              ))}
          </tbody>
-     </table>}
+     </table>
 
    
      

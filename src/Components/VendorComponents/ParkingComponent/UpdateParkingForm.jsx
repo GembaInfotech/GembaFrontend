@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector , useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { parkingById, updateParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 import { useParams } from 'react-router';
 function UpdateParkingForm() {
@@ -17,19 +17,19 @@ function UpdateParkingForm() {
     mt: 'Minimum Time',
     met: 'Minimum Exceed Time',
     sub: "Subscription",
-    subc:"Subscription Code",
-    subamt:"Subscription Amount",
+    subc: "Subscription Code",
+    subamt: "Subscription Amount",
     lm: 'LandMark',
     cc: 'Capacity',
-    latiude:'Latitude',
-    longitude:'Longitude',
-    currentstatus:'currentstatus',
-    description:'description'
-    
+    latiude: 'Latitude',
+    longitude: 'Longitude',
+    currentstatus: 'currentstatus',
+    description: 'description'
+
 
   };
   const { id } = useParams();
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   const data = useSelector((state) => parkingById(state, id));
   const [updatedData, setFormData] = useState({});
 
@@ -50,8 +50,7 @@ function UpdateParkingForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(updatedData);
-    dispatch(updateParkingAsync({id, updatedData}));
+    dispatch(updateParkingAsync({ id, updatedData }));
 
   };
 
@@ -59,7 +58,9 @@ function UpdateParkingForm() {
     <div className='p-4'>
       {data && (
         <form onSubmit={handleSubmit} className='bg-gray-100 p-4 m-1'>
-          {Object.entries(updatedData).map(([key, value]) => (
+          {Object.entries(updatedData).map(([key, value]) =>
+          (
+
             <div className='flex justify-between' key={key}>
               <label htmlFor={key}>{headers[key]}</label>
               <input

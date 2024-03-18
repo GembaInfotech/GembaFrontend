@@ -21,7 +21,6 @@ const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', GuardData);
     dispatch(updateGuardAsync({ id, GuardData }))
         .then(() => {
             window.location.reload();
@@ -31,7 +30,6 @@ const dispatch = useDispatch();
         });
 };
     const handleCancel = () => {
-        console.log('Form canceled');
         window.location.reload();
     };
 

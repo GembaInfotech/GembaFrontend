@@ -20,7 +20,6 @@ const Ereciept = () => {
   }, [detail]);
 
   const print = () => {
-    console.log('Printing:', selectedBooking);
   };
   
   const ADDON_AMOUNT = etInmin*ep;

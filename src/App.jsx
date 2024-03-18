@@ -12,7 +12,6 @@ import Layout from './Layout/Layout'
 // import Child from './Screens/Child'
 import UpdateParkingForm from './Components/VendorComponents/ParkingComponent/UpdateParkingForm';
 import Help from './Screens/Help'
-import Gaurds from './Screens/VendorScreens/GuardScreen/Gaurds'
 import Guard from './Components/VendorComponents/GuardComponent/Gaurd'
 import Parkings from './Screens/VendorScreens/ParkingScreen/ParkingListScreen'
 import Profile from './Screens/VendorScreens/ProfileScreen/VendorProfile'
@@ -33,6 +32,7 @@ import SignUp from './Screens/Login/SignUp'
 import ParkingForm from './Components/VendorComponents/ParkingComponent/ParkingForm';
 import TransactionScreen from './Screens/VendorScreens/TransactionScreen/TransactionScreen';
 import NotFound from './Components/Utils/NotFound';
+import VendorProfileComponent from './Components/VendorComponents/VendorProfileComponent';
 function App() {
   const queryClient = new QueryClient();
 
@@ -52,10 +52,10 @@ function App() {
 
         <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
         {/* <Route path="/accounts" element={<Layout><Accounts /></Layout>} /> */}
-        <Route path="/gaurds" element={<Layout><Gaurds /></Layout>} />
         <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
         <Route path="/help" element={<Layout><Help /></Layout>} />
         <Route path="/update/:id" element={<Layout>< UpdateParkingForm /></Layout>} />
+        <Route path="/update/vendor" element={<Layout>< VendorProfileComponent /></Layout>} />
 
 
 

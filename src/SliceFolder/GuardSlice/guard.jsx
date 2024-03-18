@@ -4,8 +4,8 @@ import { fetchGuards, updateGuard as updateGuardAPI,  } from '../../Services/Api
 
 export const fetchGuardsAsync = createAsyncThunk(
   'Guards/fetch',
-  async () => {
-    const response = await fetchGuards();
+  async ({id}) => {
+    const response = await fetchGuards({id});
     return response;
   }
 );
