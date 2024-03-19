@@ -142,11 +142,12 @@ const ParkingForm = () => {
   const { longitude, latitude } = values;
   const lng = parseFloat(longitude);
   const lat = parseFloat(latitude);
-  const lc = {
+  const location = {
     type: "Point",
-    cord: [lat, lng]
+    coordinates: [lat, lng]
   };
-  values.lc = lc;
+  values.location = location;
+  console.log(values)
    dispatch(addParkingAsync({values}))
   };
   return (
