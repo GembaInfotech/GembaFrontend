@@ -1,11 +1,19 @@
 // features/Parking/ParkingSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchParkings, createParking, updateParking as updateParkingAPI, deleteParking as deleteParkingAPI } from '../../Services/ApiService/ParkingApi';
+import { fetchParkings, createParking, guardfetchParkings,  updateParking as updateParkingAPI, deleteParking as deleteParkingAPI } from '../../Services/ApiService/ParkingApi';
 
 export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
   async () => {
     const response = await fetchParkings();
+    return response;
+  }
+);
+export const guardfetchParkingsAsync = createAsyncThunk(
+  'Parkings/fetch',
+  async ({id}) => {
+    const response = await guardfetchParkings({id});
+    console.log(response);
     return response;
   }
 );

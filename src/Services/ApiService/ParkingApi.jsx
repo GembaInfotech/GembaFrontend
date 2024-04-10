@@ -7,11 +7,16 @@ const instance = axios.create({
 
 export const fetchParkings = async () => {
   const token = await getToken();
-  const response = await instance.get(`/vendor/getParking`, {
+  const response = await instance.get(`/vendor/getparking`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
+  return response.data.data;
+};
+export const guardfetchParkings = async ({id}) => {
+  const response = await instance.get(`/parking/${id}`);
+  console.log(response.data.data)
   return response.data.data;
 };
 

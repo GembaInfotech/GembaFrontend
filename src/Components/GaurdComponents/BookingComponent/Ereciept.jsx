@@ -23,11 +23,11 @@ const Ereciept = () => {
   };
   
   const ADDON_AMOUNT = etInmin*ep;
-  const SGSTE = Math.ceil( ep*etInmin*0.09);
-  const SGST = Math.ceil(selectedBooking?.sgst);
+  const SGSTE = Math.round( ep*etInmin*0.09);
+  const SGST = Math.round(selectedBooking?.price*0.09);
   
   const exceedPrice = () => {
-    return  ADDON_AMOUNT + 2*SGSTE + 2*SGST;
+    return  ADDON_AMOUNT + 2*SGSTE ;
 };
   return (
     <>
@@ -141,7 +141,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? selectedBooking.price+exceedPrice(selectedBooking.price) : ''}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? selectedBooking.price+2*SGST +exceedPrice(selectedBooking.price) : ''}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >

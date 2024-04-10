@@ -56,8 +56,8 @@ function ParkingPage({ parking, edit = true }) {
         </div>
         <div className='bg-gray-100 my-2 p-2'>
           <h1 className='text-xl font-light mb-1 '>Location Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Latitude: {parking.location.coordinates[0]}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Longitude: {parking.location.coordinates[1]}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Latitude: {parking?.location?.coordinates[0]}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Longitude: {parking?.location?.coordinates[1]}</p>
         </div>
         {edit &&
           <div className='bg-gray-100 my-2 p-2'>
