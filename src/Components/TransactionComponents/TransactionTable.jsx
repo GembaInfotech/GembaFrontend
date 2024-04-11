@@ -32,9 +32,9 @@ function TransactionTable({booking, status, parking}) {
         setCGST(0)
         let cgst =0;
         booking.map((booking, index)=>{
-       cgst+= (booking.tp*0.18)
+       cgst+= (booking.tp*0.09)
         })
-        setCGST(cgst);
+        setCGST(Math.round(cgst));
 
     }
 
@@ -42,9 +42,9 @@ function TransactionTable({booking, status, parking}) {
         setSGST(0)
         let sgst =0;
         booking.map((booking, index)=>{
-       sgst+= (booking.tp*0.18)
+       sgst+= (booking.tp*0.09)
         })
-        setSGST(sgst);
+        setSGST(Math.round(sgst));
 
     }
     return (
@@ -56,7 +56,7 @@ function TransactionTable({booking, status, parking}) {
      <h1 className='text-sm font-semibold'> CGST :  {cgst}</h1>
      <h1 className='text-sm font-semibold'> Total GST :  {(sgst+cgst)}</h1>
 
-     <h1 className='text-sm font-semibold'> Net Income (Total Income - Total GST) :  {Math.floor(income- (cgst+sgst))}</h1>
+     <h1 className='text-sm font-semibold'> Net Income (Total Income - Total GST) :  {Math.round(income- (cgst+sgst))}</h1>
          </div> 
 
       
@@ -84,11 +84,11 @@ function TransactionTable({booking, status, parking}) {
                      <td className="border px-4 text-sm font-semibold py-2">{item.num}</td>  
                      <td className="border px-4 text-sm font-semibold py-2">{item.pn}</td>  
                      <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleDateString()}</td>
-                     <td className="border px-4 text-sm font-semibold py-2">{ item.tp- (item.tp*0.18)}
+                     <td className="border px-4 text-sm font-semibold py-2">{ item.tp- 2*Math.round(item.tp*0.09)}
                      </td>
-                     <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.tp*0.09)}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.tp*0.09)}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{Math.floor(item.tp)}</td>  
+                     <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp*0.09)}</td>  
+                     <td className="border px-4 text-sm font-semibold py-2">{Math.round (item.tp*0.09)}</td>  
+                     <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp)}</td>  
 
 
                  </tr>

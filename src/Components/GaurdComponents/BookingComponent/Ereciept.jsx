@@ -8,7 +8,8 @@ import { PiCurrencyInr } from "react-icons/pi";
 const Ereciept = () => {
   const { detail, etInminn,ep } = useParams();
 
-  const etInmin = JSON.parse(decodeURIComponent(etInminn));
+  const etInmin = JSON.parse(decodeURIComponent(etInminn))|| 0 ;
+  
   const decodedBooking = JSON.parse(decodeURIComponent(detail));
 
   const compRef = useRef();
@@ -22,7 +23,7 @@ const Ereciept = () => {
   const print = () => {
   };
   
-  const ADDON_AMOUNT = etInmin*ep;
+  const ADDON_AMOUNT = Math.round(etInmin*ep);
   const SGSTE = Math.round( ep*etInmin*0.09);
   const SGST = Math.round(selectedBooking?.price*0.09);
   
@@ -115,7 +116,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{ep*etInmin}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{Math.round(ep*etInmin)}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -141,7 +142,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? selectedBooking.price+2*SGST +exceedPrice(selectedBooking.price) : ''}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? Math.round(selectedBooking.price+2*SGST +exceedPrice(selectedBooking.price)) : ''}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -150,7 +151,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT+ 2*SGSTE}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{Math.round(Math.round(ADDON_AMOUNT)+ 2*SGSTE)}
    </h1></div>
    </div>
   

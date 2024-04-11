@@ -45,8 +45,8 @@ function ParkedPopup({ selectedBooking }) {
   const etInminn = calculateExceedTime(selectedBooking.out).etInmin;
 
   const update = (id, status) => {
-
-    const val = selectedBooking.price + 2 * selectedBooking.sgst + Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + Math.ceil(0.18 * Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))
+    const exceededPrice = etInmin? Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + 2 * Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))) : 0
+    const val = selectedBooking.price + 2 * Math.round(selectedBooking.price*0.09) + exceededPrice
     setTp(val);
 
     dispatch(updateBookingAsync({ id, status, tp: val }));
@@ -76,7 +76,7 @@ function ParkedPopup({ selectedBooking }) {
 
           </p>
           <p>Collect : {calculateExceedTime(selectedBooking.out).etInmin > 0.8 && (
-            <span className="text-red-500">{Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))}+ tax({Math.ceil(0.18 * Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))})= {Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + Math.ceil(0.18 * Math.ceil(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))}</span>
+            <span className="text-red-500">{Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))}+ tax({2*Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))})= {Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) +2* Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))}</span>
           )}</p>
 
           <div className="flex mt-4">

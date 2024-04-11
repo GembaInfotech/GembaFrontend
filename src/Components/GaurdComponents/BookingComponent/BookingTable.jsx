@@ -98,7 +98,7 @@ function BookingTable({ booking, status }) {
                             <td className="border px-4 text-sm font-semibold py-2">{status == "Completed" ? item.price + 2* Math.round(item.price*0.09) : item.price}</td>
                             {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.price * 0.09)}</td>}
                             {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.price * 0.09)}</td>}
-                            {status == "Completed" && <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp - (item.price + 2 * Math.round(item.price*0.09)))}</td>}
+                            {status == "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.tp? (item.tp - (item.price + 2 * Math.round(item.price*0.09))): 0}</td>}
                             <td className="border px-4 text-sm font-semibold py-2">
                                 {status === "Completed" ? item.tp : item.price + 2 * Math.round(item.price * 0.09)}
                             </td>
