@@ -88,7 +88,7 @@ function TransactionTable({booking, status, parking}) {
                      </td>
                      <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp*0.09)}</td>  
                      <td className="border px-4 text-sm font-semibold py-2">{Math.round (item.tp*0.09)}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp)}</td>  
+                     <td className="border px-4 text-sm font-semibold py-2">{item.tp}</td>  
 
 
                  </tr>

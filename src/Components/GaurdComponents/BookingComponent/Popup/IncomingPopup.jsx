@@ -2,12 +2,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateBookingAsync } from '../../../../SliceFolder/BookingSlice/Booking';
+import { useNavigate} from 'react-router-dom';
+
+
 
 function IncomingPopup({selectedBooking}) {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const update=(id, status)=>{
-   
       dispatch(updateBookingAsync({id,status}));
+      navigate(`/${id}/ParkedBooking`);
   }
   return (
 <div>

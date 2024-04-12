@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 import { PiCurrencyInr } from "react-icons/pi";
-
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 const Ereciept = () => {
+  const { parkingid } = useParams();
+  const navigate = useNavigate();
   const { detail, etInminn,ep } = useParams();
 
   const etInmin = JSON.parse(decodeURIComponent(etInminn))|| 0 ;
@@ -23,8 +25,8 @@ const Ereciept = () => {
   const print = () => {
   };
   
-  const ADDON_AMOUNT = Math.round(etInmin*ep);
-  const SGSTE = Math.round( ep*etInmin*0.09);
+  const ADDON_AMOUNT = etInmin<= 0.8 ? 0 : Math.round(ep*etInmin);
+  const SGSTE = etInmin<= 0.8 ? 0 : Math.round( ep*etInmin*0.09);
   const SGST = Math.round(selectedBooking?.price*0.09);
   
   const exceedPrice = () => {
@@ -116,7 +118,7 @@ const Ereciept = () => {
 
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{Math.round(ep*etInmin)}
+   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT}
    </h1></div>
    </div>
    <div   className='flex flex-row justify-between' >
@@ -165,7 +167,7 @@ const Ereciept = () => {
 
 <div className="flex justify-center mt-4">
 <ReactToPrint trigger={() => <button onClick={print}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Print</button>} content={() => compRef.current} />
-        <button onClick={() => window.location.reload()} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
+        <button onClick={() => navigate(`/${parkingid}/CompletedBooking`)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
       </div>
 </>
 

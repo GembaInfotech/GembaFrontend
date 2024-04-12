@@ -45,8 +45,10 @@ function ParkedPopup({ selectedBooking }) {
   const etInminn = calculateExceedTime(selectedBooking.out).etInmin;
 
   const update = (id, status) => {
-    const exceededPrice = etInmin? Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + 2 * Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))) : 0
+    const exceededPrice = Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) + 2 * Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))) || 0
     const val = selectedBooking.price + 2 * Math.round(selectedBooking.price*0.09) + exceededPrice
+    console.log(val);
+    console.log(exceededPrice);
     setTp(val);
 
     dispatch(updateBookingAsync({ id, status, tp: val }));
