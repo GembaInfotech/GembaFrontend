@@ -1,6 +1,3 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-
 function CompletedPopup({selectedBooking}) {
   const ADDON_AMOUNT = 10;
   const exceedPrice = (bookingPrice) => {

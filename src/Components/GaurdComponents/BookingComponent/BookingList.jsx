@@ -1,10 +1,8 @@
-// components/BookingList.js
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
 import { fetchBookingsAsync } from '../../../SliceFolder/BookingSlice/Booking';
 import BookingTable from './BookingTable';
-// import { fetchBookingsCompleted, fetchBookingsParked } from '../../../Services/ApiService/BookingApi';
 
 const BookingList = ({ parkingid, status }) => {
   const [loading, setLoading] = useState(true);

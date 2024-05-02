@@ -1,5 +1,4 @@
-// components/ParkingList.js
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchParkingsAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 import ParkingTable from './ParkingTable';

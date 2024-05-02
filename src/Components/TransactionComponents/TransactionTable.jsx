@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import PulseLoader from "react-spinners/PulseLoader";
-import { setLocale } from 'yup';
-
-
+import { useEffect, useState } from 'react';
 
 function TransactionTable({booking, status, parking}) {
     const [loading, SetLoading] = useState(true)
     const [income , setIncome]= useState(0);
     const [cgst, setCGST]= useState(0);
     const[sgst, setSGST] = useState(0);
-
 
     useEffect(() => {
      calincome();
@@ -51,30 +46,22 @@ function TransactionTable({booking, status, parking}) {
      <div className="container mx-auto max-h-48 ">
        <div className='p-2 bg-[#EEEEEE] '>
      <h1 className=' font-semibold text-sm'> Total Income :  {income}</h1>
-
      <h1 className='text-sm font-semibold'> SGST :  {sgst}</h1>
      <h1 className='text-sm font-semibold'> CGST :  {cgst}</h1>
      <h1 className='text-sm font-semibold'> Total GST :  {(sgst+cgst)}</h1>
-
      <h1 className='text-sm font-semibold'> Net Income (Total Income - Total GST) :  {Math.round(income- (cgst+sgst))}</h1>
          </div> 
-
-      
      <table className="table-auto w-full">
          <thead className="bg-gray-800">
              <tr>
                  <th className="px-4 text-white py-2">Serial No.</th>
                  <th className="px-4 text-white py-2">Car Number</th>
                  <th className="px-4 text-white py-2">Parking Name</th>
-
                  <th className="px-4 text-white py-2">Date</th>
                  <th className="px-4 text-white py-2">Booking Price</th>
                  <th className="px-4 text-white py-2">CGST</th>
                  <th className="px-4 text-white py-2">SGST</th>
                  <th className="px-4 text-white py-2">Total</th>
-
-
-
              </tr> 
          </thead>
          <tbody>
@@ -89,15 +76,10 @@ function TransactionTable({booking, status, parking}) {
                      <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp*0.09)}</td>  
                      <td className="border px-4 text-sm font-semibold py-2">{Math.round (item.tp*0.09)}</td>  
                      <td className="border px-4 text-sm font-semibold py-2">{item.tp}</td>  
-
-
                  </tr>
              ))}
          </tbody>
-     </table>
-
-   
-     
+     </table> 
  </div>
     );
 }

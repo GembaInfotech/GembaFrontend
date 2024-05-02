@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { MdAccountBalance } from "react-icons/md";

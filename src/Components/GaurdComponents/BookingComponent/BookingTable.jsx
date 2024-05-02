@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -46,8 +45,6 @@ function BookingTable({ booking, status }) {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [selectedBooking]);
-
-
 
     return (
         <div className="container mx-auto">

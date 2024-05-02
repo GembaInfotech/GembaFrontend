@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useRef, useEffect, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import { PiCurrencyInr } from "react-icons/pi";
 import { useNavigate, useParams } from 'react-router-dom';
-
 
 const Ereciept = () => {
   const { parkingid } = useParams();
@@ -131,17 +129,11 @@ const Ereciept = () => {
    </div>
    <div   className='flex flex-row justify-between' >
    <h1  className='text-sm font-normal  text-gray-600'>SGST (9%) </h1>
-   
-
-
    <h1  className='text-[14px] font-normal  text-gray-600'> {SGSTE}
    </h1>
    </div>
-
    <div   className='flex flex-row justify-between' >
    <h1  className='text-sm font-normal  text-gray-600'>Total Amt </h1>
-
-
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
    <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? Math.round(selectedBooking.price+2*SGST +exceedPrice(selectedBooking.price)) : ''}
@@ -149,15 +141,11 @@ const Ereciept = () => {
    </div>
    <div   className='flex flex-row justify-between' >
    <h1  className='text-sm font-semibold  text-gray-600'>To be Paid </h1>
- 
-
    <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
    </h1>
    <h1  className='text-[14px] font-normal  text-gray-600'>{Math.round(Math.round(ADDON_AMOUNT)+ 2*SGSTE)}
    </h1></div>
    </div>
-  
-  
  </div>
 
 <h1 className='font-light text-sm text-center text-gray-400'>GEMBA SMART PARKING</h1>
