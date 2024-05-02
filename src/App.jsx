@@ -33,6 +33,7 @@ import ParkingForm from './Components/VendorComponents/ParkingComponent/ParkingF
 import TransactionScreen from './Screens/VendorScreens/TransactionScreen/TransactionScreen';
 import NotFound from './Components/Utils/NotFound';
 import VendorProfileComponent from './Components/VendorComponents/VendorProfileComponent';
+import UpdateGuard from './Components/VendorComponents/GuardComponent/UpdateGuard';
 function App() {
   const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ function App() {
 
         <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
         <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
+        <Route path="/update/guard/:id" element={<Layout><UpdateGuard /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
         <Route path="/:parkingid/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
         <Route path="/:parkingid/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />

@@ -37,20 +37,28 @@ function VendorProfileComponent() {
 
   };
 
+  const fieldLabels = {
+    name: 'Name',
+    mob: 'Phone',
+    mail: 'Email',
+    add: 'Address',
+    // Add more fields as neede
+  };
+
   return (
     <div className='p-4'>
       {vendor && (
         <form onSubmit={handleSubmit} className='bg-gray-100 p-4 m-1'>
           {Object.entries(data).map(([key, value]) =>
            (
-           
             <div className='flex justify-between' key={key}>
-              <label htmlFor={key}>{key}</label>
+              <label htmlFor={key}>{fieldLabels[key]}</label>
               <input
                 type="text"
                 id={key}
                 name={key}
-                value={value} className='w-[300px] px-2 m-2 py-1'
+                value={value}
+                className='w-[300px] px-2 m-2 py-1'
                 onChange={handleChange}
               />
             </div>

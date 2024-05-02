@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGuardsAsync } from "../../../SliceFolder/GuardSlice/guard";
+import { Link } from "react-router-dom";
 
 const GaurdDetail = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,10 @@ const GaurdDetail = () => {
                 <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Email:</span> {guard.data.mail}</p>
                 <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Address:</span> {guard.data.add}</p>
               </div>
-              <MdEdit />
+              <Link to={`/update/guard/${id}`}>
+  <MdEdit />
+</Link>
+
             </div>
           </div>
         </div>
