@@ -38,37 +38,13 @@ const UpdateGuard = () => {
     // Dispatch update guard action
     console.log(id);
     dispatch(updateGuardAsync({id, GuardData}));
-    // navigate(`/guard/${id}`)
+    navigate(`/guard/${id}`)
     dispatch(fetchGuardsAsync({ id }));
   };
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     dispatch(updateGuardAsync({ data}));
-//     // toast.success('Guard details updated successfully');
-//     navigate(`/guard/&{id}`)
-//     dispatch(fetchGuardsAsync());
-//     setFormData( '');
-
-//   };
-
   return (
     <div>
-      {/* {guard.status === "loading" && !guard.error && (
-        <div className="flex justify-center items-center min-h-screen">
-          <PulseLoader color="#000" />
-        </div>
-      )}
-
-      {guard.status === "failed" && (
-        <div>
-          <h1 className="text-red-500 p-4">
-            Some error occurred while loading the data. Kindly refresh or login again.
-          </h1>
-        </div>
-      )} */}
-
-      {/* {guard.status === "succeeded"  && !guard.error && ( */}
+      
         <div className="container mx-auto px-16 py-8">
           <div>
             <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1">Guard Detail</h1>
@@ -137,13 +113,10 @@ const UpdateGuard = () => {
                   </Form>
                 </Formik>
               </div>
-              {/* <Link to="/update/guard">
-                <MdEdit />
-              </Link> */}
+              
             </div>
           </div>
         </div>
-    {/* //   )} */}
     </div>
   );
 };
