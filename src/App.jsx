@@ -57,13 +57,7 @@ function App() {
         <Route path="/help" element={<Layout><Help /></Layout>} />
         <Route path="/update/:id" element={<Layout>< UpdateParkingForm /></Layout>} />
         <Route path="/update/vendor" element={<Layout>< VendorProfileComponent /></Layout>} />
-
-
-
         <Route path="/createGuard/:parkingId" element={<Layout>< Guard /></Layout>} />
-
-
-
 
         <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
         <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />

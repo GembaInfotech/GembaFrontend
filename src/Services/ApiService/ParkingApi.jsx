@@ -2,17 +2,19 @@
 import axios from 'axios';
 import getToken from '../../Hooks/getToken';
 const instance = axios.create({
-  baseURL: 'http://localhost:7001/v1/api',
+  baseURL: '/api/parking',
 });
 
 export const fetchParkings = async () => {
   const token = await getToken();
-  const response = await instance.get(`/vendor/getparking`, {
+  const response = await instance.get(`/get-vendor-parkings`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
-  return response.data.data;
+
+  console.log(response.data.parkings);
+  return response.data.parkings;
 };
 export const guardfetchParkings = async ({id}) => {
   const response = await instance.get(`/parking/${id}`);
@@ -22,17 +24,23 @@ export const guardfetchParkings = async ({id}) => {
 
 export const createParking = async ({ ParkingData }) => {
   const token = await getToken();
-  const response = await instance.post(`/parking/register`, { ParkingData }, {
+  const response = await instance.post(`/create-new-parking`, { ParkingData }, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
+  console.log(response.data);
   return response.data;
 };
 
 
 export const updateParking = async ({ id, updatedData }) => {
-  const response = await instance.put(`/parking/update/${id}`, { updatedData });
+  const token = await getToken();
+  const response = await instance.put(`/update-parking/${id}`, { updatedData }, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
   return response.data;
 };
 

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 function Parkings() {
   const dispatch = useDispatch();
   const parking = useSelector(parkings);
+  console.log(parking);
 
   useEffect(() => {
     if ((parking.status == "idle")) dispatch(fetchParkingsAsync());
@@ -21,7 +22,7 @@ function Parkings() {
      
       {parking.status == "failed" && <div><h1 className='text-red-500 p-4'>Some error Occured While Loading the Data... Kindly Refresh or Login Again...</h1></div>}
      
-      {parking.status == "succeeded" && !parking.error && parking.data != null && <div className='p-2 max-sm:p-1'>
+      {parking.status == "succeeded" && !parking.error  && <div className='p-2 max-sm:p-1'>
 
         <div className='flex justify-between items-center  bg-gray-300 rounded-sm'>
           <h1 className="font-light text-xl  p-1"> Results for Parking</h1>
@@ -30,7 +31,7 @@ function Parkings() {
              </Link>
         </div>
 
-        {parking.data.parkings && parking.data.parkings.map((item) => ( <ParkingCard key={item._id} parking={item} />))}
+        {parking.data && parking.data.map((item) => ( <ParkingCard key={item._id} parking={item} />))}
       </div>
       }
     </div>

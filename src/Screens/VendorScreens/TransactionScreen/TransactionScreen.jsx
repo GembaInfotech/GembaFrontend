@@ -23,6 +23,7 @@ function TransactionScreen() {
 
   const handleParkingChange = (event) => {
     const selectedValue = event.target.value;
+    
     setSelectedParking(selectedValue);
     const status = "Completed";
     const parkingid = selectedValue;
@@ -40,9 +41,9 @@ function TransactionScreen() {
           <div className=''> <label htmlFor="parkingDropdown">Select Parking:</label>
             <select id="parkingDropdown" onChange={handleParkingChange} value={value || ''} className='bg-gray-100 mx-1 p-2 border border-white rounded-md'>
               <option value="" disabled>Select a parking</option>
-              {data?.data.parkings?.map((parking, index) => (
+              {data?.data?.map((parking, index) => (
                 <option key={index} value={parking._id}>
-                  {parking.pn}
+                  {parking.name}
                 </option>
               ))}
             </select>

@@ -6,74 +6,54 @@ import { addParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 import { Descriptions } from 'antd';
 
 const initialValues = {
-  pn: '',
-  pa: '',
+  name: '',
+  address_line1: '',
+  address_line2:'',
   city: '',
-  st: '',
+  state: '',
   country: '',
-  pc: '',
+  pincode: '',
   gst: '',
-  ln: '',
-  sc: '',
+  registeration_no: '',
   price: '',
-  ep: '',
+  exceed_price: '',
   mt: '',
   met: '',
   sub: false,
   subc: '',
   subamt: '',
-  lm: '',
-  cc: '',
+  landmark: '',
+  capacity: '',
   latitude: '',
   longitude: '',
-  currentstatus: '',
+  status: '',
   description: '',
 };
 
-const validationSchema = Yup.object().shape({
-  pn: Yup.string().required('Parking name is required'),
-  pa: Yup.string().required('Parking address is required'),
-  city: Yup.string().required('City is required'),
-  st: Yup.string(),
-  country: Yup.string().required('Country is required'),
-  pc: Yup.number().required('Postal code is required'),
-  gst: Yup.string(),
-  ln: Yup.string(),
-  sc: Yup.string(),
-  price: Yup.number().required('Price is required'),
-  ep: Yup.number().required('Estimated parking slots is required'),
-  mt: Yup.number().required('Max parking time is required'),
-  met: Yup.number().required('Max extend time is required'),
-  sub: Yup.boolean(),
-  subc: Yup.string(),
-  subamt: Yup.number(),
-  lm: Yup.string(),
-  latitude: Yup.number(),
-  longitude: Yup.number(),
-});
+
 
 const fieldLabels = {
-  pn: 'Parking Name',
-  pa: 'Parking Area',
+  name: 'Parking Name',
+  address_line1: 'Address Line 1',
+  address_line2:'Address Line 2',  
   city: 'City',
-  st: 'State',
+  state: 'State',
   country: 'Country',
-  pc: 'PinCode',
+  pincode: 'PinCode',
   gst: 'GST',
-  ln: 'Licence No.',
-  sc: 'State Code',
+  registeration_no: 'registeration No.',
   price: 'Booking price',
-  ep: 'Exceed Price',
+  exceed_price: 'Exceed Price',
   mt: 'Minimum Time',
   met: 'Minimum Exceed Price',
   sub: 'Subscription',
   subc: 'Subscription Code',
   subamt: 'Subscription Amount',
-  lm: 'LandMark',
-  cc: 'Capacity',
+  landmark: 'LandMark',
+  capacity: 'Capacity',
   latitude: 'Latitude',
   longitude: 'Longitude',
-  currentstatus: 'Current Status',
+  status: 'Current Status',
   description: 'Description',
 };
 
@@ -110,7 +90,7 @@ const ParkingForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       {({ values }) => (

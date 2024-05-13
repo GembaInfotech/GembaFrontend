@@ -1,22 +1,34 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { vendorData, vendorUpdate} from '../../Services/ApiService/VendorApi';
+import { vendorData, vendorUpdate, logoutVendor } from '../../Services/ApiService/VendorApi';
+import Login from '../../Screens/Login/Login';
 
 export const vendorDataAsync = createAsyncThunk(
   'vendor/vendorData',
   async () => {
+    console.log("testing.....6");
     const response = await vendorData();
-    return response.data.vendor;
+    console.log(response);
+    return response.data;
   }
 );
 
-
 export const vendorUpdateAsync = createAsyncThunk(
-    'vendor/update',
-async ({data}) => {
-      const response = await vendorUpdate({data});
-      return response.data;
-    }
-  );
+  'vendor/update',
+  async ({ data }) => {
+    const response = await vendorUpdate({ data });
+    console.log(response);
+    return response.data;
+  }
+);
+
+export const vendorLogoutAsync = createAsyncThunk(
+  'vendor/logout',
+  async () => {
+    const response = await logoutVendor();
+    console.log(response);
+    return response.data;
+  }
+);
 
 const vendorSlice = createSlice({
   name: 'vendorData',

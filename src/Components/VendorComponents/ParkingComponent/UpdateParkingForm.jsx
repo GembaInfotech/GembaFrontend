@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { parkingById, updateParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 
 function UpdateParkingForm() {
+  const navigate = useNavigate()
   const headers = {
-    pn: 'Parking Name',
-    pa: 'Location',
+    name: 'Parking Name',
+    address_line1: 'Address Line 1',
+    address_line2: 'Address Line 2',
     city: 'City',
-    st: 'State',
+    state: 'State',
     country: 'Country',
-    pc: 'Pincode',
-    ln: 'Licence No.',
-    sc: 'State code',
+    pincode: 'Pincode',
+    registeration_no: 'Registration No.',
     price: 'Price',
-    ep: 'Exceed Price',
+    exceed_price: 'Exceed Price',
     mt: 'Minimum Time',
     met: 'Minimum Exceed Time',
-    sub: "Subscription",
-    subc: "Subscription Code",
-    subamt: "Subscription Amount",
-    lm: 'LandMark',
-    cc: 'Capacity',
+    sub: 'Subscription',
+    subc: 'Subscription Code',
+    subamt: 'Subscription Amount',
+    landmark: 'Landmark',
+    capacity: 'Capacity',
     latitude: 'Latitude',
     longitude: 'Longitude',
-    currentstatus: 'Current Status',
+    status: 'Current Status',
     description: 'Description'
   };
 
@@ -45,13 +46,16 @@ function UpdateParkingForm() {
   }, [data, id]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdatedData({ ...updatedData, [name]: value });
+    const { name, value, type } = e.target;
+    const updatedValue = type === 'checkbox' ? e.target.checked : value;
+    setUpdatedData({ ...updatedData, [name]: updatedValue });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateParkingAsync({ id, updatedData }));
+    navigate("/parkings")
+
   };
 
   return (
@@ -61,14 +65,25 @@ function UpdateParkingForm() {
           {Object.entries(updatedData).map(([key, value]) =>
             <div className='flex justify-between' key={key}>
               <label htmlFor={key}>{headers[key]}</label>
-              <input
-                type="text"
-                id={key}
-                name={key}
-                value={value}
-                className='w-[300px] px-2 m-2 py-1'
-                onChange={handleChange}
-              />
+              {key === 'sub' ? (
+                <input
+                  type="checkbox"
+                  id={key}
+                  name={key}
+                  checked={value}
+                  className='m-2'
+                  onChange={handleChange}
+                />
+              ) : (
+                <input
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={value}
+                  className='w-[300px] px-2 m-2 py-1'
+                  onChange={handleChange}
+                />
+              )}
             </div>
           )}
           <button className='bg-yellow-300 px-2 py-1 rounded-md w-fit text-black font-normal hover:bg-yellow-400 text-sm' type="submit">Submit</button>

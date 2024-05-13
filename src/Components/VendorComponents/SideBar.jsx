@@ -6,16 +6,21 @@ import { SlLocationPin } from "react-icons/sl";
 import { LuHelpingHand } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
+// import {vendorLogoutAsync} from "../../SliceFolder/VendorSlice/Vendor"
+// import { useDispatch } from 'react-redux';
+
 
 const SideBar = () => {
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  // const dispatch = useDispatch();
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
 
   const handleLogout = () => {
+    // dispatch(vendorLogoutAsync())
     localStorage.removeItem('token');
     window.location.href = '/';
   };

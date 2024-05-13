@@ -9,7 +9,7 @@ import { BiX, BiHide, BiShowAlt } from 'react-icons/bi';
 
 
 const SignupSchema = Yup.object().shape({
-  mail: Yup.string().required('Required'),
+  email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
 });
 
@@ -29,7 +29,7 @@ const LoginForm = () => {
     return () => clearTimeout(timer);
   }, [errorMessage]);
   const initialValues = {
-    mail: '',
+    email: '',
     password: ''
   };
 
@@ -39,19 +39,28 @@ const LoginForm = () => {
   }
 
   const handleSubmit = async (values) => {
+    console.log("hello");
 setLoading(true);  
   try {
-      if (!validateEmail(values.mail)) {
+      if (!validateEmail(values.email)) {
+        console.log("hello3");
         throw new Error('Enter valid email');
       } else if (values.password.length < 3) {
+        console.log("hello4");
         throw new Error('Enter valid password');
       }
-      const response = await axios.post('http://localhost:7001/v1/api/vendor/login', values);
+      console.log("hello5");
+      console.log(values);
+      const response = await axios.post('/api/vendor/vendor-login', values);
+      console.log("hello2 ");
+      console.log(response.data.accessToken
+      );
       if (response.status === 200) {
+        console.log(response.data.vendor);
         const responseData = response.data;
-        if (responseData.data) {
-   
-          localStorage.setItem('token', JSON.stringify(responseData.data.token));
+        if (responseData) {
+          console.log(responseData.accessToken);
+          localStorage.setItem('token', JSON.stringify(responseData.accessToken));
           navigate('/home')
 
         } else {
@@ -96,14 +105,14 @@ setLoading(true);
                     Your email
                   </label>
                   <Field
-                    type="mail"
-                    name="mail"
-                    id="mail"
+                    type="email"
+                    name="email"
+                    id="email"
                     className="bg-gray-100 font-semibold border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@gmail.com"
                     required
                   />
-                  <ErrorMessage name="mail" component="div" className="text-red-500 text-xs italic" />
+                  <ErrorMessage name="email" component="div" className="text-red-500 text-xs italic" />
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">

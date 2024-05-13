@@ -6,6 +6,7 @@ export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
   async () => {
     const response = await fetchParkings();
+    console.log(response);
     return response;
   }
 );
@@ -79,11 +80,11 @@ const ParkingSlice = createSlice({
 });
 
 
-
 export default ParkingSlice.reducer;
 export const parkingById = (state, parkingid) => {
-  if (state.Parking && state.Parking.data && state.Parking.data.parkings) {
-    return state.Parking.data.parkings.find(data => data._id === parkingid);
+  console.log(state.Parking.data);
+  if (state.Parking && state.Parking.data ) {
+    return state.Parking.data.find(data => data._id === parkingid);
   }
   return null; // Return null if the parking data is not found
 };

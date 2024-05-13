@@ -13,12 +13,11 @@ function VendorProfileComponent() {
 
   useEffect(() => {
     if (vendor) {
-      const keysToExclude = ['_id', '__v'];
+      const keysToShow = ['firstName', 'lastName', 'contact', 'email', 'address'];
       const filteredData = Object.fromEntries(
-        Object.entries(vendor.data).filter(([key, value]) => !keysToExclude.includes(key))
+        Object.entries(vendor.data).filter(([key, value]) => keysToShow.includes(key))
       );
       setFormData(filteredData);
-  
     }
   }, [vendor]);
 
@@ -29,20 +28,21 @@ function VendorProfileComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(vendorUpdateAsync({ data}));
+    dispatch(vendorUpdateAsync({ data }));
+    console.log(data);
     toast.success('Vendor details updated successfully');
-    navigate('/home')
+    navigate('/home');
     dispatch(vendorDataAsync());
-    setFormData( '');
-
+    setFormData({});
   };
 
   const fieldLabels = {
-    name: 'Name',
-    mob: 'Phone',
-    mail: 'Email',
-    add: 'Address',
-    // Add more fields as neede
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    contact: 'Phone',
+    email: 'Email',
+    address: 'Address',
+    // Add more fields as needed
   };
 
   return (

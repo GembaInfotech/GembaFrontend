@@ -29,24 +29,24 @@ function ParkingPage({ parking, edit = true }) {
       <div>
         <div className='bg-gray-100 my-2 p-2'>
           <h1 className='text-xl font-light mb-1 '>Basic Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Parking Name: {parking.pn}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Parking Name: {parking.name}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>Parking Area: {parking.pa}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>City: {parking.city}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>State: {parking.st}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>State: {parking.state}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>Country: {parking.country}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Pincode: {parking.pc}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>License No: {parking.ln}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Pincode: {parking.pincode}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Registration No: {parking.registeration_no}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>State Code: {parking.sc}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Landmark: {parking.lm}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Landmark: {parking.landmark}</p>
 
         </div>
         <div className='bg-gray-100 my-2 p-2'>
           <h1 className='text-xl font-light mb-1 '>Price and Time Information</h1>
           <p className='text-sm font-semibold text-gray-700 p-1'>Price: {parking.price}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Capacity: {parking.cc}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Exceed Price: {parking.ep}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Capacity: {parking.capacity}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Exceed Price: {parking.exceed_price}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Time: {parking.mt}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Exceed Time: {parking.met}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Exceed Time: {parking.exceed_price_for}</p>
         </div>
         <div className='bg-gray-100 my-2 p-2'>
           <h1 className='text-xl font-light mb-1 '>Subscription Information</h1>
