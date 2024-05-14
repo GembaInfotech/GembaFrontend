@@ -10,35 +10,49 @@ const Gaurd = () => {
   const { parkingId } = useParams();
   const initialValues = {
     name: '',
-    mail: '',
+    email: '',
     password: '',
-    adhar: '',
-    mob: '',
-    add: '',
+    // adhar: '',
+    contact: '',
+    address: '',
     image: ''
   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
-    mail: Yup.string().email('Invalid email address').required('Email is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
-    adhar: Yup.string().required('Aadhar number is required'),
-    mob: Yup.number().required('Contact number is required'),
-    add: Yup.string().required('Address is required'),
+    // adhar: Yup.string().required('Aadhar number is required'),
+    contact: Yup.number().required('Contact number is required'),
+    address: Yup.string().required('Address is required'),
     image: Yup.string().url('Invalid URL')
   });
 
   const onSubmit = async (values) => {
     try {
-      const response = await axios.post(
-        `http://localhost:7001/v1/api/guard/register/${parkingId}`,
-        values
-      );
-      toast.success('Added Successfully.');
+        console.log("create guard");
+        const response = await axios.post(
+            `http://localhost:8000/api/guard/create-new-guard/${parkingId}`,
+            values
+        );
+
+        // Assuming the response contains data or a message
+        if (response.data) {
+            toast.success(response.data.message || 'Added Successfully.');
+        } else {
+            toast.success('Added Successfully.');
+        }
     } catch (error) {
-      console.error('Error:', error);
+        console.error('Error:', error);
+        // Assuming the error response contains a message
+        if (error.response && error.response.data) {
+            toast.error(error.response.data.message || 'Failed to add guard.');
+        } else {
+            toast.error('Failed to add guard.');
+        }
     }
-  };
+};
+
 
   return (
     <div>

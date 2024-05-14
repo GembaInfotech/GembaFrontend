@@ -11,6 +11,8 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 const SideBar = () => {
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
   const parkingid = storedUserData?.parkingid;
+  const guardid = storedUserData?.guard?._id;
+
 
   const handleLogout = () => {
     localStorage.removeItem('gaurdData');
@@ -25,8 +27,8 @@ const SideBar = () => {
           Profile
         </Link>
         
-        <Link to={`/associateParking/${parkingid}`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/associateParking/${parkingid}` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === `/associateParking/${parkingid}` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+        <Link to={`/associateParking/${guardid}`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/associateParking/${guardid}` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === `/associateParking/${guardid}` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Parkings
         </Link>
         <Link to={`/${parkingid}/IncomingBooking`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/${parkingid}/IncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`}>

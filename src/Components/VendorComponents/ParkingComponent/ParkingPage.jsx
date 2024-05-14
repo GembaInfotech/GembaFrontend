@@ -63,7 +63,7 @@ function ParkingPage({ parking, edit = true }) {
           <div className='bg-gray-100 my-2 p-2'>
             <h1 className='text-xl font-light mb-2 '>Guard Information</h1>
             
-            {parking.assg ? <Link to={`/guard/${parking.assg}`}>
+            {parking.guard_id ? <Link to={`/guard/${parking.guard_id}`}>
               <ActionButton name="View Guard" />
             </Link> : <Link to={`/createGuard/${parking._id}`}> <ActionButton name="Add Guard" /> </Link>
             }

@@ -2,11 +2,13 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:7001/v1/api',
+  baseURL: '/api/guard',
 });
 
 export const fetchGuards = async ({id}) => {
-  const response = await instance.get(`/guard/${id}`);
+  console.log(id);
+  const response = await instance.get(`/get-guard/${id}`);
+  console.log(response.data.data);
   return response.data.data;
 };
 

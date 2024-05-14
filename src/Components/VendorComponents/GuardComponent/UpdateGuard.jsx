@@ -22,16 +22,16 @@ const UpdateGuard = () => {
 
   const initialValues = {
     name: guard.data.name || '',
-    mob: guard.data.mob || '',
-    mail: guard.data.mail || '',
-    add: guard.data.add || '',
+    contact: guard.data.contact || '',
+    email: guard.data.email || '',
+    address: guard.data.address || '',
   };
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
-    mob: Yup.string().required('Phone number is required'),
-    mail: Yup.string().email('Invalid email').required('Email is required'),
-    add: Yup.string().required('Address is required'),
+    contact: Yup.string().required('Phone number is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    address: Yup.string().required('Address is required'),
   });
 
   const handleSubmit = (GuardData) => {
@@ -74,35 +74,35 @@ const UpdateGuard = () => {
                       </label>
                       <Field
                         type="text"
-                        id="mob"
-                        name="mob"
+                        id="contact"
+                        name="contact"
                         className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
                       />
-                      <ErrorMessage name="mob" component="div" className="text-red-500 text-xs mt-1" />
+                      <ErrorMessage name="contact" component="div" className="text-red-500 text-xs mt-1" />
                     </div>
                     <div className="mb-4">
-                      <label htmlFor="mail" className="block text-gray-700 text-sm font-bold mb-1">
+                      <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-1">
                         Email
                       </label>
                       <Field
                         type="text"
-                        id="mail"
-                        name="mail"
+                        id="email"
+                        name="email"
                         className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
                       />
-                      <ErrorMessage name="mail" component="div" className="text-red-500 text-xs mt-1" />
+                      <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
                     </div>
                     <div className="mb-4">
-                      <label htmlFor="add" className="block text-gray-700 text-sm font-bold mb-1">
+                      <label htmlFor="address" className="block text-gray-700 text-sm font-bold mb-1">
                         Address
                       </label>
                       <Field
                         type="text"
-                        id="add"
-                        name="add"
+                        id="address"
+                        name="address"
                         className="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
                       />
-                      <ErrorMessage name="add" component="div" className="text-red-500 text-xs mt-1" />
+                      <ErrorMessage name="address" component="div" className="text-red-500 text-xs mt-1" />
                     </div>
                     <button
                       type="submit"
