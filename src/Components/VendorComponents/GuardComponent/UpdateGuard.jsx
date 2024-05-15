@@ -9,14 +9,17 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { updateGuardAsync } from "../../../SliceFolder/GuardSlice/guard";
 import { useNavigate } from "react-router-dom";
+import { logoutVendor } from "../../../Services/ApiService/VendorApi";
 
 const UpdateGuard = () => {
     const navigate = useNavigate();
   const dispatch = useDispatch();
   const guard = useSelector((state) => state.Guard);
   const { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
+    console.log("hello");
     dispatch(fetchGuardsAsync({ id }));
   }, []);
 

@@ -9,6 +9,7 @@ function ParkingDetail() {
 
   const { id } = useParams();
   console.log(id);
+  console.log(id);
   const data = useSelector((state) => parkingById(state, id));
   console.log(data);
 

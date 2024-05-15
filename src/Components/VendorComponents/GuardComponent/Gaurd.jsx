@@ -5,8 +5,10 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router';
 
 const Gaurd = () => {
+  const navigate = useNavigate()
   const { parkingId } = useParams();
   const initialValues = {
     name: '',
@@ -42,6 +44,7 @@ const Gaurd = () => {
         } else {
             toast.success('Added Successfully.');
         }
+        navigate(`/parking/${parkingId}`)
     } catch (error) {
         console.error('Error:', error);
         // Assuming the error response contains a message
