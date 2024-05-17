@@ -2,12 +2,14 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://backend-2-v1ta.onrender.com/v1/api',
+  baseURL: '/api/booking',
 });
 
 export const fetchBookings = async ({parkingid, status}) => {
-  const response = await instance.get(`/booking/?parkingid=${parkingid}&status=${status}`);
-  return response.data.data;
+  console.log(parkingid);
+  const response = await instance.get(`/get-booking-by-query/?parkingid=${parkingid}&status=${status}`);
+  console.log(response.data.bookings);
+  return response.data.bookings;
 };
 
   export const updateBooking = async (id, status, tp) => {

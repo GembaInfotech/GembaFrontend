@@ -63,6 +63,8 @@ function App() {
         <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
         <Route path="/update/guard/:id" element={<Layout><UpdateGuard /></Layout>} />
         <Route path="/GaurdHome" element={<GLayout>< GuardProfile /></GLayout>} />
+        <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
+
         <Route path="/:parkingid/IncomingBooking" element={<GLayout>< IncomingBooking /></GLayout>} />
         <Route path="/:parkingid/ParkedBooking" element={<GLayout>< ParkedBooking /></GLayout>} />
         <Route path="/:parkingid/CompletedBooking" element={<GLayout>< CompletedBooking /></GLayout>} />

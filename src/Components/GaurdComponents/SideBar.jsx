@@ -6,11 +6,12 @@ import { MdIncompleteCircle } from "react-icons/md";
 import { BiSolidParking } from "react-icons/bi";
 import { FaCircleCheck } from "react-icons/fa6";
 import { RiLogoutCircleRLine } from "react-icons/ri";
-
+import { BsHourglassSplit } from "react-icons/bs";
 
 const SideBar = () => {
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
-  const parkingid = storedUserData?.parkingid;
+  const parkingid = storedUserData?.guard?.parking;
+  console.log(parkingid);
   const guardid = storedUserData?.guard?._id;
 
 
@@ -30,6 +31,10 @@ const SideBar = () => {
         <Link to={`/associateParking/${guardid}`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/associateParking/${guardid}` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === `/associateParking/${guardid}` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Parkings
+        </Link>
+        <Link to={`/${parkingid}/IncomingBooking`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/${parkingid}/RecentIncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <BsHourglassSplit className={`mr-2 text-white text-gray-600 ${location.pathname === `/${parkingid}/RecentIncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Recent incoming 
         </Link>
         <Link to={`/${parkingid}/IncomingBooking`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/${parkingid}/IncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <MdIncompleteCircle className={`mr-2 text-white text-gray-600 ${location.pathname === `/${parkingid}/IncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`} />

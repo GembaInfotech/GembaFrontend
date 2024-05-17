@@ -6,6 +6,7 @@ export const fetchBookingsAsync = createAsyncThunk(
   async ({parkingid, status}) => {
 
     const response = await fetchBookings({parkingid, status});
+    console.log(response);
     return response;
   }
 );

@@ -87,7 +87,7 @@ function BookingTable({ booking, status }) {
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
                             <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{item.num}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.pn}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{item.name}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleTimeString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{new Date(item.out).toLocaleTimeString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
