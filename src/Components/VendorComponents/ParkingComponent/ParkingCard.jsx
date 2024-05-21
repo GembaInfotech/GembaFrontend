@@ -4,6 +4,9 @@ import CrudButton from '../../Tools/crudButton';
 
 function ParkingCard({ parking }) {
   console.log(parking);
+  if (parking.status === 'pending') {
+    return null; // Do not render the component
+  }
 
   return (
     <div className='p-2 flex justify-between  mt-2 max-sm:m-1 max-sm:p-1 bg-gray-100 rounded-md'>

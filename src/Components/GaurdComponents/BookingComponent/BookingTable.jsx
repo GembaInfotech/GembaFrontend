@@ -7,13 +7,16 @@ function BookingTable({ booking, status }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredBookings, setFilteredBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
-
+    console.log(booking);
+console.log(selectedBooking);
     useEffect(() => {
         setFilteredBookings(booking);
+        console.log(filteredBookings);
     }, [booking]);
 
     const openPopup = (booking) => {
         setSelectedBooking(booking);
+        // console.log(selectedBooking);
     };
 
     const closePopup = () => {
@@ -83,21 +86,21 @@ function BookingTable({ booking, status }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredBookings.map((item, index) => (
+                    {booking?.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
                             <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.num}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.name}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleTimeString()}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.out).toLocaleTimeString()}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{item.vehicle_number}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{item.parkingName}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.inTime ).toLocaleTimeString()}</td>
+                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.outTime).toLocaleTimeString()}</td>
                             <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
 
-                            <td className="border px-4 text-sm font-semibold py-2">{status == "Completed" ? item.price + 2* Math.round(item.price*0.09) : item.price}</td>
-                            {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.price * 0.09)}</td>}
-                            {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.price * 0.09)}</td>}
-                            {status == "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.tp? (item.tp - (item.price + 2 * Math.round(item.price*0.09))): 0}</td>}
+                            <td className="border px-4 text-sm font-semibold py-2">{status == "Completed" ? item.totalPrice : item.price}</td>
+                            {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.sgst}</td>}
+                            {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.cgst}</td>}
+                            {status == "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.totalPrice? (item.totalPrice - (item.price + 2 * Math.round(item.price*0.09))): 0}</td>}
                             <td className="border px-4 text-sm font-semibold py-2">
-                                {status === "Completed" ? item.tp : item.price + 2 * Math.round(item.price * 0.09)}
+                                {status === "Completed" ? item.totalPrice : item.totalPrice}
                             </td>
                         </tr>
                     ))}

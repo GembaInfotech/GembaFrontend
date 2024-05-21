@@ -28,6 +28,8 @@ const initialValues = {
   longitude: '',
   status: '',
   description: '',
+  price_for:'',
+  exceed_price_for:''
 };
 
 
@@ -55,6 +57,8 @@ const fieldLabels = {
   longitude: 'Longitude',
   status: 'Current Status',
   description: 'Description',
+  price_for:"Price For",
+  exceed_price_for:"Exceed Price For"
 };
 
 const CustomInput = ({ name, label }) => {

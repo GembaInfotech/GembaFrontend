@@ -20,6 +20,8 @@ const MainPage = () => {
               Login as a Vendor
             </button>
           </Link>
+
+          
         </div>
       </div>
     </div>

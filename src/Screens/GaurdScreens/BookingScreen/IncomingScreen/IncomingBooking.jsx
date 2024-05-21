@@ -6,7 +6,7 @@ const IncomingBooking = () => {
   console.log(parkingid);
    
   return (
-<BookingList parkingid={parkingid} status="Incoming"/>
+<BookingList parkingid={parkingid} status="Confirmed"/>
     )
 }
 

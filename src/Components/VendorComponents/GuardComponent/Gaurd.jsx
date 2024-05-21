@@ -33,9 +33,15 @@ const Gaurd = () => {
   const onSubmit = async (values) => {
     try {
         console.log("create guard");
+        const token = await JSON.parse(localStorage.getItem('token'))
         const response = await axios.post(
             `http://localhost:8000/api/guard/create-new-guard/${parkingId}`,
-            values
+            values,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
         );
 
         // Assuming the response contains data or a message

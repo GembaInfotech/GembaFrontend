@@ -7,7 +7,7 @@ function Modal({selectedBooking, status}) {
           <div className="bg-white p-8 rounded-md shadow-lg cursor-auto w-[500px]">  
           {status=="Parked" && <ParkedPopup selectedBooking={selectedBooking} />
             }
-             {status=="Incoming" && <IncomingPopup selectedBooking={selectedBooking} />
+             {status=="Confirmed" && <IncomingPopup selectedBooking={selectedBooking} />
             }
              {status=="Completed" && <CompletedPopup selectedBooking={selectedBooking} />
             }

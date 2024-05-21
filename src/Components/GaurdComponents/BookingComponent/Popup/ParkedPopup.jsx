@@ -58,33 +58,33 @@ function ParkedPopup({ selectedBooking }) {
       {
         loading ? <h2>loading</h2> : <div>
           <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
-          <p className="text-gray-700">Car Number: {selectedBooking.num}</p>
-          <p className="text-gray-700">Time In: {new Date(selectedBooking.In).toLocaleString()}</p>
-          <p className="text-gray-700">Time Out: {new Date(selectedBooking.out).toLocaleString()}</p>
+          <p className="text-gray-700">Car Number: {selectedBooking.vehicle_number}</p>
+          <p className="text-gray-700">Time In: {new Date(selectedBooking.inTime).toLocaleString()}</p>
+          <p className="text-gray-700">Time Out: {new Date(selectedBooking.outTime).toLocaleString()}</p>
           <p className="text-gray-700">Status: {selectedBooking.status}</p>
-          <p className="text-gray-700">Booking Price: {selectedBooking.price + 2 * Math.round(selectedBooking.price * 0.09)}</p>
+          <p className="text-gray-700">Booking Price: {selectedBooking.totalPrice}</p>
 
           <p className="text-gray-700">
             Exceed Time:
-            {calculateExceedTime(selectedBooking.out).days > 0 && (
-              <span>{calculateExceedTime(selectedBooking.out).days} days </span>
+            {calculateExceedTime(selectedBooking.outTime).days > 0 && (
+              <span>{calculateExceedTime(selectedBooking.outTime).days} days </span>
             )}
-            {calculateExceedTime(selectedBooking.out).hours > 0 && (
-              <span>{calculateExceedTime(selectedBooking.out).hours} hours </span>
+            {calculateExceedTime(selectedBooking.outTime).hours > 0 && (
+              <span>{calculateExceedTime(selectedBooking.outTime).hours} hours </span>
             )}
-            {calculateExceedTime(selectedBooking.out).minutes > 0 && (
-              <span>{calculateExceedTime(selectedBooking.out).minutes} minutes</span>
+            {calculateExceedTime(selectedBooking.outTime).minutes > 0 && (
+              <span>{calculateExceedTime(selectedBooking.outTime).minutes} minutes</span>
             )}
 
           </p>
-          <p>Collect : {calculateExceedTime(selectedBooking.out).etInmin > 0.8 && (
-            <span className="text-red-500">{Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep))}+ tax({2*Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))})= {Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)) +2* Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.out).etInmin * (data?.ep)))}</span>
+          <p>Collect : {calculateExceedTime(selectedBooking.outTime).etInmin > 0.8 && (
+            <span className="text-red-500">{Math.round(calculateExceedTime(selectedBooking.outTime).etInmin * (data?.exceedPrice))}+ tax({2*Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.outTime).etInmin * (data?.exceedPrice)))})= {Math.round(calculateExceedTime(selectedBooking.outTime).etInmin * (data?.exceedPrice)) +2* Math.round(0.09 * Math.round(calculateExceedTime(selectedBooking.outTime).etInmin * (data?.exceedPrice)))}</span>
           )}</p>
 
           <div className="flex mt-4">
             <Link
               to={{
-                pathname: `/generatee/${encodeURIComponent(JSON.stringify(selectedBooking))}/${etInminn}/${data?.ep}`,
+                pathname: `/generatee/${encodeURIComponent(JSON.stringify(selectedBooking))}/${etInminn}/${data?.exceedPrice}`,
                 state: { selectedBooking },
               }}
             >

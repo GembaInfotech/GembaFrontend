@@ -13,7 +13,7 @@ export const fetchBookings = async ({parkingid, status}) => {
 };
 
   export const updateBooking = async (id, status, tp) => {
-    const response = await instance.put(`/booking/status/${id}`, { status: status , tp });
+    const response = await instance.put(`/booking-status/${id}`, { status: status , tp });
     return response.data;
   };
   
