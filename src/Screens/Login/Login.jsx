@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import img1 from '../../assets/parking.webp';
-import img2 from '../../assets/parking3.jpg';
+import img from '../../assets/parking3.jpg';
 import img3 from '../../assets/parking.webp';
 import img4 from '../../assets/parking5.webp';
 import LoginForm from '../../Components/Tools/LoginForm';
@@ -12,8 +12,7 @@ import LoginForm from '../../Components/Tools/LoginForm';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const images = [img1, img2, img3, img4];
+ 
   useEffect(() => {
    
     const checkToken = async ()=>{
@@ -25,29 +24,26 @@ const Login = () => {
     }
   checkToken();
     
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    }, 3000);
-    return () => clearInterval(intervalId);
+   
   }, []);
 
   return (
-    <div className="flex flex-row max-sm:flex-col justify-center items-center bg-blue-600">
-      <div className="relative w-[50%]  max-sm:w-full overflow-hidden">
-        <div
-          className="flex transition-transform duration-1000  ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-            transition: currentIndex === 0 ? 'none' : 'transform 1s ease-in-out'
-          }}
-        >
-          {images.map((image, index) => (
-            <img key={index} src={image} className="w-full sm:min-h-screen h-[300px] " alt="" />
-          ))}
-        </div>
-      </div>
-      <LoginForm />
+    <div className='flex'>
+    <div className=' max-md:w-full h-screen'>
+     
+      <img src={img} alt="Parking App" className="w-full h-screen object-cover drop-shadow-md "></img>
     </div>
+    <div className='w-1/2 bg-white  flex flex-col justify-evenly items-center max-md:w-full '>
+<div>
+<h1 className='text-2xl text-gray-700 font-bold '>Parkar- your space Partner</h1>
+</div>     
+<div className='flex flex-col items-center justify-start'>
+    <LoginForm/>
+     </div>
+
+      
+    </div>
+  </div>
   );
 };
 

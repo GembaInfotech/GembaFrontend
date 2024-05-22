@@ -70,37 +70,44 @@ console.log(selectedBooking);
             <table className="table-auto w-full">
                 <thead className="bg-gray-800">
                     <tr>
-                        <th className="px-4 text-white py-2">Serial No.</th>
-                        <th className="px-4 text-white py-2">Car Number</th>
-                        <th className="px-4 text-white py-2">Parking Name</th>
+                        <th className="px-1 text-white py-2"><p className='text-sm'>Serial No.</p></th>
+                        <th className="px-2 text-white text-sm py-2 text-sm">Vehicle Number</th>
+                        <th className="px-2 text-white text-sm py-2">Vehicle Model</th>
+                        <th className="px-2 text-white text-sm py-2">Parking Name</th>
 
-                        <th className="px-4 text-white py-2">Time In</th>
-                        <th className="px-4 text-white py-2">Time Out</th>
-                        <th className="px-4 text-white py-2">Status</th>
-                        <th className="px-4 text-white py-2">Booking Price</th>
-                        {status != "Completed" && <th className="px-4 text-white py-2">SGST</th>}
-                        {status != "Completed" && <th className="px-4 text-white py-2">CGST</th>}
-                        {status == "Completed" && <th className="px-4 text-white py-2">Exceed Price </th>
+                        <th className="px-2 text-white text-sm py-2">Time In</th>
+                        <th className="px-2 text-white text-sm py-2">Time Out</th>
+                       {status== "Parked" &&  <th className="px-2 text-white text-sm py-2">Actual Intime</th>}
+
+                        <th className="px-2 text-white text-sm py-2">Status</th>
+                        <th className="px-2 text-white text-sm py-2">Booking Price</th>
+                        {status != "Completed" && <th className="px-2 text-white text-sm py-2">SGST</th>}
+                        {status != "Completed" && <th className="px-2 text-white text-sm py-2">CGST</th>}
+                        {status == "Completed" && <th className="px-2 text-white text-sm py-2">Exceed Price </th>
                         }
-                        <th className="px-4 text-white py-2">Total</th>
+                        <th className="px-2 text-white text-sm py-2">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     {booking?.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
-                            <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.vehicle_number}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.parkingName}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.inTime ).toLocaleTimeString()}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{new Date(item.outTime).toLocaleTimeString()}</td>
-                            <td className="border px-4 text-sm font-semibold py-2">{item.status}</td>
+                            <td className="border text-center px-1 text-sm  py-2">{index + 1}</td>
+                            <td className="border text-center px-2 text-sm  py-2">{item.vehicle_number}</td>
+                            <td className="border text-center px-2 text-sm  py-2">{item.vehicle_name}</td>
 
-                            <td className="border px-4 text-sm font-semibold py-2">{status == "Completed" ? item.totalPrice : item.price}</td>
-                            {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.sgst}</td>}
-                            {status != "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.cgst}</td>}
-                            {status == "Completed" && <td className="border px-4 text-sm font-semibold py-2">{item.totalPrice? (item.totalPrice - (item.price + 2 * Math.round(item.price*0.09))): 0}</td>}
-                            <td className="border px-4 text-sm font-semibold py-2">
-                                {status === "Completed" ? item.totalPrice : item.totalPrice}
+                            <td className="border text-center px-2 text-sm  py-2">{item.parkingName}</td>
+                            <td className="border text-center px-2 text-sm  py-2">{new Date(item.inTime ).toLocaleTimeString()}</td>
+                            <td className="border text-center px-2 text-sm  py-2">{new Date(item.outTime).toLocaleTimeString()}</td>
+                            {status == "Parked" &&                             <td className="border text-center px-2 text-sm  py-2">{item.actualInTime}</td>
+}
+                            <td className="border text-center px-2 text-sm  py-2">{item.status}</td>
+
+                            <td className="border text-center px-2 text-sm  py-2">{status == "Completed" ? item.totalPrice : item.price}</td>
+                            {status != "Completed" && <td className="border text-center px-2 text-sm  py-2">{item.sgst}</td>}
+                            {status != "Completed" && <td className="border text-center px-2 text-sm  py-2">{item.cgst}</td>}
+                            {status == "Completed" && <td className="border text-center px-2 text-sm  py-2">{item.exceedTotalPrice}</td>}
+                            <td className="border text-center px-2 text-sm  py-2">
+                                {status === "Completed" ? item.bookingPrice : item.totalPrice}
                             </td>
                         </tr>
                     ))}

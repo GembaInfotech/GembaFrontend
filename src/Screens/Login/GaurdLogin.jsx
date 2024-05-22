@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PulseLoader from "react-spinners/PulseLoader";
 import { useNavigate } from 'react-router';
-
+import img from '../../assets/parking3.jpg'
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -42,9 +42,17 @@ const GaurdLogin = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center items-center bg-white">
-      <div className='flex-row mx-auto h-screen'>
-        <div className="flex justify-center items-center h-screen bg-white">
+    <div className='flex'>
+    <div className=' max-md:w-full h-screen'>
+     
+      <img src={img} alt="Parking App" className="w-full h-screen object-cover drop-shadow-md "></img>
+    </div>
+    <div className='w-1/2 bg-white  flex flex-col justify-evenly items-center max-md:w-full bg-blue-300'>
+<div>
+<h1 className='text-2xl text-gray-700 font-bold '>Parkar- your space Partner</h1>
+</div>     
+<div className='flex flex-col items-center justify-start'>
+
           <div className="max-w-md w-full bg-white rounded-lg shadow-md md:max-w-md">
             <div className="p-6 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-gray-600">
@@ -89,11 +97,15 @@ const GaurdLogin = () => {
                   </button>
                 </Form>
               </Formik>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
+     </div>
+
+      
+    </div>
+  </div>
+   
   );
 };
 

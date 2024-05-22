@@ -15,21 +15,11 @@ console.log(parking);
   return (
     <div className='p-2 max-sm:p-1'>
       <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Details</h1>
-      {edit &&
-        <div className='flex flex-row '>
-          <Link to={`/update/${parking._id}`}>
-            <CrudButton name="Update" />
-          </Link>
-          <button onClick={() => { handleDelete(parking._id) }}>
-            <CrudButton name="Delete" />
-          </button>
-        </div>
-      }
-
+    
       <div>
-        <div className='bg-gray-100 my-2 p-2'>
+        <div className='bg-gray-100 my-2 p-2 w-full'>
           <h1 className='text-xl font-light mb-1 '>Basic Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Parking Name: {parking?.name}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1 w-[400px]'> <span className='bg-gray-200 rounded-sm  w-64'>Parking Name: </span> <span className='bg-white p-2 w-64  rounded-sm'>{parking?.name}  </span> </p>
           <p className='text-sm font-semibold text-gray-700 p-1'>Parking Area: {parking?.address_line1}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>City: {parking?.city}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>State: {parking?.state}</p>
@@ -48,33 +38,18 @@ console.log(parking);
           {/* <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Time: {parking[0].mt}</p> */}
           <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Exceed Time: {parking.exceed_price_for}</p>
         </div>
-        {/* <div className='bg-gray-100 my-2 p-2'>
-          <h1 className='text-xl font-light mb-1 '>Subscription Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Subscription: {parking.sub ? 'Yes' : 'No'}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Subscription Code: {parking.subc}</p>
+        <div className='bg-gray-100 my-2 p-2'>
+          <h1 className='text-xl font-light mb-1 '>Status</h1>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Status: {parking.status }</p>
+          {/* <p className='text-sm font-semibold text-gray-700 p-1'>Subscription Code: {parking.subc}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>Subscription Amount: {parking.subamt}</p> */}
-        {/* </div> */}
+        </div>
         <div className='bg-gray-100 my-2 p-2'>
           <h1 className='text-xl font-light mb-1 '>Location Information</h1>
           <p className='text-sm font-semibold text-gray-700 p-1'>Latitude: {parking?.location?.coordinates[0]}</p>
           <p className='text-sm font-semibold text-gray-700 p-1'>Longitude: {parking?.location?.coordinates[1]}</p>
         </div>
-        {edit &&
-          <div className='bg-gray-100 my-2 p-2'>
-            <h1 className='text-xl font-light mb-2 '>Guard Information</h1>
-            
-            {parking.guard_id.length === 0 ? (
-    <Link to={`/createGuard/${parking._id}`}>
-        <ActionButton name="Add Guard" />
-    </Link>
-) : (
-    <Link to={`/guard/${parking.guard_id}`}>
-        <ActionButton name="View Guard" />
-    </Link>
-)}
-
-          </div>
-        }
+      
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ function TransactionTable({booking, status, parking}) {
         setIncome(0)
         let amt =0;
         booking.map((booking, index)=>{
-       amt+=booking.tp;
+       amt+=booking.bookingPrice;
         })
         setIncome(amt);
 
@@ -27,7 +27,7 @@ function TransactionTable({booking, status, parking}) {
         setCGST(0)
         let cgst =0;
         booking.map((booking, index)=>{
-       cgst+= (booking.tp*0.09)
+       cgst+= (booking.cgst+ booking.exceedCGST)
         })
         setCGST(Math.round(cgst));
 
@@ -37,7 +37,7 @@ function TransactionTable({booking, status, parking}) {
         setSGST(0)
         let sgst =0;
         booking.map((booking, index)=>{
-       sgst+= (booking.tp*0.09)
+       sgst+= (booking.cgst+ booking.exceedCGST)
         })
         setSGST(Math.round(sgst));
 
@@ -54,28 +54,28 @@ function TransactionTable({booking, status, parking}) {
      <table className="table-auto w-full">
          <thead className="bg-gray-800">
              <tr>
-                 <th className="px-4 text-white py-2">Serial No.</th>
-                 <th className="px-4 text-white py-2">Car Number</th>
-                 <th className="px-4 text-white py-2">Parking Name</th>
-                 <th className="px-4 text-white py-2">Date</th>
-                 <th className="px-4 text-white py-2">Booking Price</th>
-                 <th className="px-4 text-white py-2">CGST</th>
-                 <th className="px-4 text-white py-2">SGST</th>
-                 <th className="px-4 text-white py-2">Total</th>
+                 <th className="px-2 text-white py-2">Serial No.</th>
+                 <th className="px-2 text-white py-2">Car Number</th>
+                 <th className="px-2 text-white py-2">Parking Name</th>
+                 <th className="px-2 text-white py-2">Date</th>
+                 <th className="px-2 text-white py-2">Booking Price</th>
+                 <th className="px-2 text-white py-2">CGST</th>
+                 <th className="px-2 text-white py-2">SGST</th>
+                 <th className="px-2 text-white py-2">Total</th>
              </tr> 
          </thead>
          <tbody>
              {booking.map((item, index) => (
                  <tr key={item._id}   className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
-                     <td className="border px-4 text-sm font-semibold py-2">{index + 1}</td>
-                     <td className="border px-4 text-sm font-semibold py-2">{item.num}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{item.pn}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{new Date(item.In).toLocaleDateString()}</td>
-                     <td className="border px-4 text-sm font-semibold py-2">{ item.tp- 2*Math.round(item.tp*0.09)}
+                     <td className="border px-2 text-sm font-semibold py-2">{index + 1}</td>
+                     <td className="border px-2 text-sm font-semibold py-2">{item.vehicle_number}</td>  
+                     <td className="border px-2 text-sm font-semibold py-2">{item.parkingName}</td>  
+                     <td className="border px-2 text-sm font-semibold py-2">{new Date(item.inTime).toLocaleDateString()}</td>
+                     <td className="border px-2 text-sm font-semibold py-2">{ item.price+item.exceedPrice}
                      </td>
-                     <td className="border px-4 text-sm font-semibold py-2">{Math.round(item.tp*0.09)}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{Math.round (item.tp*0.09)}</td>  
-                     <td className="border px-4 text-sm font-semibold py-2">{item.tp}</td>  
+                     <td className="border px-2 text-sm font-semibold py-2">{item.cgst + item.exceedCGST}</td>  
+                     <td className="border px-2 text-sm font-semibold py-2">{item.cgst + item.exceedCGST}</td>  
+                     <td className="border px-2 text-sm font-semibold py-2">{item.bookingPrice}</td>  
                  </tr>
              ))}
          </tbody>

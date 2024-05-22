@@ -26,7 +26,7 @@ const initialValues = {
   capacity: '',
   latitude: '',
   longitude: '',
-  status: '',
+ 
   description: '',
   price_for:'',
   exceed_price_for:''
@@ -55,7 +55,7 @@ const fieldLabels = {
   capacity: 'Capacity',
   latitude: 'Latitude',
   longitude: 'Longitude',
-  status: 'Current Status',
+  
   description: 'Description',
   price_for:"Price For",
   exceed_price_for:"Exceed Price For"

@@ -24,7 +24,7 @@ const LoginForm = () => {
     if (errorMessage) {
       timer = setTimeout(() => {
         setErrorMessage('');
-      }, 6000); 
+      }, 1000); 
     }
     return () => clearTimeout(timer);
   }, [errorMessage]);
@@ -87,19 +87,15 @@ setLoading(true);
   };
 
   return (
-    <div className='flex-row max-sm:h-[530px]  mx-auto md:h-screen lg:py-0 w-[50%] max-sm:w-full'>
-      <Link to="/">
-        <h1 className='float-right py-4 pr-2 text-white max-sm:text-xl max-sm:hidden text-4xl'><MdHome /></h1>
-      </Link>
-      <div className="flex flex-col items-center justify-center max-sm:py-1 px-6 py-12">
-        <h1 className="flex items-center mb-6 text-[44px] max-sm:text-2xl max-sm:mt-2 font-semibold text-white">Welcome back here </h1>
-        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:border-gray-700">
+  
+    
+        <div className="w-full bg-white rounded-lg shadow-xl  sm:max-w-md xl:p-0 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-gray-600">
+            <h1 className="text-sm font-bold leading-tight tracking-tight text-gray-600 md:text-sm dark:text-gray-600">
               Sign in to your account
             </h1>
             <Formik initialValues={initialValues} validationSchema={SignupSchema} onSubmit={handleSubmit}>
-              <Form className="space-y-4 md:space-y-6">
+              <Form className="space-y-4 md:space-y-2">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">
                     Your email
@@ -139,9 +135,10 @@ setLoading(true);
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className={`      w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-1 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
                 >
-                  {loading ?        <PulseLoader color="#fff" />
+                  {          errorMessage ?  <div> <p className='text-red-500 bg-red-200 px-2 rounded-md'> {errorMessage}</p>
+          </div> :loading ?        <PulseLoader size={"8px"}  color="#fff" />
        : <h1>Login</h1>}
                 </button>
                 <p className="text-sm font-medium text-gray-600">
@@ -153,16 +150,8 @@ setLoading(true);
               </Form>
             </Formik>
           </div>
-        </div>
-      </div>
-      {errorMessage && (
-        <div className="text-center mt-4">
-          <div className="bg-red-700 text-white px-4 py-3 rounded relative mx-auto flex items-center justify-between w-96">
-            {errorMessage}
-            <BiX className="cursor-pointer" onClick={() => setErrorMessage('')} />
-          </div>
-        </div>
-      )}
+      
+   
     </div>
   );
 };

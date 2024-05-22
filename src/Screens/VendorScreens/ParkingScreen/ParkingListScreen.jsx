@@ -24,10 +24,10 @@ function Parkings() {
      
       {parking.status == "succeeded" && !parking.error  && <div className='p-2 max-sm:p-1'>
 
-        <div className='flex justify-between items-center  bg-gray-300 rounded-sm'>
-          <h1 className="font-light text-xl  p-1"> Results for Parking</h1>
+        <div className='flex justify-between items-center  bg-gray-800 rounded-sm'>
+          <h1 className=" text-xl  py-2 px-1 text-white font-semibold"> Results for Parking</h1>
              <Link to='/create'>
-               <ActionButton name="Add" />
+               <ActionButton name="Add a New Parking" />
              </Link>
         </div>
 
