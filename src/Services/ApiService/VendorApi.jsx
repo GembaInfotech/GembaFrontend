@@ -3,7 +3,7 @@ import axios from 'axios';
 // localhost:4005/vendor/get-vendor
 
 const instance = axios.create({
-  baseURL: '/api/vendor',
+  baseURL: '/v1/api/vendor',
 });
 
 export const vendorUpdate = async ({data}) => {

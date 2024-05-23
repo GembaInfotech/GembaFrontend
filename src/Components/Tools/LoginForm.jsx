@@ -51,7 +51,7 @@ setLoading(true);
       }
       console.log("hello5");
       console.log(values);
-      const response = await axios.post('/api/vendor/vendor-login', values);
+      const response = await axios.post('/v1/api/vendor/vendor-login', values);
       console.log("hello2 ");
       console.log(response.data.accessToken
       );

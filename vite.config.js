@@ -7,7 +7,7 @@ export default defineConfig({
   build: { chunkSizeWarningLimit: 1600, },
   server: {
     proxy: {
-     "/api": "http://localhost:8000"
+     "/v1": "http://localhost:8000"
     },
     watch: {
       usePolling: true,

@@ -2,7 +2,7 @@
 import axios from 'axios';
 import getToken from '../../Hooks/getToken';
 const instance = axios.create({
-  baseURL: '/api/parking',
+  baseURL: '/v1/api/parking',
 });
 
 export const fetchParkings = async () => {
@@ -13,7 +13,7 @@ export const fetchParkings = async () => {
     }
   });
 
-  console.log(response.data.parkings);
+  console.log(response);
   return response.data.parkings;
 };
 export const guardfetchParkings = async ({id}) => {

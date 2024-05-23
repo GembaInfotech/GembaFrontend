@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '/api/guard',
+  baseURL: '/v1/api/guard',
 });
 
 export const fetchGuards = async ({id}) => {
