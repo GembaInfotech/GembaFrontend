@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Store from './Store/Store';
 import BookingList from './Components/GaurdComponents/BookingComponent/BookingList';
-
+import IncomingBookingListIn15min from './Components/GaurdComponents/BookingComponent/IncomingBookingListIn15min'
 
 import Login from './Screens/Login/Login'
 // import LandingScreen from './Screens/LandingScreen'
@@ -52,7 +52,7 @@ function App() {
         <Route path="/register" element={<SignUp />} />
         <Route path="/home" element={<Layout><Profile /></Layout>} />
         <Route path="/create" element={<Layout><ParkingForm /></Layout>} />
-
+        <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout>< IncomingBookingListIn15min /></GLayout>} />
         <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
         <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
         <Route path="/help" element={<Layout><Help /></Layout>} />

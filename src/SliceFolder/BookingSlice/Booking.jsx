@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchBookings, updateBooking as updateBookingAPI, deleteBooking as deleteBookingAPI } from '../../Services/ApiService/BookingApi';
+import { fetchBookings,upcomingBookingIn15min, updateBooking as updateBookingAPI, deleteBooking as deleteBookingAPI } from '../../Services/ApiService/BookingApi';
 
 export const fetchBookingsAsync = createAsyncThunk(
   'bookings/fetch',
@@ -7,6 +7,16 @@ export const fetchBookingsAsync = createAsyncThunk(
 
     const response = await fetchBookings({parkingid, status});
     console.log(response);
+    return response;
+  }
+);
+
+export const upcomingBookingIn15minAsync = createAsyncThunk(
+  'bookings/fetch',
+  async ({parkingid}) => {
+    console.log("testing....2");
+    const response = await upcomingBookingIn15min({parkingid});
+    // console.log(response);
     return response;
   }
 );

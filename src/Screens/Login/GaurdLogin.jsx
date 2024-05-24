@@ -27,7 +27,7 @@ const GaurdLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('/api/guard/guard-login', values);
+      const response = await axios.post('/v1/api/guard/guard-login', values);
       if (response)
         {
           localStorage.setItem('gaurdData', JSON.stringify(response.data));

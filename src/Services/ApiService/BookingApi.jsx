@@ -12,6 +12,14 @@ export const fetchBookings = async ({parkingid, status}) => {
   return response.data.bookings;
 };
 
+export const upcomingBookingIn15min = async ({parkingid}) => {
+  console.log(parkingid);
+  const response = await instance.get(`/get-incoming-booking-in-15min/${parkingid}`);
+  console.log(response.data);
+  return response.data;
+};
+
+
   export const updateBooking = async (id, status, tp) => {
     const response = await instance.put(`/booking-status/${id}`, { status: status , tp });
     return response.data;
