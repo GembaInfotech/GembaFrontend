@@ -28,6 +28,7 @@ console.log(parking);
           <p className='text-sm font-semibold text-gray-700 p-1'>Registration No: {parking?.registeration_no}</p>
           {/* <p className='text-sm font-semibold text-gray-700 p-1'>State Code: {parking.sc}</p> */}
           <p className='text-sm font-semibold text-gray-700 p-1'>Landmark: {parking?.landmark}</p>
+          <p className='text-sm font-semibold text-gray-700 p-1'>Description: {parking?.description}</p>
 
         </div>
         <div className='bg-gray-100 my-2 p-2'>

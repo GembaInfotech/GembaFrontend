@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { FaArrowRightLong } from "react-icons/fa6";
 import CrudButton from '../../Tools/crudButton';
 import ActionButton from '../../Tools/ActionButton';
+import { useDispatch } from 'react-redux';
+import { fetchParkingById } from '../../../Services/ApiService/ParkingApi';
 
 
 function ParkingCard({ parking }) {
+  const dispatch = useDispatch();
   console.log(parking);
   if (parking.status === 'pending') {
     return null; // Do not render the component
@@ -21,7 +24,7 @@ function ParkingCard({ parking }) {
       </div>
       <div className='flex  '>
       <div>
-       <Link to={`/parking/${parking._id}`}>
+       <Link  to={`/parking/${parking._id}`}>
 <CrudButton name="Open" />        </Link>
        </div>
     <div>

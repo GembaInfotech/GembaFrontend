@@ -28,7 +28,7 @@ const SideBar = () => {
   return (
     <div className="flex flex-col h-full justify-between">
       <div className="py-4">
-        <Link to="/home" className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+        <Link to="/Home" className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <CgProfile className={`mr-2 text-white text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Profile
         </Link>

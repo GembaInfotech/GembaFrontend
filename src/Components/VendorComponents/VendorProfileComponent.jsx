@@ -31,7 +31,7 @@ function VendorProfileComponent() {
     dispatch(vendorUpdateAsync({ data }));
     console.log(data);
     toast.success('Vendor details updated successfully');
-    navigate('/home');
+    navigate('/Home');
     dispatch(vendorDataAsync());
     setFormData({});
   };
@@ -42,7 +42,6 @@ function VendorProfileComponent() {
     contact: 'Phone',
     email: 'Email',
     address: 'Address',
-    // Add more fields as needed
   };
 
   return (
@@ -58,6 +57,8 @@ function VendorProfileComponent() {
                 id={key}
                 name={key}
                 value={value}
+                disabled={true}
+                autoCorrect={true}
                 className='w-[300px] px-2 m-2 py-1'
                 onChange={handleChange}
               />

@@ -35,7 +35,7 @@ const Gaurd = () => {
         console.log("create guard");
         const token = await JSON.parse(localStorage.getItem('token'))
         const response = await axios.post(
-            `http://localhost:8000/api/guard/create-new-guard/${parkingId}`,
+            `/v1/api/guard/create-new-guard/${parkingId}`,
             values,
             {
               headers: {

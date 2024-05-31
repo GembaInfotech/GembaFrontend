@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -31,6 +31,7 @@ import TransactionScreen from './Screens/VendorScreens/TransactionScreen/Transac
 import NotFound from './Components/Utils/NotFound';
 import VendorProfileComponent from './Components/VendorComponents/VendorProfileComponent';
 import UpdateGuard from './Components/VendorComponents/GuardComponent/UpdateGuard';
+import Account from './Screens/VendorScreens/AccountScreen/Account';
 
 function App() {
   const queryClient = new QueryClient();
@@ -45,8 +46,9 @@ function App() {
               <Route path="/login/auth/vendor" element={<Login />} />
               <Route path="/login/auth/guard" element={<GaurdLogin />} />
               <Route path="/register" element={<SignUp />} />
-              <Route path="/home" element={<Layout><Profile /></Layout>} />
+              <Route path="/Home" element={<Layout><Profile /></Layout>} />
               <Route path="/create" element={<Layout><ParkingForm /></Layout>} />
+              <Route path="/accounts" element={<Layout><Account /></Layout>} />
               <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBookingListIn15min /></GLayout>} />
               <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
               <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />

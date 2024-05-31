@@ -17,8 +17,6 @@ const initialValues = {
   registeration_no: '',
   price: '',
   exceed_price: '',
-  mt: '',
-  met: '',
   sub: false,
   subc: '',
   subamt: '',

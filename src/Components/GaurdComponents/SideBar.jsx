@@ -32,6 +32,7 @@ const SideBar = () => {
           <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === `/associateParking/${guardid}` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Parkings
         </Link>
+       
         <Link to={`/${parkingid}/RecentIncomingBooking`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/${parkingid}/RecentIncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <BsHourglassSplit className={`mr-2 text-white text-gray-600 ${location.pathname === `/${parkingid}/RecentIncomingBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Recent incoming 

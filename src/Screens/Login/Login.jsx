@@ -19,7 +19,7 @@ const Login = () => {
       
     const token = await JSON.parse(localStorage.getItem('token'));
     if(token)
-    navigate('/home')
+    window.location.href = "/Home"
 
     }
   checkToken();

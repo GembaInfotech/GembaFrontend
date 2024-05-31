@@ -1,6 +1,6 @@
 // features/Parking/ParkingSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchParkings, createParking, guardfetchParkings,fetchParkingByGuardId,  updateParking as updateParkingAPI, deleteParking as deleteParkingAPI } from '../../Services/ApiService/ParkingApi';
+import { fetchParkings, createParking, fetchParkingById,  guardfetchParkings,fetchParkingByGuardId,  updateParking as updateParkingAPI, deleteParking as deleteParkingAPI } from '../../Services/ApiService/ParkingApi';
 
 export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
@@ -18,6 +18,13 @@ export const guardfetchParkingsAsync = createAsyncThunk(
     return response;
   }
 );
+export const fetchParkingByIdAsync = createAsyncThunk(
+  'Parkings/fetchId',
+  async (id) => {
+    const response = await fetchParkingById(id);
+    console.log(response);
+    return response;
+  });
 
 export const fetchParkingByGuardIdAsync = createAsyncThunk(
   'Parkings/fetch',
@@ -61,6 +68,7 @@ const ParkingSlice = createSlice({
   name: 'Parkings',
   initialState: {
     data: [],
+    parking: null,
     status: 'idle',
     error: null,
   },
@@ -75,6 +83,12 @@ const ParkingSlice = createSlice({
       .addCase(fetchParkingsAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data = action.payload;
+      })
+      .addCase(fetchParkingByIdAsync.fulfilled, (state, action) => {
+        console.log(action.payload)
+        
+        state.parking = action.payload;
+        console.log(state.parking)
       })
       .addCase(fetchParkingsAsync.rejected, (state, action) => {
         state.status = 'failed';
@@ -95,9 +109,9 @@ const ParkingSlice = createSlice({
 
 export default ParkingSlice.reducer;
 export const parkingById = (state, parkingid) => {
-  console.log(state.Parking.data);
-  if (state.Parking && state.Parking.data ) {
-    return state.Parking.data.find(data => data._id === parkingid);
+  console.log(state.Parking.parking);
+  if ( state.Parking.parking ) {
+    return state.Parking.parking;
   }
   return null; // Return null if the parking data is not found
 };

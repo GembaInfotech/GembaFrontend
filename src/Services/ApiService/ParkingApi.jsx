@@ -21,6 +21,11 @@ export const guardfetchParkings = async ({id}) => {
   console.log(response.data.data)
   return response.data.data;
 };
+export const fetchParkingById = async (id) => {
+  const response = await instance.get(`/getParking/${id}`);
+  console.log(response.data.data)
+  return response.data.data;
+};
 
 
 export const fetchParkingByGuardId = async ({id}) => {

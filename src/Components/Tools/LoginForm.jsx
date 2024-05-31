@@ -61,7 +61,7 @@ setLoading(true);
         if (responseData) {
           console.log(responseData.accessToken);
           localStorage.setItem('token', JSON.stringify(responseData.accessToken));
-          navigate('/home')
+          navigate('/Home')
 
         } else {
           throw new Error('No data received from server');
