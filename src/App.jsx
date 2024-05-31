@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {  createBrowserRouter ,  RouterProvider,
+  Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -33,46 +34,53 @@ import VendorProfileComponent from './Components/VendorComponents/VendorProfileC
 import UpdateGuard from './Components/VendorComponents/GuardComponent/UpdateGuard';
 import Account from './Screens/VendorScreens/AccountScreen/Account';
 
-function App() {
+const router = createBrowserRouter([
+  { path: "*", element: <Root /> },
+]);
+
+// 4️⃣ RouterProvider added
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+function Root() {
+  //  `BrowserRouter` component removed, but the <Routes>/<Route>
+  // component below are unchanged
   const queryClient = new QueryClient();
 
   return (
-    <>
-      <Provider store={Store}>
-        <QueryClientProvider client={queryClient}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/login/auth/vendor" element={<Login />} />
-              <Route path="/login/auth/guard" element={<GaurdLogin />} />
-              <Route path="/register" element={<SignUp />} />
-              <Route path="/Home" element={<Layout><Profile /></Layout>} />
-              <Route path="/create" element={<Layout><ParkingForm /></Layout>} />
-              <Route path="/accounts" element={<Layout><Account /></Layout>} />
-              <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBookingListIn15min /></GLayout>} />
-              <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
-              <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
-              <Route path="/help" element={<Layout><Help /></Layout>} />
-              <Route path="/update/:id" element={<Layout><UpdateParkingForm /></Layout>} />
-              <Route path="/update/vendor" element={<Layout><VendorProfileComponent /></Layout>} />
-              <Route path="/createGuard/:parkingId" element={<Layout><Guard /></Layout>} />
-              <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
-              <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
-              <Route path="/update/guard/:id" element={<Layout><UpdateGuard /></Layout>} />
-              <Route path="/GaurdHome" element={<GLayout><GuardProfile /></GLayout>} />
-              <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBooking /></GLayout>} />
-              <Route path="/:parkingid/IncomingBooking" element={<GLayout><IncomingBooking /></GLayout>} />
-              <Route path="/:parkingid/ParkedBooking" element={<GLayout><ParkedBooking /></GLayout>} />
-              <Route path="/:parkingid/CompletedBooking" element={<GLayout><CompletedBooking /></GLayout>} />
-              <Route path="/associateParking/:parkingid" element={<GLayout><AssociateParking /></GLayout>} />
-              <Route path="/generatee/:detail/:etInminn/:ep" element={<Ereciept />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Router>
-        </QueryClientProvider>
-      </Provider>
-    </>
+    <Provider store={Store}>
+    <QueryClientProvider client={queryClient}>
+     
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login/auth/vendor" element={<Login />} />
+          <Route path="/login/auth/guard" element={<GaurdLogin />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/Home" element={<Layout><Profile /></Layout>} />
+          <Route path="/create" element={<Layout><ParkingForm /></Layout>} />
+          <Route path="/accounts" element={<Layout><Account /></Layout>} />
+          <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBookingListIn15min /></GLayout>} />
+          <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
+          <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
+          <Route path="/help" element={<Layout><Help /></Layout>} />
+          <Route path="/update/:id" element={<Layout><UpdateParkingForm /></Layout>} />
+          <Route path="/update/vendor" element={<Layout><VendorProfileComponent /></Layout>} />
+          <Route path="/createGuard/:parkingId" element={<Layout><Guard /></Layout>} />
+          <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
+          <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
+          <Route path="/update/guard/:id" element={<Layout><UpdateGuard /></Layout>} />
+          <Route path="/GaurdHome" element={<GLayout><GuardProfile /></GLayout>} />
+          <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBooking /></GLayout>} />
+          <Route path="/:parkingid/IncomingBooking" element={<GLayout><IncomingBooking /></GLayout>} />
+          <Route path="/:parkingid/ParkedBooking" element={<GLayout><ParkedBooking /></GLayout>} />
+          <Route path="/:parkingid/CompletedBooking" element={<GLayout><CompletedBooking /></GLayout>} />
+          <Route path="/associateParking/:parkingid" element={<GLayout><AssociateParking /></GLayout>} />
+          <Route path="/generatee/:detail/:etInminn/:ep" element={<Ereciept />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+     
+    </QueryClientProvider>
+  </Provider>
   );
-}
 
-export default App;
+}
