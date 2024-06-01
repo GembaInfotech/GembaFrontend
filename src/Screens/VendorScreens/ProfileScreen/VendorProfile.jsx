@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { useLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { vendorDataAsync } from '../../../SliceFolder/VendorSlice/Vendor';
 import PulseLoader from "react-spinners/PulseLoader";
@@ -9,10 +8,8 @@ import PulseLoader from "react-spinners/PulseLoader";
 const Profile = () => {
   const token = JSON.parse(localStorage.getItem('token'));
   const dispatch = useDispatch();
- const vendor = useSelector((state) => state.Vendor);
+  const vendor = useSelector((state) => state.Vendor);
   console.log(vendor);
-  const datas = useLoaderData();
-  console.log(datas);
 
   useEffect(() => {
 
@@ -45,10 +42,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-export  const loaderData = ()=>{
-  const data = {
-    "name":"ayush"
-  }
-  return  data;
-}
