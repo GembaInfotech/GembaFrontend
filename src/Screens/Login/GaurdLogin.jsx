@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import PulseLoader from "react-spinners/PulseLoader";
-import { useNavigate } from 'react-router';
+import { redirect } from 'react-router-dom';
 import img from '../../assets/parking3.jpg'
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -14,7 +15,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const GaurdLogin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const initialValues = {
@@ -31,7 +32,8 @@ const GaurdLogin = () => {
       if (response)
         {
           localStorage.setItem('gaurdData', JSON.stringify(response.data));
-          navigate("/GaurdHome")
+          console.log("here")
+         
         }
     } catch (error) {
       // Handle error
@@ -39,6 +41,7 @@ const GaurdLogin = () => {
     } finally {
       setLoading(false); // Ensure loading state is reset
     }
+navigate("/GaurdHome")
   };
 
   return (
