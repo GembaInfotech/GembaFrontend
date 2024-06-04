@@ -70,7 +70,7 @@ console.log(selectedBooking);
             <table className="table-auto w-full">
                 <thead className="bg-gray-800">
                     <tr>
-                        <th className="px-1 text-white py-2"><p className='text-sm'>Serial No.</p></th>
+                        <th className="px-1 text-white py-2"><p className='text-sm'>Booking ID</p></th>
                         <th className="px-2 text-white text-sm py-2 text-sm">Vehicle Number</th>
                         <th className="px-2 text-white text-sm py-2">Vehicle Model</th>
                         <th className="px-2 text-white text-sm py-2">Parking Name</th>
@@ -91,14 +91,14 @@ console.log(selectedBooking);
                 <tbody>
                     {booking?.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
-                            <td className="border text-center px-1 text-sm  py-2">{index + 1}</td>
+                            <td className="border text-center px-1 text-sm  py-2">{item.code}</td>
                             <td className="border text-center px-2 text-sm  py-2">{item.vehicle_number}</td>
                             <td className="border text-center px-2 text-sm  py-2">{item.vehicle_name}</td>
 
                             <td className="border text-center px-2 text-sm  py-2">{item.parkingName}</td>
                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.inTime ).toLocaleTimeString()}</td>
                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.outTime).toLocaleTimeString()}</td>
-                            {status == "Parked" &&                             <td className="border text-center px-2 text-sm  py-2">{item.actualInTime}</td>
+                            {status == "Parked" &&                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.actualInTime).toLocaleTimeString()}</td>
 }
                             <td className="border text-center px-2 text-sm  py-2">{item.status}</td>
 

@@ -21,6 +21,7 @@ export const guardfetchParkingsAsync = createAsyncThunk(
 export const fetchParkingByIdAsync = createAsyncThunk(
   'Parkings/fetchId',
   async (id) => {
+    console.log(id)
     const response = await fetchParkingById(id);
     console.log(response);
     return response;

@@ -31,7 +31,7 @@ function Parkings() {
              </Link>
         </div>
 
-        { parking.data && parking.data.map((item) => ( <ParkingCard  key={item._id} parking={item} />))}
+        { parking.data && parking.data.map((item) => ( <ParkingCard  key={item?._id} parking={item} />))}
       </div>
       }
     </div>

@@ -15,6 +15,8 @@ console.log(parking);
   return (
     <div className='p-2 max-sm:p-1'>
       <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Details</h1>
+      <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Code : {parking?.code}</h1>
+
     
       <div>
         <div className='bg-gray-100 my-2 p-2 w-full'>

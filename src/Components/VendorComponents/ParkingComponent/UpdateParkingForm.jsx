@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchParkingByIdAsync, parkingById, updateParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
-import { useParams, useNavigate } from 'react-router';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function UpdateParkingForm() {
   const navigate = useNavigate()
@@ -59,7 +59,7 @@ function UpdateParkingForm() {
     navigate("/parkings")
 
   };
-  const nonEditableFields = ['city', 'name', 'landmark','state', 'country', 'address_line1', 'address_line2', 'pincode', 'registeration_no']; // Replace 'field1', 'field2', etc., with actual field keys
+  const nonEditableFields = ['city', 'name', 'landmark','state', 'country', 'address_line1', 'status', 'address_line2', 'pincode', 'registeration_no']; // Replace 'field1', 'field2', etc., with actual field keys
 
   return (
     <div className='p-4'>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchParkingByIdAsync, parkingById } from '../../../SliceFolder/ParkingSlice/Parking';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import ParkingPage from '../../../Components/VendorComponents/ParkingComponent/ParkingPage';
 import PulseLoader from "react-spinners/PulseLoader";
 import { useDispatch } from 'react-redux';
@@ -9,8 +9,8 @@ import { useDispatch } from 'react-redux';
 function ParkingDetail() {
   const dispatch = useDispatch();
 
-  const { id } = useParams();
- 
+  const {id} = useParams();
+ console.log(id, "if")
 
   
     useEffect(()=>{

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {upcomingBookingIn15minAsync} from '../../../SliceFolder/BookingSlice/Booking';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 function IncomingBookingListIn15min() {
     const [searchTerm, setSearchTerm] = useState('');

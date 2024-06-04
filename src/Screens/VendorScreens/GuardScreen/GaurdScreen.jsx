@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGuardsAsync } from "../../../SliceFolder/GuardSlice/guard";
@@ -25,6 +25,8 @@ const GaurdDetail = () => {
       { guard.status == "succeeded" && guard.data != [] && !guard.error && <div className="container mx-auto  px-16 py-8">
           <div>
             <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Guard Detail</h1>
+            <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Guard code : {guard.data.code}</h1>
+
             <div className='flex justify-between bg-gray-100 h-[80%] '>
               <div className='px-2 py-8'>
                 <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Name:</span> {guard.data.name}</p>

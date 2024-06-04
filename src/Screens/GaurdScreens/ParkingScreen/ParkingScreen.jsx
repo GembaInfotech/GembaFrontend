@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { parkingById } from "../../../SliceFolder/ParkingSlice/Parking";
 import { useDispatch, useSelector } from 'react-redux';
 import { guardfetchParkingsAsync } from '../../../SliceFolder/ParkingSlice/Parking';

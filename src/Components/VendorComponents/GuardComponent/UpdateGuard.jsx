@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGuardsAsync } from "../../../SliceFolder/GuardSlice/guard";

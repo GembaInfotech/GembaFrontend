@@ -107,15 +107,15 @@ function TransactionTable({ booking, status, parking }) {
     };
 
     return (
-        <div className="container mx-auto max-h-48">
+        <div className="container mx-auto max-h-48  ">
             <div className="p-2">
-                <button onClick={() => handleFilterToggle('today')} className={`mr-2 p-1 ${filter === 'today' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>Today</button>
-                <button onClick={() => handleFilterToggle('yesterday')} className={`mr-2 p-1 ${filter === 'yesterday' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>Yesterday</button>
-                <button onClick={() => handleFilterToggle('thisWeek')} className={`mr-2 p-1 ${filter === 'thisWeek' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>This Week</button>
-                <button onClick={() => handleFilterToggle('thisMonth')} className={`mr-2 p-1 ${filter === 'thisMonth' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>This Month</button>
-                <button onClick={() => handleFilterToggle('specificDate')} className={`mr-2 p-1 ${filter === 'specificDate' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>Specific Date</button>
-                <button onClick={() => handleFilterToggle('selectedMonth')} className={`mr-2 p-1 ${filter === 'selectedMonth' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>Select Month</button>
-                <button onClick={() => handleFilterToggle('custom')} className={`mr-2 p-1 ${filter === 'custom' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>Custom</button>
+                <button onClick={() => handleFilterToggle('today')} className={`mr-2 p-1 rounded-md ${filter === 'today' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>Today</button>
+                <button onClick={() => handleFilterToggle('yesterday')} className={`mr-2 p-1 rounded-md ${filter === 'yesterday' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>Yesterday</button>
+                <button onClick={() => handleFilterToggle('thisWeek')} className={`mr-2 p-1 rounded-md ${filter === 'thisWeek' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>This Week</button>
+                <button onClick={() => handleFilterToggle('thisMonth')} className={`mr-2 p-1 rounded-md ${filter === 'thisMonth' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>This Month</button>
+                <button onClick={() => handleFilterToggle('specificDate')} className={`mr-2 p-1 rounded-md ${filter === 'specificDate' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>Specific Date</button>
+                <button onClick={() => handleFilterToggle('selectedMonth')} className={`mr-2 p-1 rounded-md ${filter === 'selectedMonth' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>Select Month</button>
+                <button onClick={() => handleFilterToggle('custom')} className={`mr-2 p-1 rounded-md ${filter === 'custom' ? 'bg-gray-300 text-black' : 'bg-blue-600 text-white '}`}>Custom</button>
                
                 {filter === 'specificDate' && (
                     <div className="mt-2">
@@ -155,35 +155,62 @@ function TransactionTable({ booking, status, parking }) {
                 <h1 className='text-sm font-semibold'>Total GST: {(sgst + cgst)}</h1>
                 <h1 className='text-sm font-semibold'>Net Income (Total Income - Total GST): {Math.round(income - (cgst + sgst))}</h1>
             </div>
-            
-            <table className="table-auto w-full">
+             <div className='max-w-[80vw] overflow-x-auto'>
+             <table className="table-auto    ">
                 <thead className="bg-gray-800">
                     <tr>
-                        <th className="px-2 text-white py-2">Serial No.</th>
-                        <th className="px-2 text-white py-2">Car Number</th>
-                        <th className="px-2 text-white py-2">Parking Name</th>
-                        <th className="px-2 text-white py-2">Date</th>
-                        <th className="px-2 text-white py-2">Booking Price</th>
-                        <th className="px-2 text-white py-2">CGST</th>
-                        <th className="px-2 text-white py-2">SGST</th>
-                        <th className="px-2 text-white py-2">Total</th>
+                    <th className="px-2 text-white py-2 min-w-32 text-center ">Booking ID</th>
+                    <th className="px-2 text-white py-2 min-w-32 text-center ">Parking ID</th>
+                    <th className="px-2 text-white py-2 min-w-32 text-center ">User ID</th>
+
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Transaction ID</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Car Number</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center  ">Parking Name</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Date</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">In Time</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Out Time</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Parked In</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Parked Out</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Online Price</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">CGST</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">SGST</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Offline Price</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">CGST</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">SGST</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredBooking.map((item, index) => (
                         <tr key={item._id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
-                            <td className="border px-2 text-sm font-semibold py-2">{index + 1}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{item.vehicle_number}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{item.parkingName}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{new Date(item.inTime).toLocaleDateString()}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{item.price + item.exceedPrice}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{item.cgst + item.exceedCGST}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{item.cgst + item.exceedCGST}</td>
-                            <td className="border px-2 text-sm font-semibold py-2">{item.bookingPrice}</td>
+                                                        <td className="border px-2 text-sm font-semibold py-2 text-center">{item.code}</td>
+                                                        <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parkingCode}</td>
+
+                                                        <td className="border px-2 text-sm font-semibold py-2 text-center">{item.user}</td>
+
+
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.transaction_id}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.vehicle_number}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parkingName}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.inTime).toLocaleDateString()}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.inTime).toLocaleTimeString()}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.outTime).toLocaleTimeString()}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.actualInTime).toLocaleTimeString()}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.actualOutTime).toLocaleTimeString()}</td>
+
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.price}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.cgst}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.cgst }</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.exceedPrice}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.exceedCGST}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{ item.exceedCGST}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{item.bookingPrice}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+             </div>
+           
         </div>
     );
 }
