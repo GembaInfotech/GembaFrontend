@@ -30,45 +30,53 @@ const Profile = () => {
         <h1 className="font-bold text-xl mb-2 rounded-sm p-1"> Vendor Code : {vendor?.data?.code}</h1>
 
         <div className='flex justify-between  bg-gray-100 h-[80%] '>
-          
-          <div className='px-2 py-8 flex '>
-          <div className="bg-blue-900 text-white p-2 m-1">  <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Title: M/S</span> </p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Name:</span> {vendor?.data?.firstName} {vendor?.data?.lastName}</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Company  Registeration No.:</span> 934543543</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Contact </span>  {vendor?.data?.contact}</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">Email Id </span> {vendor?.data?.email}</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">PAN No.: *</span>  DRXPG0107F</p>
-            <p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">GST No.:</span>  04DRXPG01078328</p></div>
 
-<div className="bg-blue-900 text-white p-2 m-1 ">
-  
-            
-<p className='py-2  text-sm'><span className="  py-2 text-lg font-bold">Billing Address:</span></p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">address:</span> {vendor?.data?.address}</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">postal code:</span>439002 </p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold"> city:</span> agra </p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">state:</span> uttar pradesh</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">contact:</span> 8203082932</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold"> email:</span> yahoo@example.com</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">country:</span> India </p>
+        <div className='flex flex-wrap'>
+      <div className="bg-blue-900 text-white p-2 m-1">
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Title: M/S</span></p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Name:</span> {vendor?.data?.firstName} {vendor?.data?.lastName}</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Company Reg. No.:</span> 9345435</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Contact </span>{vendor?.data?.contact}</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Email Id </span>{vendor?.data?.email}</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">PAN No.: *</span> DRXPG0107F</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">GST No.:</span> 04DRXPG01078328</p>
+      </div>
 
-</div>
-<div className="bg-blue-900 text-white p-2 m-1 ">
-  
-            
-<p className='py-2  text-sm'><span className="  py-2 text-lg font-bold">Communication Address:</span> </p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">address:</span> {vendor?.data?.address}</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">postal code:</span>439002 </p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold"> city:</span> agra </p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">state:</span> uttar pradesh</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">contact:</span> 8203082932</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold"> email:</span> yahoo@example.com</p>
-<p className='py-2  text-sm'><span className="  py-2 text-sm font-bold">country:</span> India </p>
+      <div className="bg-blue-900 text-white p-2 m-1">
+        <p className='py-2 text-sm'><span className="py-2 text-lg font-bold">Billing Address:</span></p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">address:</span> {vendor?.data?.address}</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">postal code:</span>439002</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">city:</span> agra</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">state:</span> uttar pradesh</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">contact:</span> 8203082932</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">email:</span> yahoo@eeeexample.com</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">country:</span> India</p>
+      </div>
 
-</div>
-         
+      <div className="bg-blue-900 text-white p-2 m-1">
+        <p className='py-2 text-sm'><span className="py-2 text-lg font-bold">Communication Address:</span></p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">address:</span> {vendor?.data?.address}</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">postal code:</span>439002</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">city:</span> agra</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">state:</span> uttar pradesh</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">contact:</span> 8203082932</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">email:</span> yahoo@eeexample.com</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">country:</span> India</p>
+      </div>
 
-          </div>
+      <div className="bg-blue-900 text-white p-2 m-1">
+        <p className='py-2 text-sm'><span className="py-2 text-lg font-bold">Account Details:</span></p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Account Name:</span> {vendor?.data?.firstName}</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Account Number:</span>12345678901234</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Bank Name:</span>Punjab National Bank</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Branch Name:</span> Connaught Place</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Branch Address:</span> uttar pradesh</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">IFSC Code:</span> PUNB0123456</p>
+        <p className='py-2 text-sm'><span className="py-2 text-sm font-bold">Branch email:</span> pnb@example.com</p>
+      </div>
+    </div>
+
+
           <Link to="/update/vendor"> <h1 className=' font-normal p-4  text-gray-600 text-xl'><MdEdit /></h1></Link>
         </div>
       </div>}

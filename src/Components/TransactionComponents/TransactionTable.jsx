@@ -15,6 +15,7 @@ function TransactionTable({ booking, status, parking }) {
 
     useEffect(() => {
         setFilteredBooking(booking);
+        console.log(booking);
         setFilter('all');
     }, [booking]);
 
@@ -164,6 +165,10 @@ function TransactionTable({ booking, status, parking }) {
                     <th className="px-2 text-white py-2 min-w-32 text-center ">User ID</th>
 
                         <th className="px-2 text-white py-2 min-w-32 text-center ">Transaction ID</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Transaction Date</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Transaction Time</th>
+
+
                         <th className="px-2 text-white py-2 min-w-32 text-center ">Car Number</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center  ">Parking Name</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center ">Date</th>
@@ -184,12 +189,17 @@ function TransactionTable({ booking, status, parking }) {
                     {filteredBooking.map((item, index) => (
                         <tr key={item._id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
                                                         <td className="border px-2 text-sm font-semibold py-2 text-center">{item.code}</td>
+
                                                         <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parkingCode}</td>
 
                                                         <td className="border px-2 text-sm font-semibold py-2 text-center">{item.user}</td>
 
 
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.transaction_id}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.createdAt).toLocaleDateString()}</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.createdAt).toLocaleTimeString()}</td>
+
+
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.vehicle_number}</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parkingName}</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.inTime).toLocaleDateString()}</td>
