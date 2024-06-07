@@ -179,6 +179,8 @@ function TransactionTable({ booking, status, parking }) {
                         <th className="px-2 text-white py-2 min-w-32 text-center ">Online Price</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center ">CGST</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center ">SGST</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Guard Id</th>
+                        <th className="px-2 text-white py-2 min-w-32 text-center ">Guard Name</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center ">Offline Price</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center ">CGST</th>
                         <th className="px-2 text-white py-2 min-w-32 text-center ">SGST</th>
@@ -211,6 +213,8 @@ function TransactionTable({ booking, status, parking }) {
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.price}</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.cgst}</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.cgst }</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">G00000001</td>
+                            <td className="border px-2 text-sm font-semibold py-2 text-center">Guard</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.exceedPrice}</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{item.exceedCGST}</td>
                             <td className="border px-2 text-sm font-semibold py-2 text-center">{ item.exceedCGST}</td>

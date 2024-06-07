@@ -11,6 +11,14 @@ export const fetchGuards = async ({id}) => {
   return response.data.data;
 };
 
+export const fetchGuardsbyParkingId = async ({id}) => {
+  console.log(id);
+  const response = await instance.get(`/get-guards/${id}`);
+  console.log(response.data.data);
+  return response.data.data;
+};
+
+
   export const updateGuard = async (id, GuardData) => {
     console.log(GuardData, "testing..1");
     const response = await instance.put(`/update-guard/${id}`, { data: GuardData });

@@ -32,6 +32,7 @@ import NotFound from './Components/Utils/NotFound';
 import VendorProfileComponent from './Components/VendorComponents/VendorProfileComponent';
 import UpdateGuard from './Components/VendorComponents/GuardComponent/UpdateGuard';
 import Account from './Screens/VendorScreens/AccountScreen/Account';
+import GuardList from './Screens/VendorScreens/GuardScreen/GuardList';
 
 function App() {
   const queryClient = new QueryClient();
@@ -57,6 +58,8 @@ function App() {
               <Route path="/update/vendor" element={<Layout><VendorProfileComponent /></Layout>} />
               <Route path="/createGuard/:parkingId" element={<Layout><Guard /></Layout>} />
               <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
+              <Route path="/guardList/:id" element={<Layout><GuardList /></Layout>} />
+
               <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
               <Route path="/update/guard/:id" element={<Layout><UpdateGuard /></Layout>} />
               <Route path="/GaurdHome" element={<GLayout><GuardProfile /></GLayout>} />

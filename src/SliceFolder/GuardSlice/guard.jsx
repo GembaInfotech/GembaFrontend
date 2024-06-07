@@ -1,12 +1,21 @@
 // features/Guard/GuardSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchGuards, updateGuard as updateGuardAPI,  } from '../../Services/ApiService/GuardApi';
+import { fetchGuards, fetchGuardsbyParkingId, updateGuard as updateGuardAPI,  } from '../../Services/ApiService/GuardApi';
 
 export const fetchGuardsAsync = createAsyncThunk(
   'Guards/fetch',
   async ({id}) => {
     console.log(id);
     const response = await fetchGuards({id});
+    return response;
+  }
+);
+
+export const fetchGuardsbyParkingIdAsync = createAsyncThunk(
+  'Guards/fetch',
+  async ({id}) => {
+    console.log(id);
+    const response = await fetchGuardsbyParkingId({id});
     return response;
   }
 );

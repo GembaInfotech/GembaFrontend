@@ -36,10 +36,10 @@ const SideBar = () => {
           <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkings' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Parkings
         </Link>
-        <Link to="/accounts" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+        {/* <Link to="/accounts" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <MdAccountBalance className={`mr-2 text-white text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Accounts
-        </Link>
+        </Link> */}
         <Link to="/transactions" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Transactions
