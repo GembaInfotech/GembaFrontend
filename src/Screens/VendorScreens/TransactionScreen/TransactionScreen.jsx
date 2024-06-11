@@ -14,6 +14,7 @@ function TransactionScreen() {
   const bookings = useSelector((state) => state.booking.data)
   const status = useSelector((state) => state.booking.status);
 
+  console.log(data);
   useEffect(() => {
     if ((status == "idle"))
       dispatch(fetchParkingsAsync());

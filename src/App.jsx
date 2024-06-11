@@ -34,6 +34,7 @@ import UpdateGuard from './Components/VendorComponents/GuardComponent/UpdateGuar
 import Account from './Screens/VendorScreens/AccountScreen/Account';
 import GuardList from './Screens/VendorScreens/GuardScreen/GuardList';
 import ParkingSpace from './Components/VendorComponents/ParkingComponent/ParkingSpace';
+import ParticularParkingSpace from './Components/VendorComponents/ParkingComponent/ParticularParkingSpace';
 
 function App() {
   const queryClient = new QueryClient();
@@ -55,6 +56,8 @@ function App() {
               <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
               <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
               <Route path="/parkingSpace/" element={<Layout><ParkingSpace /></Layout>} />
+              <Route path="/parkingSpace/:code" element={<Layout><ParticularParkingSpace /></Layout>} />
+
               
               <Route path="/help" element={<Layout><Help /></Layout>} />
               <Route path="/update/:id" element={<Layout><UpdateParkingForm /></Layout>} />

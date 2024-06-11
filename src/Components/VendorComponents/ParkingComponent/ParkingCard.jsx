@@ -57,7 +57,7 @@ function ParkingCard({ parking }) {
 
            
 
-            <Link to={`/parkingSpace`}>
+            <Link to={`/parkingSpace/${parking?.code}`}>
               <div className="text-slate-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-slate-200 transition-colors duration-200">
               Space
               </div>

@@ -29,27 +29,27 @@ const SideBar = () => {
     <div className="flex flex-col h-full justify-between">
       <div className="py-4">
         <Link to="/Home" className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <CgProfile className={`mr-2 text-white text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          <CgProfile className={`mr-2 text-white text-gray-600 ${location.pathname === '/home' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Profile
         </Link>
-        <Link to="/parkings" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkings' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkings' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+        <Link to="/parkings" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkings' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
+          <SlLocationPin className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkings' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Parkings
         </Link>
-        {/* <Link to="/accounts" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <MdAccountBalance className={`mr-2 text-white text-gray-600 ${location.pathname === '/accounts' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+        {/* <Link to="/accounts" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/accounts' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
+          <MdAccountBalance className={`mr-2 text-white text-gray-600 ${location.pathname === '/accounts' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Accounts
         </Link> */}
-        <Link to="/transactions" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+        <Link to="/transactions" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/transactions' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
+          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/transactions' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Transactions
         </Link>
-        <Link to="/parkingSpace" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+        <Link to="/parkingSpace" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
+          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Parking Space
         </Link>
-        <Link to="/help" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
-          <LuHelpingHand className={`mr-2 text-white text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+        <Link to="/help" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/help' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
+          <LuHelpingHand className={`mr-2 text-white text-gray-600 ${location.pathname === '/help' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Help
         </Link>
 
