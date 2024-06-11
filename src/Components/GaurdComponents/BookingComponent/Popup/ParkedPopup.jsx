@@ -8,6 +8,11 @@ function ParkedPopup({ selectedBooking }) {
   const { parkingid } = useParams();
   const [loading, setLoading] = useState(true);
   const id = parkingid
+console.log(selectedBooking);
+  const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
+  const guardid = storedUserData?.guard?._id;
+
+  console.log();
 
   const data = useSelector((state) => state?.Parking?.data);
   console.log(data);
@@ -25,7 +30,7 @@ function ParkedPopup({ selectedBooking }) {
   const update = (id, status) => {
                
 
-    const data =  dispatch(updateBookingAsync({ id, status, tp: 0 }));
+    const data =  dispatch(updateBookingAsync({ id, status, tp: 0, parkedAt:selectedBooking?.parkedAt?.spaceName, guardid, spaceId:selectedBooking?.parkedAt?.spaceId  }));
     console.log(data);
   }
   return (

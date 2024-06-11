@@ -3,58 +3,67 @@ import CrudButton from '../../Tools/crudButton';
 import ActionButton from '../../Tools/ActionButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
+
 function ParkingPage({ parking, edit = true }) {
 
-console.log(parking);
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
-    dispatch(deleteParkingAsync(id))
+    dispatch(deleteParkingAsync(id));
   }
 
   return (
-    <div className='p-2 max-sm:p-1'>
-      <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Details</h1>
-      <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Parking Code : {parking?.code}</h1>
+    <div className='px-4 max-sm:p-1 bg-slate-200 h-screen'>
+      <header className="text-center bg-gray-900 py-3 mb-4">
+        <h1 className="text-2xl font-bold text-gray-100">Parking Details</h1>
+      </header>
+      <div className="text-center mb-4 px-20">
+        <h2 className="text-xl font-bold py-2  inline-block bg-slate-100 rounded-sm w-full ">Parking Code: {parking?.code}</h2>
+      </div>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 lg:px-20'>
+        <div className='bg-slate-100 p-4 rounded-md'>
+          <h3 className='text-xl font-bold text-center mb-4'>Basic Information</h3>
+          <InfoItem label="Parking Name" value={parking?.name} />
+          <InfoItem label="Parking Area" value={parking?.address_line1} />
+          <InfoItem label="City" value={parking?.city} />
+          <InfoItem label="State" value={parking?.state} />
+          <InfoItem label="Country" value={parking?.country} />
+          <InfoItem label="Pincode" value={parking?.pincode} />
+          <InfoItem label="Registration No" value={parking?.registeration_no} />
+          <InfoItem label="Landmark" value={parking?.landmark} />
+          <InfoItem label="Description" value={parking?.description} />
+        </div>
 
-    
-      <div>
-        <div className='bg-gray-100 my-2 p-2 w-full'>
-          <h1 className='text-xl font-light mb-1 '>Basic Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1 w-[400px]'> <span className='bg-gray-200 rounded-sm  w-64'>Parking Name: </span> <span className='bg-white p-2 w-64  rounded-sm'>{parking?.name}  </span> </p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Parking Area: {parking?.address_line1}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>City: {parking?.city}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>State: {parking?.state}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Country: {parking?.country}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Pincode: {parking?.pincode}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Registration No: {parking?.registeration_no}</p>
-          {/* <p className='text-sm font-semibold text-gray-700 p-1'>State Code: {parking.sc}</p> */}
-          <p className='text-sm font-semibold text-gray-700 p-1'>Landmark: {parking?.landmark}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Description: {parking?.description}</p>
-
+        <div className='flex flex-col gap-4'>
+          <div className='bg-slate-100 p-4 rounded-md'>
+            <h3 className='text-xl font-bold text-center mb-4'>Price and Time Information</h3>
+            <InfoItem label="Price" value={parking?.price} />
+            <InfoItem label="Two Wheeler Capacity" value={parking?.two_wheeler_capacity} />
+            <InfoItem label="Four Wheeler Capacity" value={parking?.four_wheeler_capacity} />
+            <InfoItem label="Total Capacity" value={parking?.total_capacity} />
+            <InfoItem label="Exceed Price" value={parking?.exceed_price} />
+            <InfoItem label="Minimum Exceed Time" value={parking?.exceed_price_for} />
+          </div>
+          <div className='bg-slate-100 p-4 rounded-md'>
+            <h3 className='text-xl font-bold text-center mb-4'>Status</h3>
+            <InfoItem label="Status" value={parking?.status} />
+          </div>
+          <div className='bg-slate-100 p-4 rounded-md'>
+            <h3 className='text-xl font-bold text-center mb-4'>Location Information</h3>
+            <InfoItem label="Latitude" value={parking?.location?.coordinates[0]} />
+            <InfoItem label="Longitude" value={parking?.location?.coordinates[1]} />
+          </div>
         </div>
-        <div className='bg-gray-100 my-2 p-2'>
-          <h1 className='text-xl font-light mb-1 '>Price and Time Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Price: {parking.price}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Capacity: {parking.capacity}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Exceed Price: {parking.exceed_price}</p>
-          {/* <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Time: {parking[0].mt}</p> */}
-          <p className='text-sm font-semibold text-gray-700 p-1'>Minimum Exceed Time: {parking.exceed_price_for}</p>
-        </div>
-        <div className='bg-gray-100 my-2 p-2'>
-          <h1 className='text-xl font-light mb-1 '>Status</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Status: {parking.status }</p>
-          {/* <p className='text-sm font-semibold text-gray-700 p-1'>Subscription Code: {parking.subc}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Subscription Amount: {parking.subamt}</p> */}
-        </div>
-        <div className='bg-gray-100 my-2 p-2'>
-          <h1 className='text-xl font-light mb-1 '>Location Information</h1>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Latitude: {parking?.location?.coordinates[0]}</p>
-          <p className='text-sm font-semibold text-gray-700 p-1'>Longitude: {parking?.location?.coordinates[1]}</p>
-        </div>
-      
       </div>
     </div>
+  );
+}
+
+function InfoItem({ label, value }) {
+  return (
+    <p className='text-sm font-semibold text-gray-700 mb-2'>
+      <span className='font-bold'>{label}:</span> {value}
+    </p>
   );
 }
 

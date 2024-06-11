@@ -33,6 +33,7 @@ import VendorProfileComponent from './Components/VendorComponents/VendorProfileC
 import UpdateGuard from './Components/VendorComponents/GuardComponent/UpdateGuard';
 import Account from './Screens/VendorScreens/AccountScreen/Account';
 import GuardList from './Screens/VendorScreens/GuardScreen/GuardList';
+import ParkingSpace from './Components/VendorComponents/ParkingComponent/ParkingSpace';
 
 function App() {
   const queryClient = new QueryClient();
@@ -53,6 +54,8 @@ function App() {
               <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBookingListIn15min /></GLayout>} />
               <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
               <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
+              <Route path="/parkingSpace/" element={<Layout><ParkingSpace /></Layout>} />
+              
               <Route path="/help" element={<Layout><Help /></Layout>} />
               <Route path="/update/:id" element={<Layout><UpdateParkingForm /></Layout>} />
               <Route path="/update/vendor" element={<Layout><VendorProfileComponent /></Layout>} />
@@ -60,6 +63,7 @@ function App() {
               <Route path="/parking/:id" element={<Layout><ParkingDetail /></Layout>} />
               <Route path="/guardList/:id" element={<Layout><GuardList /></Layout>} />
 
+              
               <Route path="/guard/:id" element={<Layout><GaurdDetail /></Layout>} />
               <Route path="/update/guard/:id" element={<Layout><UpdateGuard /></Layout>} />
               <Route path="/GaurdHome" element={<GLayout><GuardProfile /></GLayout>} />

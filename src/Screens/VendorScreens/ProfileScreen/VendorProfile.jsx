@@ -19,15 +19,15 @@ const Profile = () => {
   }, [dispatch]);
 
   return (
-    <div className='bg-slate-100'>
+    <div className='bg-slate-200'>
       {vendor.status == "loading" && <div className='flex justify-center items-center min-h-screen'>       <PulseLoader color="#000" /> </div>}
 
       {vendor.status == "failed" && <div><h1 className='text-red-500 p-4'>Some error Occured While Loading the Data... Kindly Refresh or Login Again...</h1></div>}
 
       {vendor.status == "succeeded" && !vendor.error && vendor.data && <div className="container mx-auto  px-2 py-2">
 
-        <h1 className="text-2xl font-bold mb-2 bg-gray-900 rounded-sm p-2 text-white text-center"> Profile</h1>
-        <h1 className="font-bold text-xl mb-2 rounded-sm py-1 px-16 bg-slate-100"> Vendor Code : {vendor?.data?.code}</h1>
+        <h1 className="text-2xl font-bold mb-2 -mt-2 bg-gray-900 rounded-sm p-2 text-white text-center"> Profile</h1>
+        <h1 className="font-bold text-xl mb-2  rounded-sm py-1 px-16 "> Vendor Code : {vendor?.data?.code}</h1>
 
 
         <div className='flex justify-between shadow-lg  h-[100%]  '>

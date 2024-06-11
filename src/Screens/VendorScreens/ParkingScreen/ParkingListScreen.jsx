@@ -17,21 +17,21 @@ function Parkings() {
   }, [dispatch]);
 
   return (
-    <div className='ml-2'>
+    <div className=' bg-slate-200 h-[100%]'>
       {parking.status == "loading" && <div className='flex justify-center items-center min-h-screen'><PulseLoader color="#000" /></div>}
      
       {parking.status == "failed" && <div><h1 className='text-red-500 p-4'>Some error Occured While Loading the Data... Kindly Refresh or Login Again...</h1></div>}
      
       {parking.status == "succeeded" && !parking.error  && <div className='p-2 max-sm:p-1'>
 
-        <div className='flex justify-between items-center  bg-gray-800 rounded-sm'>
+        <div className='flex justify-between items-center -mt-2 bg-gray-800 rounded-sm'>
           <h1 className=" text-xl  p-4 text-white font-semibold mx-4"> Results for Parking</h1>
              <Link to='/create'>
                <ActionButton className="" name="Add a New Parking" />
              </Link>
         </div>
 
-        <div className='flex flex-wrap gap-4 bg-slate-100 px-20 py-10'>
+        <div className='flex flex-wrap gap-4  px-20 py-10'>
         { parking.data && parking.data.map((item) => ( <ParkingCard   key={item?._id} parking={item} />))}
         </div>
       </div>

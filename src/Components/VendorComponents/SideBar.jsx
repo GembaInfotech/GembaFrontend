@@ -44,6 +44,10 @@ const SideBar = () => {
           <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/transactions' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Transactions
         </Link>
+        <Link to="/parkingSpace" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Parking Space
+        </Link>
         <Link to="/help" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <LuHelpingHand className={`mr-2 text-white text-gray-600 ${location.pathname === '/help' ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Help

@@ -32,14 +32,14 @@ function TransactionScreen() {
 
 
   return (
-    <div className='px-2 py-2'>
-      <h1 className="font-light text-xl mb-2 bg-gray-300 rounded-sm p-1"> Transactions</h1>
+    <div className='px-4 h-[100%] bg-slate-200'>
+      <h1 className=" text-2xl mb-2 font-bold bg-gray-900 text-gray-100 p-2 text-center "> Transactions</h1>
       {loading ?
         <div className='flex justify-center items-center min-h-screen'><PulseLoader color="#000" />
         </div> :
         <div>
-          <div className=''> <label htmlFor="parkingDropdown">Select Parking:</label>
-            <select id="parkingDropdown" onChange={handleParkingChange} value={value || ''} className='bg-gray-100 mx-1 p-2 border border-white rounded-md'>
+          <div className='px-6 py-2 font-bold text-lg'> <label htmlFor="parkingDropdown">Select Parking:</label>
+            <select id="parkingDropdown" onChange={handleParkingChange} value={value || ''} className='bg-slate-200 mx-1 p-2 border border-white rounded-sm'>
               <option value="" disabled>Select a parking</option>
               {data?.data?.map((parking, index) => (
                 <option key={index} value={parking._id}>
@@ -51,7 +51,7 @@ function TransactionScreen() {
         </div>
       }
       {status == "loading" ? <div className='flex justify-center items-center h-[500px]'>       <PulseLoader color="#000" />
-      </div> : <TransactionTable status={status} booking={bookings} />
+      </div> : <TransactionTable className='' status={status} booking={bookings} />
       }
 
     </div>

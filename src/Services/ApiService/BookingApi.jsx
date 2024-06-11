@@ -20,8 +20,8 @@ export const upcomingBookingIn15min = async ({parkingid}) => {
 };
 
 
-  export const updateBooking = async (id, status, tp) => {
-    const response = await instance.put(`/booking-status/${id}`, { status: status , tp });
+  export const updateBooking = async (id, status, tp, parkedAt, guardid, spaceId) => {
+    const response = await instance.put(`/booking-status/${id}`, { status: status , tp, parkedAt, guardid, spaceId });
     return response.data;
   };
   

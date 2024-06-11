@@ -31,8 +31,8 @@ export const addBookingAsync = createAsyncThunk(
 
 export const updateBookingAsync = createAsyncThunk(
   'bookings/update',
-  async ({ id, status,tp }) => {
-    const response = await updateBookingAPI(id, status, tp);
+  async ({ id, status, tp, parkedAt, guardid, spaceId}) => {
+    const response = await updateBookingAPI(id, status, tp, parkedAt, guardid, spaceId);
     return response.data;
   }
 );

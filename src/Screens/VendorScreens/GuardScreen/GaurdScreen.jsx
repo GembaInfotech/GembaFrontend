@@ -78,7 +78,7 @@ const GuardDetail = () => {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-end pr-16 bg-black bg-opacity-50 ">
+        <div className="fixed inset-0 flex items-center justify-center pl-8 bg-black bg-opacity-50 ">
           <div className="bg-white  rounded-lg shadow-lg w-full max-w-md">
             <button
               className="absolute top-2 right-2 text-gray-700 hover:text-gray-900"

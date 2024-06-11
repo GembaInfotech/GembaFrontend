@@ -8,7 +8,7 @@ function BookingTable({ booking, status }) {
     const [filteredBookings, setFilteredBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
     console.log(booking);
-console.log(selectedBooking);
+    console.log(selectedBooking);
     useEffect(() => {
         setFilteredBookings(booking);
         console.log(filteredBookings);
@@ -74,10 +74,12 @@ console.log(selectedBooking);
                         <th className="px-2 text-white text-sm py-2 text-sm">Vehicle Number</th>
                         <th className="px-2 text-white text-sm py-2">Vehicle Model</th>
                         <th className="px-2 text-white text-sm py-2">Parking Name</th>
+                        {status != "confirmed" && <th className="px-2 text-white text-sm py-2">Parking Space</th>
+                        }
 
                         <th className="px-2 text-white text-sm py-2">Time In</th>
                         <th className="px-2 text-white text-sm py-2">Time Out</th>
-                       {status== "Parked" &&  <th className="px-2 text-white text-sm py-2">Actual Intime</th>}
+                        {status == "Parked" && <th className="px-2 text-white text-sm py-2">Actual Intime</th>}
 
                         <th className="px-2 text-white text-sm py-2">Status</th>
                         <th className="px-2 text-white text-sm py-2">Booking Price</th>
@@ -96,10 +98,12 @@ console.log(selectedBooking);
                             <td className="border text-center px-2 text-sm  py-2">{item.vehicle_name}</td>
 
                             <td className="border text-center px-2 text-sm  py-2">{item.parkingName}</td>
-                            <td className="border text-center px-2 text-sm  py-2">{new Date(item.inTime ).toLocaleTimeString()}</td>
+                            {status != "confirmed" && <td className="border text-center px-2 text-sm  py-2">{item.parkedAt?.spaceName}</td>
+                            }
+                            <td className="border text-center px-2 text-sm  py-2">{new Date(item.inTime).toLocaleTimeString()}</td>
                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.outTime).toLocaleTimeString()}</td>
-                            {status == "Parked" &&                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.actualInTime).toLocaleTimeString()}</td>
-}
+                            {status == "Parked" && <td className="border text-center px-2 text-sm  py-2">{new Date(item.actualInTime).toLocaleTimeString()}</td>
+                            }
                             <td className="border text-center px-2 text-sm  py-2">{item.status}</td>
 
                             <td className="border text-center px-2 text-sm  py-2">{status == "Completed" ? item.totalPrice : item.price}</td>
