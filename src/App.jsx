@@ -75,7 +75,7 @@ function App() {
               <Route path="/:parkingid/ParkedBooking" element={<GLayout><ParkedBooking /></GLayout>} />
               <Route path="/:parkingid/CompletedBooking" element={<GLayout><CompletedBooking /></GLayout>} />
               <Route path="/associateParking/:parkingid" element={<GLayout><AssociateParking /></GLayout>} />
-              <Route path="/generatee/:detail/:etInminn/:ep" element={<Ereciept />} />
+              <Route path="/ereciept" element={<Ereciept />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Router>

@@ -50,7 +50,7 @@ function BookingTable({ booking, status }) {
     }, [selectedBooking]);
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto bg-slate-200 h-full">
             <div className="mb-4 flex justify-center items-center">
                 <input
                     type="text"
@@ -67,14 +67,14 @@ function BookingTable({ booking, status }) {
                 </button>
             </div>
 
-            <table className="table-auto w-full">
+            <table className="table-auto w-full ">
                 <thead className="bg-gray-800">
                     <tr>
                         <th className="px-1 text-white py-2"><p className='text-sm'>Booking ID</p></th>
                         <th className="px-2 text-white text-sm py-2 text-sm">Vehicle Number</th>
                         <th className="px-2 text-white text-sm py-2">Vehicle Model</th>
                         <th className="px-2 text-white text-sm py-2">Parking Name</th>
-                        {status != "confirmed" && <th className="px-2 text-white text-sm py-2">Parking Space</th>
+                        {status != "Confirmed" && <th className="px-2 text-white text-sm py-2">Parking Space</th>
                         }
 
                         <th className="px-2 text-white text-sm py-2">Time In</th>
@@ -92,13 +92,13 @@ function BookingTable({ booking, status }) {
                 </thead>
                 <tbody>
                     {booking?.map((item, index) => (
-                        <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 transition-colors hover:bg-gray-200'}>
+                        <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-300 transition-colors hover:bg-slate-400'}>
                             <td className="border text-center px-1 text-sm  py-2">{item.code}</td>
                             <td className="border text-center px-2 text-sm  py-2">{item.vehicle_number}</td>
                             <td className="border text-center px-2 text-sm  py-2">{item.vehicle_name}</td>
 
                             <td className="border text-center px-2 text-sm  py-2">{item.parkingName}</td>
-                            {status != "confirmed" && <td className="border text-center px-2 text-sm  py-2">{item.parkedAt?.spaceName}</td>
+                            {status != "Confirmed" && <td className="border text-center px-2 text-sm  py-2">{item.parkedAt?.spaceName}</td>
                             }
                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.inTime).toLocaleTimeString()}</td>
                             <td className="border text-center px-2 text-sm  py-2">{new Date(item.outTime).toLocaleTimeString()}</td>

@@ -8,7 +8,7 @@ const BookingList = ({ parkingid, status }) => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const bookings = useSelector(state => state.booking);
-  console.log(parkingid);
+  console.log(bookings);
 
   useEffect(() => {
     setTimeout(() => {

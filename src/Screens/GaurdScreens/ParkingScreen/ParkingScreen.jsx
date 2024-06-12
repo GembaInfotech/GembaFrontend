@@ -36,7 +36,7 @@ const AssociateParking = () => {
     fetchData();
   }, [dispatch]);
   return (
-    <div>
+    <div className="bg-slate-200 h-[100%]">
       {/* parking */}
     {
       data?.data &&

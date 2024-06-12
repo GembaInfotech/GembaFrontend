@@ -1,43 +1,24 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
-import { PiCurrencyInr } from "react-icons/pi";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
+import { MdOutlineCurrencyRupee } from "react-icons/md";
 
 const Ereciept = () => {
-  const { parkingid } = useParams();
-  const navigate = useNavigate();
-  const { detail, etInminn,ep } = useParams();
-
-  const etInmin = JSON.parse(decodeURIComponent(etInminn))|| 0 ;
-  
-  const decodedBooking = JSON.parse(decodeURIComponent(detail));
-
+  const navigate = useNavigate()
+  const location = useLocation();
   const compRef = useRef();
-  const [selectedBooking, setSelectedBooking] = useState(null);
- 
+  const details = queryString.parse(location.search);
+  console.log(details);
 
-  useEffect(() => {
-    setSelectedBooking(decodedBooking);
-  }, [detail]);
-
-  const print = () => {
-  };
-  
-  const ADDON_AMOUNT = etInmin<= 0.8 ? 0 : Math.round(ep*etInmin);
-  const SGSTE = etInmin<= 0.8 ? 0 : Math.round( ep*etInmin*0.09);
-  const SGST = Math.round(selectedBooking?.price*0.09);
-  
-  const exceedPrice = () => {
-    return  ADDON_AMOUNT + 2*SGSTE ;
-};
   return (
     <>
       <div className="flex justify-center">
         <div ref={compRef} className='lg:max-w-screen-xl xl:max-w-screen-2xl border border-black p-4'>
-
           <div className='flex flex-col justify-center items-center mx-2'>
-            <h1 className='text-lg font-semibold font-mono text-gray-700'>{selectedBooking?.pn}</h1>
-            <h3 className='text-sm font-normal text-gray-700'>LUDHIANA</h3>
+            <h1 className='text-lg font-semibold font-mono text-gray-700'>ParkingName</h1>
+            <h3 className='text-sm font-normal text-gray-700'>{details?.parkingName}</h3>
           </div>
 
           <div className='flex flex-col justify-center items-center mx-2'>
@@ -48,123 +29,102 @@ const Ereciept = () => {
             </div>
             <h1 className='text-gray-400'>--------------------------</h1>
             <div className='flex fle-col items-center'>
-              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>Car Number</span> {selectedBooking?.num} </h1>
+              <h1 className='text-sm font-normal text-gray-600 mx-1'><span>Vehicle Number</span> {details?.vehicle_number} </h1>
             </div>
           </div>
 
           <div className='m-2'>
             <div className='flex flex-row justify-between'>
               <h1 className='text-sm font-normal text-gray-600'>In Time </h1>
-              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.In).toLocaleString()}</h1>
+              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(details?.inTime).toLocaleString()}</h1>
             </div>
             <div className='flex flex-row justify-between'>
               <h1 className='text-sm font-normal text-gray-600'>Out Time </h1>
-              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(selectedBooking?.out).toLocaleString()}</h1>
+              <h1 className='text-[12px] font-normal text-gray-600'>{new Date(details?.outTime).toLocaleString()}</h1>
             </div>
           </div>
 
- <div className='  m-2'>
-   <div   className='flex flex-row justify-between' >
-       <h1  className='text-sm font-normal  text-gray-600'>Amount </h1>
-   
-   <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
-   </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.price}
-   </h1></div>
-   
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>CGST (9%) </h1>
-   
+          <div className='  m-2'>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>Amount </h1>
 
+              <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
+              </h1>
+                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.price}
+                </h1></div>
 
-   <h1  className='text-[14px] font-normal  text-gray-600'> {SGST}
-   </h1>
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>SGST (9%) </h1>
-   
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>CGST (9%) </h1>
+              <h1 className='text-[14px] font-normal  text-gray-600'> {details?.cgst}
+              </h1>
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>SGST (9%) </h1>
+              <h1 className='text-[14px] font-normal  text-gray-600'>  {details?.sgst}
+              </h1>
+            </div>
 
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-semibold  text-gray-600'> Online Amt Paid </h1>
+              <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
+              </h1>
+                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.bookingPrice}
+                </h1></div>
+            </div>
+          </div>
 
-   <h1  className='text-[14px] font-normal  text-gray-600'>  {SGST}
-   </h1>
-   </div>
+          <div className='  m-2'>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>Exceed Time </h1>
+              <h1 className='text-[14px] font-normal  text-gray-600'> {details.exceedTime} min
+              </h1>
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>AddOn Amt </h1>
 
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-semibold  text-gray-600'> Online Amt Paid </h1>
+              <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
+              </h1>
+                <h1 className='text-[14px] font-normal  text-gray-600'>{details.exceedPrice}
+                </h1></div>
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>CGST (9%) </h1>
 
-
-   <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
-   </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking?.price+SGST*2}
-   </h1></div>
-   
-   </div>
-  
-  
- </div>
-
- <div className='  m-2'>
-   <div   className='flex flex-row justify-between' >
-       <h1  className='text-sm font-normal  text-gray-600'>Exceed Time </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'> {etInmin*10} min
-   </h1>
-
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>AddOn Amt </h1>
-
-   <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
-   </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{ADDON_AMOUNT}
-   </h1></div>
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>CGST (9%) </h1>
-   
-
-
-   <h1  className='text-[14px] font-normal  text-gray-600'> {SGSTE}
-   </h1>
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>SGST (9%) </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'> {SGSTE}
-   </h1>
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-normal  text-gray-600'>Total Amt </h1>
-   <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
-   </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{selectedBooking ? Math.round(selectedBooking.price+2*SGST +exceedPrice(selectedBooking.price)) : ''}
-   </h1></div>
-   </div>
-   <div   className='flex flex-row justify-between' >
-   <h1  className='text-sm font-semibold  text-gray-600'>To be Paid </h1>
-   <div   className='flex flex-row justify-between'>   <h1  className='text-[14px] font-normal mt-1  text-gray-600'><PiCurrencyInr />
-   </h1>
-   <h1  className='text-[14px] font-normal  text-gray-600'>{Math.round(Math.round(ADDON_AMOUNT)+ 2*SGSTE)}
-   </h1></div>
-   </div>
- </div>
-
-<h1 className='font-light text-sm text-center text-gray-400'>GEMBA SMART PARKING</h1>
-
-</div>
-</div>
-
-<div className="flex justify-center mt-4">
-<ReactToPrint trigger={() => <button onClick={print}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Print</button>} content={() => compRef.current} />
-        <button onClick={() => navigate(`/${parkingid}/CompletedBooking`)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
+              <h1 className='text-[14px] font-normal  text-gray-600'> {details.exceedSGST}
+              </h1>
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>SGST (9%) </h1>
+              <h1 className='text-[14px] font-normal  text-gray-600'> {details.exceedSGST}
+              </h1>
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-normal  text-gray-600'>Total Amt </h1>
+              <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
+              </h1>
+                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.totalPrice}
+                </h1></div>
+            </div>
+            <div className='flex flex-row justify-between' >
+              <h1 className='text-sm font-semibold  text-gray-600'>To be Paid </h1>
+              <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
+              </h1>
+                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.exceedTotalPrice}
+                </h1></div>
+            </div>
+          </div>
+          <h1 className='font-light text-sm text-center text-gray-400'>GEMBA SMART PARKING</h1>
+        </div>
       </div>
-</>
 
+      <div className="flex justify-center mt-4">
+        <ReactToPrint trigger={() => <button onClick={print} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Print</button>} content={() => compRef.current} />
+        <button onClick={() => navigate(`/${details.parking}/CompletedBooking`)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Close</button>
+      </div>
+    </>
 
-   
   )
 }
- 
-
-
 
 export default Ereciept
