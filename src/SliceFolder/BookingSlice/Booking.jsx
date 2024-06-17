@@ -14,7 +14,7 @@ export const fetchBookingsAsync = createAsyncThunk(
 export const upcomingBookingIn15minAsync = createAsyncThunk(
   'bookings/fetch',
   async ({parkingid}) => {
-    console.log("testing....2");
+    console.log("testing....2", parkingid);
     const response = await upcomingBookingIn15min({parkingid});
     // console.log(response);
     return response;
