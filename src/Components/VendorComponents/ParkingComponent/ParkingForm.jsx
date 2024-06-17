@@ -8,7 +8,7 @@ import { Descriptions } from 'antd';
 const initialValues = {
   name: '',
   address_line1: '',
-  address_line2:'',
+  address_line2: '',
   city: '',
   state: '',
   country: '',
@@ -21,24 +21,28 @@ const initialValues = {
   subc: '',
   subamt: '',
   landmark: '',
-  capacity: '',
+  twoWheelerCapacity: '',
+  fourWheelerCapacity: '',
+  totalCapacity: '',
   latitude: '',
   longitude: '',
   description: '',
   price_for: '',
-  exceed_price_for: ''
+  exceed_price_for: '',
+  validity_FromDate: '',
+  validity_ToDate: '',
 };
 
 const fieldLabels = {
   name: 'Parking Name',
   address_line1: 'Address Line 1',
-  address_line2:'Address Line 2',  
+  address_line2: 'Address Line 2',
   city: 'City',
   state: 'State',
   country: 'Country',
   pincode: 'PinCode',
   gst: 'GST',
-  registeration_no: 'registeration No.',
+  registeration_no: 'Registration No.',
   price: 'Booking price',
   exceed_price: 'Exceed Price',
   mt: 'Minimum Time',
@@ -46,24 +50,29 @@ const fieldLabels = {
   sub: 'Subscription',
   subc: 'Subscription Code',
   subamt: 'Subscription Amount',
-  landmark: 'LandMark',
+  landmark: 'Landmark',
+  twoWheelerCapacity: 'Two Wheeler Capacity',
+  fourWheelerCapacity: 'Four Wheeler Capacity',
+  totalCapacity: 'Total Capacity',
   capacity: 'Capacity',
   latitude: 'Latitude',
   longitude: 'Longitude',
   description: 'Description',
   price_for: "Price For (hours)",
-  exceed_price_for: "Exceed Price For (minutes)"
+  exceed_price_for: "Exceed Price For (minutes)",
+  validity_FromDate: "Validity From Date",
+  validity_ToDate: "Validity To Date",
 };
 
-const CustomInput = ({ name, label }) => {
+const CustomInput = ({ name, label, type = "text" }) => {
   return (
     <div className="mb-2">
       <label htmlFor={name} className="block text-gray-700 text-sm font-bold mb-1">{label}</label>
-      <Field 
-        type="text" 
-        id={name} 
-        name={name} 
-        className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" 
+      <Field
+        type={type}
+        id={name}
+        name={name}
+        className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
       />
       <ErrorMessage name={name} component="div" className="text-red-500 text-xs mt-1" />
     </div>
@@ -74,11 +83,11 @@ const SelectInput = ({ name, label, options }) => {
   return (
     <div className="mb-2">
       <label htmlFor={name} className="block text-gray-700 text-sm font-bold mb-1">{label}</label>
-      <Field 
-        as="select" 
-        id={name} 
-        name={name} 
-        className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" 
+      <Field
+        as="select"
+        id={name}
+        name={name}
+        className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
       >
         <option value="">Select...</option>
         {options.map((option) => (
@@ -103,8 +112,8 @@ const ParkingForm = () => {
     values.location = location;
     values.price_for = parseInt(price_for); // Convert to number
     values.exceed_price_for = parseInt(exceed_price_for); // Convert to number
-    console.log(values)
-    dispatch(addParkingAsync({values}))
+    console.log(values);
+    dispatch(addParkingAsync({ values }));
   };
 
   return (
@@ -119,18 +128,26 @@ const ParkingForm = () => {
             {Object.keys(values).map((key) => (
               key === "price_for" ? (
                 <div key={key}>
-                  <SelectInput 
-                    label={fieldLabels[key]} 
-                    name={key} 
+                  <SelectInput
+                    label={fieldLabels[key]}
+                    name={key}
                     options={Array.from({ length: 6 }, (_, i) => (i + 1).toString())}
                   />
                 </div>
               ) : key === "exceed_price_for" ? (
                 <div key={key}>
-                  <SelectInput 
-                    label={fieldLabels[key]} 
-                    name={key} 
+                  <SelectInput
+                    label={fieldLabels[key]}
+                    name={key}
                     options={Array.from({ length: 3 }, (_, i) => ((i + 1) * 10).toString())}
+                  />
+                </div>
+              ) : key === "validity_FromDate" || key === "validity_ToDate" ? (
+                <div key={key}>
+                  <CustomInput
+                    label={fieldLabels[key]}
+                    name={key}
+                    type="date"
                   />
                 </div>
               ) : (

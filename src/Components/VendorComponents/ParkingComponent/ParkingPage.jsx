@@ -30,6 +30,8 @@ function ParkingPage({ parking, edit = true }) {
           <InfoItem label="Country" value={parking?.country} />
           <InfoItem label="Pincode" value={parking?.pincode} />
           <InfoItem label="Registration No" value={parking?.registeration_no} />
+          <InfoItem label="Validity From Date" value={parking?.validity_FromDate} />
+          <InfoItem label="Validity To Date" value={parking?.validity_ToDate} />
           <InfoItem label="Landmark" value={parking?.landmark} />
           <InfoItem label="Description" value={parking?.description} />
         </div>
@@ -38,9 +40,9 @@ function ParkingPage({ parking, edit = true }) {
           <div className='bg-slate-100 p-4 rounded-md'>
             <h3 className='text-xl font-bold text-center mb-4'>Price and Time Information</h3>
             <InfoItem label="Price" value={parking?.price} />
-            <InfoItem label="Two Wheeler Capacity" value={parking?.two_wheeler_capacity} />
-            <InfoItem label="Four Wheeler Capacity" value={parking?.four_wheeler_capacity} />
-            <InfoItem label="Total Capacity" value={parking?.total_capacity} />
+            <InfoItem label="Two Wheeler Capacity" value={parking?.twoWheelerCapacity} />
+            <InfoItem label="Four Wheeler Capacity" value={parking?.fourWheelerCapacity} />
+            <InfoItem label="Total Capacity" value={parking?.totalCapacity} />
             <InfoItem label="Exceed Price" value={parking?.exceed_price} />
             <InfoItem label="Minimum Exceed Time" value={parking?.exceed_price_for} />
           </div>
