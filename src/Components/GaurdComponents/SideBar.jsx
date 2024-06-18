@@ -7,16 +7,21 @@ import { BiSolidParking } from "react-icons/bi";
 import { FaCircleCheck } from "react-icons/fa6";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
+import { useDispatch } from 'react-redux';
+import { GuardlogoutAsync } from '../../SliceFolder/GuardSlice/guard';
 
 const SideBar = () => {
+  const dispatch = useDispatch();
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
   const parkingid = storedUserData?.guard?.parking;
   console.log(parkingid);
   const guardid = storedUserData?.guard?._id;
 
 
-  const handleLogout = () => {
+  const handleLogout = async   () => {
+    await dispatch(GuardlogoutAsync());
     localStorage.removeItem('gaurdData');
+
     window.location.href = '/';
   };
 

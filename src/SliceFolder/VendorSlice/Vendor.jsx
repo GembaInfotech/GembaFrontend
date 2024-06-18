@@ -24,6 +24,7 @@ export const vendorUpdateAsync = createAsyncThunk(
 export const vendorLogoutAsync = createAsyncThunk(
   'vendor/logout',
   async () => {
+    console.log("ere2")
     const response = await logoutVendor();
     console.log(response);
     return response.data;

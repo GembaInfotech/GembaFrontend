@@ -6,27 +6,42 @@ import { SlLocationPin } from "react-icons/sl";
 import { LuHelpingHand } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
-// import {vendorLogoutAsync} from "../../SliceFolder/VendorSlice/Vendor"
+import { useDispatch } from 'react-redux';
+
+import {vendorLogoutAsync} from "../../SliceFolder/VendorSlice/Vendor"
 // import { useDispatch } from 'react-redux';
 
 
 const SideBar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isLoggingOut, setisLoggingOut] = useState(false);
+
   // const dispatch = useDispatch();
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
 
-  const handleLogout = () => {
-    // dispatch(vendorLogoutAsync())
+  const handleLogout =  async () => {
+     setisLoggingOut(true);
+     await dispatch( vendorLogoutAsync())
+     console.log("here")
     localStorage.removeItem('token');
-    window.location.href = '/';
+    
+   window.location.href = '/';
   };
 
   return (
+   
     <div className="flex flex-col h-full justify-between">
+       {isLoggingOut && (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-gray-900 bg-opacity-50 text-white">
+        <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32 mb-4"></div>
+        <p className="text-xl">Logging out...</p>
+      </div>
+    )}
       <div className="py-4">
         <Link to="/Home" className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/home' ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <CgProfile className={`mr-2 text-white text-gray-600 ${location.pathname === '/home' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
@@ -55,7 +70,7 @@ const SideBar = () => {
 
         <div onClick={handleLogout} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 `}>
           <RiLogoutCircleRLine className={`mr-2 text-white text-gray-600`} />
-          Logout
+           <button>Logout</button>
         </div>
       </div>
       <div className="p-4">

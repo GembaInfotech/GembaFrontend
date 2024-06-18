@@ -26,3 +26,20 @@ export const fetchGuardsbyParkingId = async ({id}) => {
     localStorage.setItem('gaurdData', JSON.stringify(response.data)); // Store user data in local storage
     return response.data;
   };
+
+  export const logoutGuard = async () => {
+    console.log("here2 3")
+    const token  = JSON.parse(localStorage.getItem('gaurdData')).accessToken;
+    
+
+    console.log(token);
+     const response = await instance.delete('/logout', {
+      
+      headers: {
+          'Authorization': `Bearer ${token}` 
+        }
+    });
+      
+      console.log(response);
+      return response;
+    };
