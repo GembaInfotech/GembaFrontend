@@ -1,6 +1,6 @@
 // features/Guard/GuardSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchGuards, fetchGuardsbyParkingId, updateGuard as updateGuardAPI,  } from '../../Services/ApiService/GuardApi';
+import { fetchGuards, fetchGuardsbyParkingId, logoutGuard,  updateGuard as updateGuardAPI,  } from '../../Services/ApiService/GuardApi';
 
 export const fetchGuardsAsync = createAsyncThunk(
   'Guards/fetch',
@@ -27,6 +27,17 @@ export const updateGuardAsync = createAsyncThunk(
     return response.data;
   }
 );
+
+export const GuardlogoutAsync = createAsyncThunk(
+  'guard/logout',
+  async () => {
+    console.log("ere2")
+    const response = await logoutGuard();
+    console.log(response);
+    return response.data;
+  }
+);
+
 
 const GuardSlice = createSlice({
   name: 'Guards',

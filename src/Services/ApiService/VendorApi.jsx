@@ -32,13 +32,16 @@ export const vendorData = async () => {
   };
 
 export const logoutVendor = async () => {
-    const token = await JSON.parse(localStorage.getItem('token'))
+  console.log("here2 3")
+  const token = await JSON.parse(localStorage.getItem('token'))
+  console.log(token);
+   const response = await instance.delete('/logout', {
     
-     const response = await instance.put('/logout',{
-      headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-    });
+    headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+  });
+    
     console.log(response);
     return response;
   };
