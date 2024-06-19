@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 function CompletedPopup({ selectedBooking }) {
   const ADDON_AMOUNT = 10;
-  const serializedBooking = queryString.stringify(selectedBooking);
+  // const serializedBooking = queryString.stringify(selectedBooking);
   const exceedPrice = (bookingPrice) => {
     // Calculate the total booking price with an additional amount
     return bookingPrice + ADDON_AMOUNT;
@@ -42,9 +42,9 @@ function CompletedPopup({ selectedBooking }) {
         <p className="text-gray-700 text-sm ">Price to be paid : {selectedBooking.bookingPrice - selectedBooking.totalPrice}</p>
       </div>
 
-      <div className='mt-4'>
+      {/* <div className='mt-4'>
        <Link to={`/ereciept?${serializedBooking}`} className="mt-4 text-xl font-bold text-green-500 underline "> Generate Ereciept</Link>
-      </div>
+      </div> */}
       </div>
   )
 }
