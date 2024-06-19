@@ -12,7 +12,7 @@ export const fetchBookingsAsync = createAsyncThunk(
 );
 
 export const upcomingBookingIn15minAsync = createAsyncThunk(
-  'bookings/fetch',
+  'upcoming/fetch',
   async ({parkingid}) => {
     console.log("testing....2", parkingid);
     const response = await upcomingBookingIn15min({parkingid});
@@ -49,6 +49,7 @@ const BookingSlice = createSlice({
   name: 'bookings',
   initialState: {
     data: [],
+    upcoming:[],
     status: 'idle',
     error: null,
   },
@@ -67,6 +68,10 @@ const BookingSlice = createSlice({
       .addCase(fetchBookingsAsync.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(upcomingBookingIn15minAsync.fulfilled, (state, action) => {
+        state.status = 'success';
+        state.upcoming = action.payload;
       })
       .addCase(addBookingAsync.fulfilled, (state, action) => {
         state.data.push(action.payload);

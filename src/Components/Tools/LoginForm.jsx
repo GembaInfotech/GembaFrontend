@@ -141,12 +141,7 @@ setLoading(true);
           </div> :loading ?        <PulseLoader size={"8px"}  color="#fff" />
        : <h1>Login</h1>}
                 </button>
-                <p className="text-sm font-medium text-gray-600">
-                  Don’t have an account yet?{' '}
-                  <Link to="/sign-up" className="font-medium text-blue-700 hover:underline">
-                    Sign Up
-                  </Link>
-                </p>
+               
               </Form>
             </Formik>
           </div>

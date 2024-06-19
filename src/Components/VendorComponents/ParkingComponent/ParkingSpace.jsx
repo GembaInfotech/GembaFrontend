@@ -8,7 +8,7 @@ import { upcomingBookingIn15minAsync } from '../../../SliceFolder/BookingSlice/B
 function ParkingSpace() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.ParkingSpace?.data);
-  const upcomingVehicles = useSelector((state) => state?.booking?.data);
+  const upcomingVehicles = useSelector((state) => state?.booking?.upcoming);
   const [value, setSelectedParking] = useState(null);
 
   const data1 = useSelector(parkings);
