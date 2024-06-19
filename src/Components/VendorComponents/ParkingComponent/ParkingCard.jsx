@@ -34,7 +34,9 @@ function ParkingCard({ parking }) {
       </div>
       <div className='px-4'>
        {parking?.status === 'active' && <p className=' text-sm mb-2 font-bold text-green-600'><span className='text-gray-800 font-semibold'>Status: </span> {parking?.status}</p>}
-       {parking?.status === 'pending' && <p className='text-sm mb-2 font-bold text-red-600'><span className='text-gray-800 font-semibold'>Status: </span> {parking?.status}</p>}
+       {parking?.status === 'inactive' && <p className='text-sm mb-2 font-bold text-red-600'><span className='text-gray-800 font-semibold'>Status: </span> {parking?.status}</p>}
+
+       {parking?.status === 'pending' && <p className='text-sm mb-2 font-bold text-pink-600'><span className='text-gray-800 font-semibold'>Status: </span> {parking?.status}</p>}
       </div>
       <div className='flex justify-center gap-2 py-3'>
         {parking?.status !== "pending" && (
