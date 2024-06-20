@@ -69,7 +69,7 @@ const Ereciept = () => {
               <h1 className='text-sm font-semibold  text-gray-600'> Online Amt Paid </h1>
               <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
               </h1>
-                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.bookingPrice}
+                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.totalPrice}
                 </h1></div>
             </div>
           </div>

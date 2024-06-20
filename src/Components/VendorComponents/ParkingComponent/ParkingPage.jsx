@@ -40,6 +40,7 @@ function ParkingPage({ parking, edit = true }) {
           <div className='bg-slate-100 p-4 rounded-md'>
             <h3 className='text-xl font-bold text-center mb-4'>Price and Time Information</h3>
             <InfoItem label="Price" value={parking?.price} />
+            
             <InfoItem label="Two Wheeler Capacity" value={parking?.twoWheelerCapacity} />
             <InfoItem label="Four Wheeler Capacity" value={parking?.fourWheelerCapacity} />
             <InfoItem label="Total Capacity" value={parking?.totalCapacity} />

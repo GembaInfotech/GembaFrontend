@@ -40,8 +40,12 @@ function ParkingPageForGuard({ parking, edit = true }) {
         <div className='w-full lg:w-[40%] space-y-4'>
           <div className='bg-gray-100 my-2 p-8 rounded shadow-lg'>
             <h1 className='text-xl font-bold mb-4'>Price and Time Information</h1>
-            <Detail label="Price" value={parking[0]?.price} />
-            <Detail label="Capacity" value={parking[0]?.capacity} />
+            <Detail label="Price For Two Wheeler" value={parking[0]?.priceT} />
+            <Detail label="Price For Four Wheeler" value={parking[0]?.priceF} />
+
+            <Detail label="Capacity Two" value={parking[0]?.twoWheelerCapacity} />
+            <Detail label="Capacity Four" value={parking[0]?.fourWheelerCapacity} />
+
             <Detail label="Exceed Price" value={parking[0]?.exceed_price} />
             <Detail label="Minimum Exceed Time" value={parking[0]?.exceed_price_for} />
           </div>

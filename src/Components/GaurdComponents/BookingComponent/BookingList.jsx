@@ -13,7 +13,7 @@ const BookingList = ({ parkingid, status }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 1000);
+    }, 2000);
 
     dispatch(fetchBookingsAsync({ parkingid: parkingid, status: status }));
   }, [dispatch]);
