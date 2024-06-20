@@ -72,6 +72,8 @@ function BookingTable({ booking, status }) {
                         <th className="px-1 text-white py-2"><p className='text-sm'>Booking ID</p></th>
                         <th className="px-2 text-white text-sm py-2 text-sm">Vehicle Number</th>
                         <th className="px-2 text-white text-sm py-2">Vehicle Model</th>
+                        <th className="px-2 text-white text-sm py-2">Vehicle Type</th>
+
                         <th className="px-2 text-white text-sm py-2">Parking Name</th>
                         {status !== "Confirmed" && <th className="px-2 text-white text-sm py-2">Parking Space</th>}
 
@@ -94,6 +96,8 @@ function BookingTable({ booking, status }) {
                             <td className="border text-center px-1 text-sm py-2">{item.code}</td>
                             <td className="border text-center px-2 text-sm py-2">{item.vehicle_number}</td>
                             <td className="border text-center px-2 text-sm py-2">{item.vehicle_name}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.vehicle_type}</td>
+
                             <td className="border text-center px-2 text-sm py-2">{item.parkingName}</td>
                             {status !== "Confirmed" && <td className="border text-center px-2 text-sm py-2">{item.parkedAt?.spaceName}</td>}
                             <td className="border text-center px-2 text-sm py-2">{new Date(item.inTime).toLocaleTimeString()}</td>

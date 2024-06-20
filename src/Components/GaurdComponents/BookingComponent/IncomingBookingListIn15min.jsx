@@ -10,7 +10,7 @@ function IncomingBookingListIn15min() {
     const dispacth = useDispatch();
     const parkingid = useParams()
     
-    const upcommingBookings = useSelector((state)=>state?.booking?.data)
+    const upcommingBookings = useSelector((state) => state?.booking?.upcoming)
     console.log(upcommingBookings);
 
     useEffect(()=>{

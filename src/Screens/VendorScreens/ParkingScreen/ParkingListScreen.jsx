@@ -17,7 +17,7 @@ function Parkings() {
   }, [dispatch]);
 
   return (
-    <div className=' bg-slate-200 h-[100%]'>
+    <div className=' bg-slate-200 h-full'>
       {parking.status == "loading" && <div className='flex justify-center items-center min-h-screen'><PulseLoader color="#000" /></div>}
      
       {parking.status == "failed" && <div><h1 className='text-red-500 p-4'>Some error Occured While Loading the Data... Kindly Refresh or Login Again...</h1></div>}

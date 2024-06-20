@@ -7,7 +7,8 @@ function ParkedPopup({ selectedBooking }) {
   const storedUserData = JSON.parse(localStorage.getItem('gaurdData'));
   const guardid = storedUserData?.guard?._id;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
 
   const update = (id, status) => {
 
@@ -24,6 +25,8 @@ function ParkedPopup({ selectedBooking }) {
             <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
             <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle_number}</p>
             <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle_name}</p>
+            <p className="text-gray-700">Vehicle Type: {selectedBooking?.vehicle_type}</p>
+
             <p className="text-gray-700">Parked At: {selectedBooking?.parkedAt?.spaceName}</p>
             <p className="text-gray-700 mb-2">Status: {selectedBooking.status}</p>
             <button onClick={() => update(selectedBooking._id, "Completed")} className="bg-green-500 text-white p-2  rounded-md mr-2 hover:bg-green-700">Complete</button>
