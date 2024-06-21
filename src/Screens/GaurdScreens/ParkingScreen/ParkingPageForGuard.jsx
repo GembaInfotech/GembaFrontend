@@ -35,19 +35,23 @@ function ParkingPageForGuard({ parking, edit = true }) {
           <Detail label="Pincode" value={parking[0]?.pincode} />
           <Detail label="Registration No" value={parking[0]?.registeration_no} />
           <Detail label="Landmark" value={parking[0]?.landmark} />
+          <Detail label="Capacity for Two Wheeler" value={parking[0]?.twoWheelerCapacity} />
+          <Detail label="Capacity for Four Wheeler" value={parking[0]?.fourWheelerCapacity} />
         </div>
 
         <div className='w-full lg:w-[40%] space-y-4'>
           <div className='bg-gray-100 my-2 p-8 rounded shadow-lg'>
             <h1 className='text-xl font-bold mb-4'>Price and Time Information</h1>
+            <Detail label="Price for" value={`${parking[0]?.price_for} hrs`} />
+
             <Detail label="Price For Two Wheeler" value={parking[0]?.priceT} />
             <Detail label="Price For Four Wheeler" value={parking[0]?.priceF} />
 
-            <Detail label="Capacity Two" value={parking[0]?.twoWheelerCapacity} />
-            <Detail label="Capacity Four" value={parking[0]?.fourWheelerCapacity} />
+            <Detail label="Exceed price for" value={`${parking[0]?.exceed_price_for} min`} />
 
-            <Detail label="Exceed Price" value={parking[0]?.exceed_price} />
-            <Detail label="Minimum Exceed Time" value={parking[0]?.exceed_price_for} />
+            <Detail label="Exceed Price for Two Wheeler" value={parking[0]?.exceed_priceT} />
+            <Detail label="Exceed Price for Four Wheeler" value={parking[0]?.exceed_priceF} />
+            
           </div>
           <div className='bg-gray-100 my-2 p-8 rounded shadow-lg'>
             <h1 className='text-xl font-bold mb-4'>Location Information</h1>

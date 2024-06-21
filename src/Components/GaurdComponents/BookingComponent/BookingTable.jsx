@@ -107,9 +107,9 @@ function BookingTable({ booking, status }) {
                             <td className="border text-center px-2 text-sm py-2">{status === "Completed" ? item.totalPrice : item.price}</td>
                             {status !== "Completed" && <td className="border text-center px-2 text-sm py-2">{item.sgst}</td>}
                             {status !== "Completed" && <td className="border text-center px-2 text-sm py-2">{item.cgst}</td>}
-                            {status === "Completed" && <td className="border text-center px-2 text-sm py-2">{item.exceedTotalPrice}</td>}
+                            {status === "Completed" && <td className="border text-center px-2 text-sm py-2">{Math.round(item.exceedTotalPrice)}</td>}
                             <td className="border text-center px-2 text-sm py-2">
-                                {status === "Completed" ? item.bookingPrice : item.totalPrice}
+                                {status === "Completed" ? Math.round(item.bookingPrice) : Math.round(item.totalPrice)}
                             </td>
                             {status === "Completed" && (
                                 <td className="border text-center px-2 text-sm py-2">

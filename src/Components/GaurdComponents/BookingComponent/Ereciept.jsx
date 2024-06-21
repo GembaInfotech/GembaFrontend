@@ -85,7 +85,7 @@ const Ereciept = () => {
 
               <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
               </h1>
-                <h1 className='text-[14px] font-normal  text-gray-600'>{details.exceedPrice}
+                <h1 className='text-[14px] font-normal  text-gray-600'>{Math.round(details.exceedPrice)}
                 </h1></div>
             </div>
             <div className='flex flex-row justify-between' >
@@ -110,7 +110,7 @@ const Ereciept = () => {
               <h1 className='text-sm font-semibold  text-gray-600'>To be Paid </h1>
               <div className='flex flex-row justify-between'>   <h1 className='text-[14px] font-normal mt-1  text-gray-600'><MdOutlineCurrencyRupee />
               </h1>
-                <h1 className='text-[14px] font-normal  text-gray-600'>{details?.exceedTotalPrice}
+                <h1 className='text-[14px] font-normal  text-gray-600'>{Math.round(details?.exceedTotalPrice)}
                 </h1></div>
             </div>
           </div>

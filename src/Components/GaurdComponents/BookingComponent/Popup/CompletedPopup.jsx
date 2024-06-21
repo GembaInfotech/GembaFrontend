@@ -28,7 +28,7 @@ function CompletedPopup({ selectedBooking }) {
       <p className="text-gray-700 text-sm ">Total time car Parked book actual: {Math.floor(selectedBooking.actualDuration / 60)} hours {selectedBooking.actualDuration % 60} minutes</p>
 
       <div className="flex justify-between bg-blue-100 p-2 rounded-sm "> <p className="text-gray-700 text-sm ">exceed time: {Math.floor(selectedBooking.exceedTime / 60)} hours {selectedBooking.exceedTime % 60} minutes</p>
-        <p className="text-gray-700 text-sm ">exeed price : {selectedBooking.exceedPrice}</p> </div>
+        <p className="text-gray-700 text-sm ">exeed price : {Math.round(selectedBooking.exceedPrice)}</p> </div>
       <div className='flex justify-between bg-blue-100 p-2 rounded-sm  '>
 
         <p className="text-gray-700 text-sm ">exceed sgst : {selectedBooking.exceedSGST}</p>
@@ -38,8 +38,8 @@ function CompletedPopup({ selectedBooking }) {
       <p className="text-gray-700 text-sm ">paid amount  : {selectedBooking.totalPrice}</p>
       <div className="flex justify-between bg-blue-100 p-2 rounded-sm">
 
-        <p className="text-gray-700 text-sm ">total price : {selectedBooking.bookingPrice}</p>
-        <p className="text-gray-700 text-sm ">Price to be paid : {selectedBooking.bookingPrice - selectedBooking.totalPrice}</p>
+        <p className="text-gray-700 text-sm ">total price : {Math.round(selectedBooking.bookingPrice)}</p>
+        <p className="text-gray-700 text-sm ">Price to be paid : {Math.round(selectedBooking.bookingPrice - selectedBooking.totalPrice)}</p>
       </div>
 
       {/* <div className='mt-4'>
