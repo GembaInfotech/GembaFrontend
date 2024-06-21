@@ -43,10 +43,11 @@ function BookingTable({ booking, status }) {
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [selectedBooking]);
+    }, [selectedBooking, booking]);
 
     return (
         <div className="container mx-auto bg-slate-200 h-full">

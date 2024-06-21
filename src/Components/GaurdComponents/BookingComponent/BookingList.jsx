@@ -11,12 +11,27 @@ const BookingList = ({ parkingid, status }) => {
   console.log(bookings);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 2000);
+    console.log("called")
+    const waits = async() =>{
+      console.log("ind")
+      const fa=   ()=>{
+        setTimeout(  () => {
+           dispatch(fetchBookingsAsync({ parkingid: parkingid, status: status }));
+           setLoading(false)
 
-    dispatch(fetchBookingsAsync({ parkingid: parkingid, status: status }));
-  }, [dispatch]);
+        }, 600);
+      }
+       fa();
+ console.log("ot ")
+
+
+   }
+
+   waits()
+
+  
+
+  }, [dispatch, status]);
 
   return (
     loading ?

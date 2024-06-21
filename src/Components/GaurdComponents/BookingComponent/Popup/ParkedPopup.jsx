@@ -17,11 +17,11 @@ function ParkedPopup({ selectedBooking }) {
   }, [dispatch]);
 
 
-  const update = (id, status) => {
+  const update = (id, parkingid, status) => {
 
     const data = dispatch(updateBookingAsync({ id, status, tp: 0, parkedAt: selectedBooking?.parkedAt?.spaceName, guardid, spaceId: selectedBooking?.parkedAt?.spaceId }));
     console.log(data);
-    navigate(`/${id}/CompletedBooking`);
+    navigate(`/${parkingid}/CompletedBooking`);
 
   }
   return (
@@ -50,7 +50,7 @@ function ParkedPopup({ selectedBooking }) {
       )||null}
     </div>
     <button
-      onClick={() => update(selectedBooking._id, "Completed")}
+      onClick={() => update( selectedBooking._id, selectedBooking.parking, "Completed")}
       className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700 ml-6"
     >
       Complete

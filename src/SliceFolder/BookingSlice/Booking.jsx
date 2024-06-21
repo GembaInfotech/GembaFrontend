@@ -68,6 +68,7 @@ const BookingSlice = createSlice({
     builder
       .addCase(fetchBookingsAsync.pending, (state) => {
         state.status = 'loading';
+        state.data= [];
       })
       .addCase(fetchBookingsAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';

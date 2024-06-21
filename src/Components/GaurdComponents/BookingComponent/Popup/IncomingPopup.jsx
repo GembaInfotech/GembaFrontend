@@ -15,6 +15,8 @@ function IncomingPopup({ selectedBooking }) {
   const guardid = storedUserData?.guard?._id;
 
   const code = useSelector((state) => state?.Parking?.data[0]?.code);
+  const parkingID = useSelector((state) => state?.Parking?.data[0]?._id);
+
   const space = useSelector((state) => state?.ParkingSpace?.data || []);
 
   useEffect(() => {
@@ -36,7 +38,8 @@ function IncomingPopup({ selectedBooking }) {
   const update = (id, status, parkedAt, spaceId) => {
     const tp = selectedBooking.totalPrice;
     dispatch(updateBookingAsync({ id, status, tp, parkedAt, guardid, spaceId }));
-    navigate(`/${id}/ParkedBooking`);
+    
+    navigate(`/${parkingID}/ParkedBooking`);
   };
 
   return (
