@@ -26,33 +26,35 @@ function ParkedPopup({ selectedBooking }) {
   }
   return (
     <div className="">
-  <div className="flex gap-4">
-    <div>
-      <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
-      <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle_number}</p>
-      <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle_name}</p>
-      <p className="text-gray-700">Vehicle Type: {selectedBooking?.vehicle_type}</p>
-      <p className="text-gray-700">Parked At: {selectedBooking?.parkedAt?.spaceName}</p>
-      <p className="text-gray-700">Status: {selectedBooking.status}</p>
-    </div>
-    {selectedBooking?.exceedTime != 0 ? (
-      <div className="mt-10">
-        <div className="bg-yellow-400 mb-2 shadow-lg rounded-md p-4">
-          <p className="text-red-600 text-xl font-bold mb-2">
-            Exceed Time: {selectedBooking?.exceedTime} min
-          </p>
-          <p className="text-red-600 text-xl font-bold" >
-            Collect Amount: {Math.round(selectedBooking?.exceedTotalPrice)}
-            <FaRupeeSign  />
-          </p>
-        </div>
+    <div className="flex gap-4">
+      <div>
+        <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
+        <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle_number}</p>
+        <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle_name}</p>
+        <p className="text-gray-700">Vehicle Type: {selectedBooking?.vehicle_type}</p>
+        <p className="text-gray-700">Parked At: {selectedBooking?.parkedAt?.spaceName}</p>
+        <p className="text-gray-700">Status: {selectedBooking.status}</p>
       </div>
-    ) : null}
+      {selectedBooking?.exceedTime !== 0 && (
+        <div className="mt-10">
+          <div className="bg-yellow-400 mb-2 shadow-lg rounded-md p-4">
+            <p className="text-red-600 text-xl font-bold mb-2">
+              Exceed Time: {Math.floor(selectedBooking.exceedTime / 60)} hrs {selectedBooking.exceedTime % 60} min
+            </p>
+            <div className="flex items-center">
+              <p className="text-red-600 text-xl font-bold mr-2">Collect Amount: {Math.round(selectedBooking?.exceedTotalPrice)}</p>
+              <FaRupeeSign className='text-red-600' />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+    <button onClick={() => update(selectedBooking._id, "Completed")} className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700">
+      Complete
+    </button>
   </div>
-  <button onClick={() => update(selectedBooking._id, "Completed")} className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700">
-    Complete
-  </button>
-</div>
+  
+
 
 
   )
