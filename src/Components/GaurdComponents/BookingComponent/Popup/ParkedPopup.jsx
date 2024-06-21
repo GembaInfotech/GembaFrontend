@@ -27,7 +27,7 @@ function ParkedPopup({ selectedBooking }) {
   return (
     <div className="">
     <div className="flex gap-4">
-      <div>
+      <div className='p-1 px-2 bg-blue-200 m-1 rounded-md'>
         <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
         <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle_number}</p>
         <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle_name}</p>
@@ -35,15 +35,16 @@ function ParkedPopup({ selectedBooking }) {
         <p className="text-gray-700">Parked At: {selectedBooking?.parkedAt?.spaceName}</p>
         <p className="text-gray-700">Status: {selectedBooking.status}</p>
       </div>
-      {selectedBooking?.exceedTime !== 0 && (
+      {selectedBooking?.exceedTime && (
         <div className="mt-10">
-          <div className="bg-yellow-400 mb-2 shadow-lg rounded-md p-4">
-            <p className="text-red-600 text-xl font-bold mb-2">
+          <div className="bg-blue-200 mb-2 shadow-lg rounded-md p-4">
+            <p className="text-black text-xl font-semibold mb-2">
               Exceed Time: {Math.floor(selectedBooking.exceedTime / 60)} hrs {selectedBooking.exceedTime % 60} min
             </p>
             <div className="flex items-center">
-              <p className="text-red-600 text-xl font-bold mr-2">Collect Amount: {Math.round(selectedBooking?.exceedTotalPrice)}</p>
-              <FaRupeeSign className='text-red-600' />
+
+              <p className="text-black text-xl font-semibold mr-2">Collect Amount: <div className='flex'>              <FaRupeeSign  className='text-black mt-1' />
+              {Math.round(selectedBooking?.exceedTotalPrice)} </div></p>
             </div>
           </div>
         </div>
