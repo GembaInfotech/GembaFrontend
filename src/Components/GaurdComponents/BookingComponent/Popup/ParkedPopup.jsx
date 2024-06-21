@@ -25,9 +25,9 @@ function ParkedPopup({ selectedBooking }) {
 
   }
   return (
-    <div className="">
-    <div className="flex gap-4">
-      <div className='p-1 px-2 bg-blue-200 m-1 rounded-md'>
+    <div className="  w-full">
+    <div className="flex gap-4 ml-6 mb-2">
+      <div className="flex-1">
         <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
         <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle_number}</p>
         <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle_name}</p>
@@ -36,26 +36,27 @@ function ParkedPopup({ selectedBooking }) {
         <p className="text-gray-700">Status: {selectedBooking.status}</p>
       </div>
       {selectedBooking?.exceedTime && (
-        <div className="mt-10">
-          <div className="bg-blue-200 mb-2 shadow-lg rounded-md p-4">
-            <p className="text-black text-xl font-semibold mb-2">
+        <div className="flex-1 mt-4 md:mt-0">
+          <div className="bg-yellow-400 shadow-lg rounded-md p-4">
+            <p className="text-red-600 text-xl font-bold mb-2">
               Exceed Time: {Math.floor(selectedBooking.exceedTime / 60)} hrs {selectedBooking.exceedTime % 60} min
             </p>
             <div className="flex items-center">
-
-              <p className="text-black text-xl font-semibold mr-2">Collect Amount: <div className='flex'>              <FaRupeeSign  className='text-black mt-1' />
-              {Math.round(selectedBooking?.exceedTotalPrice)} </div></p>
+              <p className="text-red-600 text-xl font-bold mr-2">Collect Amount: {Math.round(selectedBooking?.exceedTotalPrice)}</p>
+              <FaRupeeSign className="text-red-600 text-xl" />
             </div>
           </div>
         </div>
-      )}
+      )||null}
     </div>
-    <button onClick={() => update(selectedBooking._id, "Completed")} className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700">
+    <button
+      onClick={() => update(selectedBooking._id, "Completed")}
+      className="bg-green-500 text-white p-2 rounded-md mr-2 hover:bg-green-700 ml-6"
+    >
       Complete
     </button>
   </div>
   
-
 
 
   )

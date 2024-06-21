@@ -4,8 +4,8 @@ import CompletedPopup from '../../GaurdComponents/BookingComponent/Popup/Complet
 
 function Modal({ selectedBooking, status }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md shadow-lg cursor-auto w-1/3">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
+      <div className="bg-white p-8 rounded-md shadow-lg cursor-auto w-1/2">
         {status === "Parked" && <ParkedPopup selectedBooking={selectedBooking} />}
         {status === "Confirmed" && <IncomingPopup selectedBooking={selectedBooking} />}
         {status === "Completed" && <CompletedPopup selectedBooking={selectedBooking} />}
