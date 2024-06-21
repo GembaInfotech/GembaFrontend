@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchBookings,upcomingBookingIn15min, updateBooking as updateBookingAPI, deleteBooking as deleteBookingAPI } from '../../Services/ApiService/BookingApi';
+import { fetchBookings,upcomingBookingIn15min, updateBooking as updateBookingAPI, updateBookingP as updateBookingPAPI, deleteBooking as deleteBookingAPI } from '../../Services/ApiService/BookingApi';
 
 export const fetchBookingsAsync = createAsyncThunk(
   'bookings/fetch',
@@ -29,6 +29,14 @@ export const addBookingAsync = createAsyncThunk(
   }
 );
 
+
+export const updateBookingPAsync = createAsyncThunk(
+  'bookings/update',
+  async ({id}) => {
+    const response = await updateBookingPAPI(id);
+    return response.data;
+  }
+);
 export const updateBookingAsync = createAsyncThunk(
   'bookings/update',
   async ({ id, status, tp, parkedAt, guardid, spaceId}) => {
