@@ -52,6 +52,21 @@ export const createParking = async ({ ParkingData }) => {
   console.log(response.data);
   return response.data;
 };
+export const upload = async (formData) => {
+  const token = await getToken();
+  console.log("dfds")
+  console.log(FormData)
+  const response = await instance.post(`/add-new-image/7987`, formData , {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+
+    }
+  });
+  console.log(response.data);
+  return response.data;
+};
+
 
 
 export const updateParking = async ({ id, updatedData }) => {

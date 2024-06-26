@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchParkingByIdAsync, parkingById, updateParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import ImageUpload from './ImageUpload';
 function UpdateParkingForm() {
   const navigate = useNavigate()
   const headers = {
@@ -94,6 +94,10 @@ function UpdateParkingForm() {
           <button className='bg-yellow-300 px-2 py-1 rounded-md w-fit text-black font-normal hover:bg-yellow-400 text-sm' type="submit">Submit</button>
         </form>
       )}
+
+      <div>
+        <ImageUpload id={id}/>
+      </div>
     </div>
   );
 }

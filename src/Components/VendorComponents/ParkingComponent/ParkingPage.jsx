@@ -58,6 +58,14 @@ function ParkingPage({ parking, edit = true }) {
           </div>
         </div>
       </div>
+      <div className=' flex overflow-x-auto w-full  scrollbar-hide'>
+          <img src={parking.image[0]} alt="" className='m-2 rounded-2xl h-32 sm:h-48 ' />
+          <img src={parking.image[1]} alt="" className='m-2 rounded-2xl h-32 sm:h-48' />
+          <img src={parking.image[2]} alt="" className='m-2 rounded-2xl h-32 sm:h-48' />
+          <img src={parking.image[3]} alt="" className='m-2 rounded-2xl h-32 sm:h-48' />
+
+        </div>
+     
     </div>
   );
 }

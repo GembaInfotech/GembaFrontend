@@ -1,6 +1,6 @@
 // features/Parking/ParkingSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchParkings,fetchParkingSpaceByCode, createParking, fetchParkingById,  guardfetchParkings,fetchParkingByGuardId,  updateParking as updateParkingAPI, deleteParking as deleteParkingAPI } from '../../Services/ApiService/ParkingApi';
+import { fetchParkings,fetchParkingSpaceByCode, createParking,upload,  fetchParkingById,  guardfetchParkings,fetchParkingByGuardId,  updateParking as updateParkingAPI, deleteParking as deleteParkingAPI } from '../../Services/ApiService/ParkingApi';
 
 export const fetchParkingsAsync = createAsyncThunk(
   'Parkings/fetch',
@@ -59,6 +59,14 @@ export const addParkingAsync = createAsyncThunk(
     return response.data;
   }
 );
+export const uploadFileAsync = createAsyncThunk(
+  'Parkings/upload',
+  async ( formData ) => {
+    console.log(formData)
+    const response = await upload(formData );
+    return response.data;
+  }
+);
 
 export const updateParkingAsync = createAsyncThunk(
   'Parkings/update',
@@ -80,6 +88,7 @@ const ParkingSlice = createSlice({
   name: 'Parkings',
   initialState: {
     data: [],
+    message:null,
     parking: null,
     status: 'idle',
     error: null,
@@ -91,6 +100,9 @@ const ParkingSlice = createSlice({
     builder
       .addCase(fetchParkingsAsync.pending, (state) => {
         state.status = 'loading';
+      })
+      .addCase(uploadFileAsync.fulfilled, (state) => {
+        state.message = 'Image Added Successfully';
       })
       .addCase(fetchParkingsAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';

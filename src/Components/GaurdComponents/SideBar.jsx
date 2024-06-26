@@ -57,7 +57,7 @@ const SideBar = () => {
 
         <div onClick={handleLogout} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 `}>
           <RiLogoutCircleRLine className={`mr-2 text-white text-gray-600`} />
-          Logout
+       <button>   Logout</button>
         </div>
 
       </div>

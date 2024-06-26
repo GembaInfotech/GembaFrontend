@@ -15,6 +15,7 @@ const initialValues = {
   pincode: '',
   gst: '',
   registeration_no: '',
+
   // price: '',
   priceF: '',
   priceT: '',
