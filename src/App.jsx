@@ -35,6 +35,8 @@ import Account from './Screens/VendorScreens/AccountScreen/Account';
 import GuardList from './Screens/VendorScreens/GuardScreen/GuardList';
 import ParkingSpace from './Components/VendorComponents/ParkingComponent/ParkingSpace';
 import ParticularParkingSpace from './Components/VendorComponents/ParkingComponent/ParticularParkingSpace';
+import CancelledBooking from './Screens/GaurdScreens/BookingScreen/CancelledBooking/CancelledBooking';
+import CancelledScreen from './Screens/VendorScreens/CancelledScreen/CancelledScreen';
 
 function App() {
   const queryClient = new QueryClient();
@@ -55,6 +57,7 @@ function App() {
               <Route path="/:parkingid/RecentIncomingBooking" element={<GLayout><IncomingBookingListIn15min /></GLayout>} />
               <Route path="/parkings" element={<Layout><Parkings /></Layout>} />
               <Route path="/transactions" element={<Layout><TransactionScreen /></Layout>} />
+              <Route path="/Cancelled" element={<Layout><CancelledScreen /></Layout>} />
               <Route path="/parkingSpace/" element={<Layout><ParkingSpace /></Layout>} />
               <Route path="/parkingSpace/:code" element={<Layout><ParticularParkingSpace /></Layout>} />
 
@@ -74,6 +77,8 @@ function App() {
               <Route path="/:parkingid/IncomingBooking" element={<GLayout><IncomingBooking /></GLayout>} />
               <Route path="/:parkingid/ParkedBooking" element={<GLayout><ParkedBooking /></GLayout>} />
               <Route path="/:parkingid/CompletedBooking" element={<GLayout><CompletedBooking /></GLayout>} />
+              <Route path="/:parkingid/CancelledBooking" element={<GLayout><CancelledBooking /></GLayout>} />
+
               <Route path="/associateParking/:parkingid" element={<GLayout><AssociateParking /></GLayout>} />
               <Route path="/ereciept" element={<Ereciept />} />
               <Route path="*" element={<NotFound />} />

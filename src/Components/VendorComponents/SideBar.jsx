@@ -7,6 +7,8 @@ import { LuHelpingHand } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
+import { MdCancelScheduleSend } from "react-icons/md";
+import { FaCar } from "react-icons/fa";
 
 import {vendorLogoutAsync} from "../../SliceFolder/VendorSlice/Vendor"
 // import { useDispatch } from 'react-redux';
@@ -55,12 +57,16 @@ const SideBar = () => {
           <MdAccountBalance className={`mr-2 text-white text-gray-600 ${location.pathname === '/accounts' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Accounts
         </Link> */}
+        <Link to="/Cancelled" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/Cancelled' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
+          <MdCancelScheduleSend className={`mr-2 text-white text-gray-600 ${location.pathname === '/Cancelled' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
+          Cancelled Bookings
+        </Link>
         <Link to="/transactions" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/transactions' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
           <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/transactions' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Transactions
         </Link>
         <Link to="/parkingSpace" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-slate-500 rounded-md text-white' : ''}`}>
-          <FiDatabase className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
+          <FaCar className={`mr-2 text-white text-gray-600 ${location.pathname === '/parkingSpace' ? 'bg-slate-500 rounded-md text-white' : ''}`} />
           Parking Space
         </Link>
         <Link to="/help" className={`flex text-white items-center px-4 py-2 my-1  text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === '/help' ? 'bg-slate-500 rounded-md text-white' : ''}`}>

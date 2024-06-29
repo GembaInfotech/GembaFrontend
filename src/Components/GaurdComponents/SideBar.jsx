@@ -9,6 +9,8 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { BsHourglassSplit } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
 import { GuardlogoutAsync } from '../../SliceFolder/GuardSlice/guard';
+import { MdCancelScheduleSend } from "react-icons/md";
+
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -53,6 +55,11 @@ const SideBar = () => {
         <Link to={`/${parkingid}/CompletedBooking`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/${parkingid}/CompletedBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
           <FaCircleCheck className={`mr-2 text-white text-gray-600 ${location.pathname === `/${parkingid}/CompletedBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
           Completed
+        </Link>
+
+        <Link to={`/${parkingid}/CancelledBooking`} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 ${location.pathname === `/${parkingid}/CancelledBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`}>
+          <MdCancelScheduleSend className={`mr-2 text-white text-gray-600 ${location.pathname === `/${parkingid}/CancelledBooking` ? 'bg-blue-500 rounded-md text-white' : ''}`} />
+          Cancelled
         </Link>
 
         <div onClick={handleLogout} className={`flex text-white items-center px-4 py-2 my-1   text-gray-800 font-semibold hover:text-gray-600 `}>

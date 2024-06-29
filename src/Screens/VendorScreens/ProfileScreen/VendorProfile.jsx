@@ -33,6 +33,11 @@ const Profile = () => {
         <div className='flex justify-between shadow-lg  h-[100%]  '>
           
           <div className='flex flex-wrap gap-4 m-4 px-10 '>
+          <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
+              <div>
+                <img src = {vendor?.data?.profileImage}/>
+              </div>
+            </div>
             
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>
