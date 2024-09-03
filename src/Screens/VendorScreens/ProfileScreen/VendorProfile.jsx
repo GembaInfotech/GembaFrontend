@@ -38,6 +38,27 @@ const Profile = () => {
                 <img src = {vendor?.data?.profileImage}/>
               </div>
             </div>
+
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
+              <div>
+                <img src = {vendor?.data?.businessLicenceImage}/>
+              </div>
+            </div>
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
+              <div>
+                <img src = {vendor?.data?.gstImage}/>
+              </div>
+            </div>
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
+              <div>
+                <img src = {vendor?.data?.panImage}/>
+              </div>
+            </div>
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
+              <div>
+                <img src = {vendor?.data?.adhaarImage}/>
+              </div>
+            </div>
             
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>

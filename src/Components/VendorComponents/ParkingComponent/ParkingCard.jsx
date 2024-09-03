@@ -47,7 +47,7 @@ function ParkingCard({ parking }) {
               </div>
             </Link>
 
-            <Link to={`/update/${parking?._id}`}>
+            {/* <Link to={`/update/${parking?._id}`}>
               <div className="text-yellow-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-yellow-100 transition-colors duration-200">
                 Update
               </div>
@@ -55,23 +55,23 @@ function ParkingCard({ parking }) {
 
             <button onClick={() => handleDelete(parking?._id)} className="text-red-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-red-100 transition-colors duration-200">
               Delete
-            </button>
+            </button> */}
 
            
 
             <Link to={`/parkingSpace/${parking?.code}`}>
-              <div className="text-slate-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-slate-200 transition-colors duration-200">
+              <div className="text-yellow-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-slate-200 transition-colors duration-200">
               Space
               </div>
             </Link>
             <Link to={`/guardList/${parking?._id}`}>
               <div className="text-pink-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-pink-100 transition-colors duration-200">
-                Guards
+                Guards List
               </div>
             </Link>
 
             <button onClick={handleAddGuard} className="text-green-600 font-semibold rounded-lg px-3 py-1 shadow-md hover:bg-green-100 transition-colors duration-200">
-              +Guard
+              Add Guard
             </button>
           </>
         )}

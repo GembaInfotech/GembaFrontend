@@ -5,6 +5,13 @@ import { fetchParkingsAsync } from '../../../SliceFolder/ParkingSlice/Parking';
 import { parkings } from '../../../SliceFolder/ParkingSlice/Parking';
 import { upcomingBookingIn15minAsync } from '../../../SliceFolder/BookingSlice/Booking';
 
+// !['name', 'address_line1', 'address_line2', 'city', 'state', 'country', 'pincode', 'landmark', 'latitude', 'longitude', 'gst', 'registeration_no', 'SGSTRate', 'SGST_for_four_wheeler','SGST_for_two_wheeler',
+//   'exceed_SGST_for_four_wheeler', 'exceed_SGST_for_two_wheeler', 'CGSTRate', 'CGST_for_four_wheeler','CGST_for_two_wheeler','exceed_CGST_for_four_wheeler',
+// 'exceed_CGST_for_two_wheeler', 'IGSTRate', 'IGST_for_four_wheeler',
+// 'IGST_for_two_wheeler',
+// 'exceed_IGST_for_four_wheeler',
+// 'exceed_IGST_for_two_wheeler',]
+
 function ParkingSpace() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state?.ParkingSpace?.data);
@@ -36,7 +43,7 @@ function ParkingSpace() {
   };
 
   return (
-    <div className="px-4 pb-8 h-[screen] bg-gradient-to-r from-slate-300 to-slate-400">
+    <div className="px-4 pb-8 bg-slate-200 h-min-screen">
       <div className="text-2xl font-bold mb-4 bg-gray-900 text-center text-gray-100 p-4 rounded-lg shadow-lg">
         Total Space Available: {totalCapacity}
       </div>

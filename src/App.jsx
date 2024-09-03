@@ -3,8 +3,8 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Store from './Store/Store';
-import BookingList from './Components/GaurdComponents/BookingComponent/BookingList';
 import IncomingBookingListIn15min from './Components/GaurdComponents/BookingComponent/IncomingBookingListIn15min';
+import { ToastContainer } from 'react-toastify';
 
 import Login from './Screens/Login/Login';
 import Layout from './Layout/Layout';
@@ -85,6 +85,7 @@ function App() {
             </Routes>
           </Router>
         </QueryClientProvider>
+        <ToastContainer />
       </Provider>
     </>
   );

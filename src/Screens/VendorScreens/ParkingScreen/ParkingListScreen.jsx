@@ -17,7 +17,7 @@ function Parkings() {
   }, [dispatch]);
 
   return (
-    <div className=' bg-slate-200 h-full'>
+    <div className=' bg-slate-200 h-min-screen'>
       {parking.status == "loading" && <div className='flex justify-center items-center min-h-screen'><PulseLoader color="#000" /></div>}
      
       {parking.status == "failed" && <div><h1 className='text-red-500 p-4'>Some error Occured While Loading the Data... Kindly Refresh or Login Again...</h1></div>}
@@ -32,6 +32,8 @@ function Parkings() {
         </div>
 
         <div className='flex flex-wrap gap-4  px-20 py-10'>
+        { parking.data.length == 0 && <div>Currently, there are no available parkings. Please add one to accommodate the need. </div>}
+
         { parking.data && parking.data.map((item) => ( <ParkingCard   key={item?._id} parking={item} />))}
         </div>
       </div>
