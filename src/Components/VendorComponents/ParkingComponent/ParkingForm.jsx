@@ -275,7 +275,7 @@ const ParkingForm = () => {
 
         return (
           <Form>
-            <div className="p-4">
+            <div className="pl-14 pr-2 py-6">
               <h2 className="text-lg font-bold mb-4">Basic Info</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {['name', 'address_line1', 'address_line2', 'city', 'state', 'country', 'pincode', 'landmark', 'latitude', 'longitude', 'gst', 'registeration_no'].map(key => (
@@ -435,7 +435,7 @@ const ParkingForm = () => {
 
               </div>
             </div>
-            <button type="submit" className="bg-gray-800 px-4 py-1 mx-1 rounded-md w-fit text-white font-normal hover:bg-black text-sm">Submit</button>
+            <button type="submit" className="bg-gray-800 px-4 py-1 mx-14 rounded-md w-fit text-white font-normal hover:bg-black text-lg">Submit</button>
           </Form>
         );
       }}

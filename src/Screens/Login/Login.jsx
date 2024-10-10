@@ -28,22 +28,20 @@ const Login = () => {
   }, []);
 
   return (
-    <div className='flex'>
-    <div className=' max-md:w-full h-screen'>
-     
-      <img src={img} alt="Parking App" className="w-full h-screen object-cover drop-shadow-md "></img>
+    <div className='flex flex-col md:flex-row h-screen'>
+      <div className='h-2/5 md:h-full w-full'>
+        <img src={img} alt="Parking App" className="w-full h-full object-cover drop-shadow-md" />
+      </div>
+      <div className='h-1/2 md:h-full w-full bg-white flex flex-col justify-center items-center'>
+        <div>
+          <h1 className='text-2xl text-gray-700 font-bold'>Parkar - Your Space Partner</h1>
+        </div>
+        <div className='flex flex-col items-center justify-start'>
+          <LoginForm />
+        </div>
+      </div>
     </div>
-    <div className='w-1/2 bg-white  flex flex-col justify-evenly items-center max-md:w-full '>
-<div>
-<h1 className='text-2xl text-gray-700 font-bold '>Parkar- your space Partner</h1>
-</div>     
-<div className='flex flex-col items-center justify-start'>
-    <LoginForm/>
-     </div>
 
-      
-    </div>
-  </div>
   );
 };
 

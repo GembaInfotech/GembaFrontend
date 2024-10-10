@@ -22,9 +22,6 @@ const SideBar = () => {
 
   // const dispatch = useDispatch();
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
 
   const handleLogout =  async () => {
      setisLoggingOut(true);
@@ -82,12 +79,6 @@ const SideBar = () => {
       <div className="p-4">
         {/* You can place additional content here */}
       </div>
-      <button
-        onClick={toggleCollapse}
-        className="block xl:hidden bg-gray-200 text-gray-800 py-2 px-4 text-sm font-semibold uppercase"
-      >
-        {isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
-      </button>
     </div>
   );
 }
