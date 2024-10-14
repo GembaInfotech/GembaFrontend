@@ -51,7 +51,7 @@ function CancelledScreen() {
           </div>
         </div>
       }
-      {status == "loading" ? <div className='flex justify-center items-center h-[500px]'>       <PulseLoader color="#000" />
+      {(status == "loading" || status == "idle") ? <div className='flex justify-center items-center h-[500px]'>       <PulseLoader color="#000" />
       </div> : <TransactionTable className='' status={status} booking={bookings} />
       }
 

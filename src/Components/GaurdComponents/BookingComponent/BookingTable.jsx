@@ -10,6 +10,8 @@ function BookingTable({ booking, status }) {
     const [filteredBookings, setFilteredBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
 
+    console.log("booking", booking)
+
     useEffect(() => {
         setFilteredBookings(booking);
     }, [booking]);
@@ -96,11 +98,11 @@ function BookingTable({ booking, status }) {
                     {filteredBookings.map((item, index) => (
                         <tr key={item._id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-300 transition-colors hover:bg-slate-400'}>
                             <td className="border text-center px-1 text-sm py-2">{item.code}</td>
-                            <td className="border text-center px-2 text-sm py-2">{item.vehicle_number}</td>
-                            <td className="border text-center px-2 text-sm py-2">{item.vehicle_name}</td>
-                            <td className="border text-center px-2 text-sm py-2">{item.vehicle_type}</td>
+                            <td className="border text-center px-2 text-sm py-2"> {item.vehicle.number}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.vehicle.name}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.vehicle.type}</td>
 
-                            <td className="border text-center px-2 text-sm py-2">{item.parkingName}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.parking.name}</td>
                             {status !== "Confirmed" || status !== "Cancelled" && <td className="border text-center px-2 text-sm py-2">{item.parkedAt?.spaceName}</td>}
                             {status == "Cancelled" && <td className="border text-center px-2 text-sm py-2">{item.refundId}</td>}
 

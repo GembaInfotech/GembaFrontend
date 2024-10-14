@@ -13,16 +13,39 @@ function ParkingPage({ parking, edit = true }) {
   }
 
   return (
-    <div className='px-4 max-sm:p-1 bg-slate-200 h-screen'>
-      <header className="text-center bg-gray-900 py-3 mb-4">
-        <h1 className="text-2xl font-bold text-gray-100">Parking Details</h1>
+    <div className='px-4 max-sm:p-1 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 h-[100%]'>
+      {/* Header */}
+      <header className="text-center bg-gray-800 py-6 shadow-lg mb-8">
+        <h1 className="text-4xl font-extrabold text-white tracking-wide">
+          Parking Details
+        </h1>
       </header>
-      <div className="text-center mb-4 px-20">
-        <h2 className="text-xl font-bold py-2  inline-block bg-slate-100 rounded-sm w-full ">Parking Code: {parking?.code}</h2>
+      {/* Image Gallery - scrollable without showing scrollbar */}
+      <div className='flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth mb-4 p-2 mx-20'>
+      {parking?.image.map((img, index) => (
+        <img
+          key={index}
+          src={`http://localhost:3456/v1/api/parking/send-parking-image/${img}`}
+          alt={`Parking Image ${index + 1}`}
+          className='rounded-2xl h-32 sm:h-48 transition-transform transform hover:scale-105 shadow-lg flex-shrink-0 snap-start'
+        />
+      ))}
+    </div>
+
+       {/* Parking Code */}
+       <div className="text-center mb-4">
+        <h2 className="text-2xl font-semibold py-4 bg-white shadow-md rounded-lg  mx-20 ">
+          Parking Code: {parking?.code}
+        </h2>
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 lg:px-20'>
-        <div className='bg-slate-100 p-4 rounded-md'>
-          <h3 className='text-xl font-bold text-center mb-4'>Basic Information</h3>
+  
+      {/* Information Sections */}
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-20 mb-4'>
+        {/* Basic Information */}
+        <div className='bg-white p-6 shadow-lg rounded-lg'>
+          <h3 className='text-2xl font-bold text-center mb-6 text-gray-800'>
+            Basic Information
+          </h3>
           <InfoItem label="Parking Name" value={parking?.name} />
           <InfoItem label="Parking Area" value={parking?.address_line1} />
           <InfoItem label="City" value={parking?.city} />
@@ -35,40 +58,44 @@ function ParkingPage({ parking, edit = true }) {
           <InfoItem label="Landmark" value={parking?.landmark} />
           <InfoItem label="Description" value={parking?.description} />
         </div>
-
-        <div className='flex flex-col gap-4'>
-          <div className='bg-slate-100 p-4 rounded-md'>
-            <h3 className='text-xl font-bold text-center mb-4'>Price and Time Information</h3>
+  
+        {/* Price, Time, Status, and Location Information */}
+        <div className='flex flex-col gap-6'>
+          {/* Price and Time Information */}
+          <div className='bg-white p-6 shadow-lg rounded-lg'>
+            <h3 className='text-2xl font-bold text-center mb-6 text-gray-800'>
+              Price and Time Information
+            </h3>
             <InfoItem label="Price" value={parking?.price} />
-            
             <InfoItem label="Two Wheeler Capacity" value={parking?.twoWheelerCapacity} />
             <InfoItem label="Four Wheeler Capacity" value={parking?.fourWheelerCapacity} />
             <InfoItem label="Total Capacity" value={parking?.totalCapacity} />
             <InfoItem label="Exceed Price" value={parking?.exceed_price} />
             <InfoItem label="Minimum Exceed Time" value={parking?.exceed_price_for} />
           </div>
-          <div className='bg-slate-100 p-4 rounded-md'>
-            <h3 className='text-xl font-bold text-center mb-4'>Status</h3>
+  
+          {/* Status Information */}
+          <div className='bg-white p-6 shadow-lg rounded-lg'>
+            <h3 className='text-2xl font-bold text-center mb-6 text-gray-800'>
+              Status
+            </h3>
             <InfoItem label="Status" value={parking?.status} />
           </div>
-          <div className='bg-slate-100 p-4 rounded-md'>
-            <h3 className='text-xl font-bold text-center mb-4'>Location Information</h3>
+  
+          {/* Location Information */}
+          <div className='bg-white p-6 shadow-lg rounded-lg'>
+            <h3 className='text-2xl font-bold text-center mb-6 text-gray-800'>
+              Location Information
+            </h3>
             <InfoItem label="Latitude" value={parking?.location?.coordinates[0]} />
             <InfoItem label="Longitude" value={parking?.location?.coordinates[1]} />
           </div>
         </div>
       </div>
-      <div className=' flex overflow-x-auto w-full  scrollbar-hide'>
-          <img src={parking.image[0]} alt="" className='m-2 rounded-2xl h-32 sm:h-48 ' />
-          <img src={parking.image[1]} alt="" className='m-2 rounded-2xl h-32 sm:h-48' />
-          <img src={parking.image[2]} alt="" className='m-2 rounded-2xl h-32 sm:h-48' />
-          <img src={parking.image[3]} alt="" className='m-2 rounded-2xl h-32 sm:h-48' />
-
-        </div>
-     
     </div>
   );
-}
+  
+  }
 
 function InfoItem({ label, value }) {
   return (

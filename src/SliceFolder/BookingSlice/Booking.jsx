@@ -3,9 +3,9 @@ import { fetchBookings,upcomingBookingIn15min, updateBooking as updateBookingAPI
 
 export const fetchBookingsAsync = createAsyncThunk(
   'bookings/fetch',
-  async ({parkingid, status}) => {
+  async ({parkingid, status, page, limit}) => {
 
-    const response = await fetchBookings({parkingid, status});
+    const response = await fetchBookings({parkingid, status, page, limit});
     console.log(response);
     return response;
   }

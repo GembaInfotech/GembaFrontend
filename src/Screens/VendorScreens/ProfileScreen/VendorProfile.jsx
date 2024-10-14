@@ -9,7 +9,7 @@ const Profile = () => {
   const token = JSON.parse(localStorage.getItem('token'));
   const dispatch = useDispatch();
   const vendor = useSelector((state) => state.Vendor);
-  console.log(vendor);
+  console.log(vendor?.data);
 
   useEffect(() => {
 
@@ -35,13 +35,14 @@ const Profile = () => {
           <div className='flex flex-wrap gap-4 m-4 px-10 '>
           <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>
-                <img src = {vendor?.data?.profileImage}/>
+              <img src={`http://localhost:3456/v1/api/vendor/send-profile/${vendor?.data?.profileImage}`} alt="Vendor Profile" />
               </div>
             </div>
 
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>
-                <img src = {vendor?.data?.businessLicenceImage}/>
+                <img src={`http://localhost:3456/v1/api/vendor/send-docs/aadhar/${vendor?.data?.adhaarImage}`}/>
+
               </div>
             </div>
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">

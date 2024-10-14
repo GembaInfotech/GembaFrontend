@@ -14,110 +14,81 @@ function TransactionTable({ booking, status, parking }) {
     const [carNumber, setCarNumber] = useState('');
 
     useEffect(() => {
-        setFilteredBooking(booking);
+        setFilteredBooking(booking?.bookings);
         console.log(booking);
         setFilter('all');
     }, [booking]);
 
-    useEffect(() => {
-        applyFilter();
-    }, [filter, startDate, endDate, specificDate, selectedMonth, carNumber]);
+    // useEffect(() => {
+    //     applyFilter();
+    // }, [filter, startDate, endDate, specificDate, selectedMonth, carNumber]);
 
-    const calincome = (bookingData) => {
-        let amt = 0;
-        bookingData.forEach((booking) => {
-            amt += booking.bookingPrice;
-        });
-        setIncome(amt);
-    };
 
-    const calcgst = (bookingData) => {
-        let cgst = 0;
-        bookingData.forEach((booking) => {
-            cgst += (booking.cgst + booking.exceedCGST);
-        });
-        setCGST(Math.round(cgst));
-    };
+    // const applyFilter = () => {
+    //     let filtered = booking;
+    //     const now = new Date();
+    //     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    //     const startOfYesterday = new Date(startOfToday);
+    //     startOfYesterday.setDate(startOfYesterday.getDate() - 1);
+    //     const startOfWeek = new Date(startOfToday);
+    //     startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+    //     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
-    const calsgst = (bookingData) => {
-        let sgst = 0;
-        bookingData.forEach((booking) => {
-            sgst += (booking.cgst + booking.exceedCGST);
-        });
-        setSGST(Math.round(sgst));
-    };
+    //     if (filter === 'today') {
+    //         filtered = booking.filter(item => new Date(item.inTime) >= startOfToday);
+    //     } else if (filter === 'yesterday') {
+    //         filtered = booking.filter(item => new Date(item.inTime) >= startOfYesterday && new Date(item.inTime) < startOfToday);
+    //     } else if (filter === 'thisWeek') {
+    //         filtered = booking.filter(item => new Date(item.inTime) >= startOfWeek);
+    //     } else if (filter === 'thisMonth') {
+    //         filtered = booking.filter(item => new Date(item.inTime) >= startOfMonth);
+    //     } else if (filter === 'specificDate') {
+    //         if (specificDate) {
+    //             const specificDateObj = new Date(specificDate);
+    //             filtered = booking.filter(item => {
+    //                 const bookingDate = new Date(item.inTime).toISOString().split('T')[0];
+    //                 return bookingDate === specificDateObj.toISOString().split('T')[0];
+    //             });
+    //         }
+    //     } else if (filter === 'selectedMonth') {
+    //         if (selectedMonth) {
+    //             const [year, month] = selectedMonth.split('-');
+    //             filtered = booking.filter(item => {
+    //                 const bookingDate = new Date(item.inTime);
+    //                 return bookingDate.getFullYear() === parseInt(year) && bookingDate.getMonth() === parseInt(month) - 1;
+    //             });
+    //         }
+    //     } else if (filter === 'custom') {
+    //         if (startDate && endDate) {
+    //             filtered = booking.filter(item => {
+    //                 const bookingDate = new Date(item.inTime).toISOString().split('T')[0];
+    //                 return bookingDate >= startDate && bookingDate <= endDate;
+    //             });
+    //         }
+    //     }
 
-    useEffect(() => {
-        calincome(filteredBooking);
-        calcgst(filteredBooking);
-        calsgst(filteredBooking);
-    }, [filteredBooking]);
+    //     if (carNumber) {
+    //         filtered = filtered.filter(item => item.vehicle_number.includes(carNumber));
+    //     }
 
-    const applyFilter = () => {
-        let filtered = booking;
-        const now = new Date();
-        const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const startOfYesterday = new Date(startOfToday);
-        startOfYesterday.setDate(startOfYesterday.getDate() - 1);
-        const startOfWeek = new Date(startOfToday);
-        startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    //     setFilteredBooking(filtered);
+    // };
 
-        if (filter === 'today') {
-            filtered = booking.filter(item => new Date(item.inTime) >= startOfToday);
-        } else if (filter === 'yesterday') {
-            filtered = booking.filter(item => new Date(item.inTime) >= startOfYesterday && new Date(item.inTime) < startOfToday);
-        } else if (filter === 'thisWeek') {
-            filtered = booking.filter(item => new Date(item.inTime) >= startOfWeek);
-        } else if (filter === 'thisMonth') {
-            filtered = booking.filter(item => new Date(item.inTime) >= startOfMonth);
-        } else if (filter === 'specificDate') {
-            if (specificDate) {
-                const specificDateObj = new Date(specificDate);
-                filtered = booking.filter(item => {
-                    const bookingDate = new Date(item.inTime).toISOString().split('T')[0];
-                    return bookingDate === specificDateObj.toISOString().split('T')[0];
-                });
-            }
-        } else if (filter === 'selectedMonth') {
-            if (selectedMonth) {
-                const [year, month] = selectedMonth.split('-');
-                filtered = booking.filter(item => {
-                    const bookingDate = new Date(item.inTime);
-                    return bookingDate.getFullYear() === parseInt(year) && bookingDate.getMonth() === parseInt(month) - 1;
-                });
-            }
-        } else if (filter === 'custom') {
-            if (startDate && endDate) {
-                filtered = booking.filter(item => {
-                    const bookingDate = new Date(item.inTime).toISOString().split('T')[0];
-                    return bookingDate >= startDate && bookingDate <= endDate;
-                });
-            }
-        }
-
-        if (carNumber) {
-            filtered = filtered.filter(item => item.vehicle_number.includes(carNumber));
-        }
-
-        setFilteredBooking(filtered);
-    };
-
-    const handleFilterToggle = (newFilter) => {
-        setFilter(filter === newFilter ? 'all' : newFilter);
-    };
+    // const handleFilterToggle = (newFilter) => {
+    //     setFilter(filter === newFilter ? 'all' : newFilter);
+    // };
 
     return (
         <div className="container mx-auto max-h-48 px-4 bg-slate-100 ">
 
             <div className='px-2 '>
-                <h1 className='font-semibold '>Total Income: {income}</h1>
-                <h1 className=' font-semibold'>SGST: {sgst}</h1>
-                <h1 className=' font-semibold'>CGST: {cgst}</h1>
-                <h1 className=' font-semibold'>Total GST: {(sgst + cgst)}</h1>
-                <h1 className=' font-semibold'>Net Income (Total Income - Total GST): {Math.round(income - (cgst + sgst))}</h1>
+                <h1 className='font-semibold '>Total Income: {booking?.totalIncome}</h1>
+                <h1 className=' font-semibold'>SGST: {booking?.totalSGST}</h1>
+                <h1 className=' font-semibold'>CGST: {booking?.totalCGST}</h1>
+                <h1 className=' font-semibold'>Total GST: {booking?.totalGST}</h1>
+                <h1 className=' font-semibold'>Net Income (Total Income - (Total GST+ Total Plateform fee)): {booking?.totalNetIncome}</h1>
             </div>
-            <div className='flex gap-4 m-4 '>
+            {/* <div className='flex gap-4 m-4 '>
                 <h1 className='font-bold text-2xl mb-2'>Filter by</h1>
 
                 <div className="">
@@ -159,7 +130,7 @@ function TransactionTable({ booking, status, parking }) {
                         </div>
                     )}
                 </div>
-            </div>
+            </div> */}
             <div className='max-w-[80vw] overflow-x-auto  '>
                 <table className="table-auto ">
                     <thead className="bg-gray-800">
@@ -173,7 +144,7 @@ function TransactionTable({ booking, status, parking }) {
                             <th className="px-2 text-white py-2 min-w-32 text-center ">Transaction Time</th>
 
 
-                            <th className="px-2 text-white py-2 min-w-32 text-center ">Car Number</th>
+                            <th className="px-2 text-white py-2 min-w-32 text-center ">Vehicle Number</th>
                             <th className="px-2 text-white py-2 min-w-32 text-center  ">Parking Name</th>
                             <th className="px-2 text-white py-2 min-w-32 text-center ">Date</th>
                             <th className="px-2 text-white py-2 min-w-32 text-center ">In Time</th>
@@ -196,7 +167,7 @@ function TransactionTable({ booking, status, parking }) {
                             <tr key={item._id} className={index % 2 === 0 ? 'bg-slate-200' : 'bg-slate-100 transition-colors hover:bg-slate-300'}>
                                 <td className="border px-2 text-sm font-semibold py-2 text-center">{item.code}</td>
 
-                                <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parkingCode}</td>
+                                <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parking?.code}</td>
 
                                 <td className="border px-2 text-sm font-semibold py-2 text-center">{item.user}</td>
 
@@ -206,8 +177,8 @@ function TransactionTable({ booking, status, parking }) {
                                 <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.createdAt).toLocaleTimeString()}</td>
 
 
-                                <td className="border px-2 text-sm font-semibold py-2 text-center">{item.vehicle_number}</td>
-                                <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parkingName}</td>
+                                <td className="border px-2 text-sm font-semibold py-2 text-center">{item.vehicle?.number}</td>
+                                <td className="border px-2 text-sm font-semibold py-2 text-center">{item.parking?.name}</td>
                                 <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.inTime).toLocaleDateString()}</td>
                                 <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.inTime).toLocaleTimeString()}</td>
                                 <td className="border px-2 text-sm font-semibold py-2 text-center">{new Date(item.outTime).toLocaleTimeString()}</td>
