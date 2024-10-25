@@ -11,7 +11,7 @@ function ParkingPageForGuard({ parking, edit = true }) {
   };
 
   return (
-    <div className='px-4 max-sm:p-1'>
+    <div className='px-4 max-sm:p-1 bg-slate-100'>
       <h1 className="font-bold text-2xl text-white mb-4 text-center bg-gray-800 rounded p-2">Parking Details</h1>
       {edit && (
         <div className='flex justify-center mb-4 space-x-4'>

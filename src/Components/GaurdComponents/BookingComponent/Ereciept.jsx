@@ -10,7 +10,7 @@ const Ereciept = () => {
   const location = useLocation();
   const compRef = useRef();
   const details = queryString.parse(location.search);
-  console.log(details);
+  console.log("details", details);
 
   return (
     <>

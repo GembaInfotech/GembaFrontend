@@ -10,7 +10,7 @@ function IncomingBookingListIn15min() {
     const dispacth = useDispatch();
     const parkingid = useParams()
     
-    const upcommingBookings = useSelector((state) => state?.booking?.upcoming)
+    const upcommingBookings = useSelector((state) => state?.booking.upcoming)
     console.log(upcommingBookings);
 
     useEffect(()=>{
@@ -57,6 +57,7 @@ function IncomingBookingListIn15min() {
                         <th className="px-1 text-white py-2 text-sm">Serial No.</th>
                         <th className="px-2 text-white py-2 text-sm">Vehicle Number</th>
                         <th className="px-2 text-white py-2 text-sm">Vehicle Model</th>
+                        <th className="px-2 text-white py-2 text-sm">Vehicle Type</th>
                         <th className="px-2 text-white py-2 text-sm">Parking Name</th>
                     </tr>
                 </thead>
@@ -64,8 +65,10 @@ function IncomingBookingListIn15min() {
                     {upcommingBookings?.map((item, index) => (
                         <tr key={item.id} onClick={() => openPopup(item)} style={{ cursor: 'pointer' }} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-300 transition-colors hover:bg-slate-400'}>
                             <td className="border text-center px-1 text-sm py-2">{index + 1}</td>
-                            <td className="border text-center px-2 text-sm py-2">{item.vehicle_number}</td>
-                            <td className="border text-center px-2 text-sm py-2">{item.vehicle_name}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.vehicleNumber}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.vehicleName}</td>
+                            <td className="border text-center px-2 text-sm py-2">{item.vehicleType}</td>
+
                             <td className="border text-center px-2 text-sm py-2">{item.parkingName}</td>
                         </tr>
                     ))}
@@ -76,8 +79,8 @@ function IncomingBookingListIn15min() {
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white p-4 rounded">
                         <h2 className="text-xl mb-4">Booking Details</h2>
-                        <p>Vehicle Number: {selectedBooking.vehicle_number}</p>
-                        <p>Vehicle Model: {selectedBooking.vehicle_name}</p>
+                        <p>Vehicle Number: {selectedBooking.vehicleNumber}</p>
+                        <p>Vehicle Model: {selectedBooking.vehicleName}</p>
                         <p>Parking Name: {selectedBooking.parkingName}</p>
                         <button onClick={closePopup} className="mt-4 bg-blue-500 text-white p-2 rounded">Close</button>
                     </div>

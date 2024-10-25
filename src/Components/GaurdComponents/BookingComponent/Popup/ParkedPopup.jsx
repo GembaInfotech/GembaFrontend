@@ -29,9 +29,9 @@ function ParkedPopup({ selectedBooking }) {
     <div className="flex gap-4 ml-6 mb-2">
       <div className="flex-1">
         <h2 className="text-lg font-bold mb-4 text-gray-800">Booking Details</h2>
-        <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle_number}</p>
-        <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle_name}</p>
-        <p className="text-gray-700">Vehicle Type: {selectedBooking?.vehicle_type}</p>
+        <p className="text-gray-700">Vehicle Number: {selectedBooking?.vehicle.number}</p>
+        <p className="text-gray-700">Vehicle Model: {selectedBooking?.vehicle.name}</p>
+        <p className="text-gray-700">Vehicle Type: {selectedBooking?.vehicle.type}</p>
         <p className="text-gray-700">Parked At: {selectedBooking?.parkedAt?.spaceName}</p>
         <p className="text-gray-700">Status: {selectedBooking.status}</p>
       </div>

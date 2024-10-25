@@ -10,6 +10,9 @@ const BookingList = ({ parkingid, status }) => {
   const [limit, setLimit] = useState(10); // Number of records per page
   const dispatch = useDispatch();
   const bookings = useSelector(state => state?.booking?.data);
+
+  console.log("bookings", bookings);
+  
   
   useEffect(() => {
     const loadBookings = async () => {

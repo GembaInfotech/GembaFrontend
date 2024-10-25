@@ -10,7 +10,7 @@ function BookingTable({ booking, status }) {
     const [filteredBookings, setFilteredBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
 
-    console.log("booking", booking)
+    console.log("booking", status)
 
     useEffect(() => {
         setFilteredBookings(booking);
@@ -78,7 +78,7 @@ function BookingTable({ booking, status }) {
                         <th className="px-2 text-white text-sm py-2">Vehicle Type</th>
 
                         <th className="px-2 text-white text-sm py-2">Parking Name</th>
-                        {status !== "Confirmed" || status !== "Cancelled" && <th className="px-2 text-white text-sm py-2">Parking Space</th>}
+                        {(status == "Parked" || status == "Completed") && <th className="px-2 text-white text-sm py-2">Parking Space</th>}
                         {status == "Cancelled" && <th className="px-2 text-white text-sm py-2">Refund ID</th>}
 
                         <th className="px-2 text-white text-sm py-2">Time In</th>
@@ -103,7 +103,7 @@ function BookingTable({ booking, status }) {
                             <td className="border text-center px-2 text-sm py-2">{item.vehicle.type}</td>
 
                             <td className="border text-center px-2 text-sm py-2">{item.parking.name}</td>
-                            {status !== "Confirmed" || status !== "Cancelled" && <td className="border text-center px-2 text-sm py-2">{item.parkedAt?.spaceName}</td>}
+                            {(status == "Parked" || status == "Completed") && <td className="border text-center px-2 text-sm py-2">{item.parkedAt?.spaceName}</td>}
                             {status == "Cancelled" && <td className="border text-center px-2 text-sm py-2">{item.refundId}</td>}
 
                             <td className="border text-center px-2 text-sm py-2">{new Date(item.inTime).toLocaleTimeString()}</td>
