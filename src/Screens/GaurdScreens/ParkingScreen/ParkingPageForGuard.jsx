@@ -29,7 +29,7 @@ function ParkingPageForGuard({ parking, edit = true }) {
       {parking[0]?.image.map((img, index) => (
         <img
           key={index}
-          src={`http://localhost:3456/v1/api/parking/send-parking-image/${img}`}
+          src={`http://know2parking.com:3456/v1/api/parking/send-parking-image/${img}`}
           alt={`Parking Image ${index + 1}`}
           className='rounded-2xl h-32 sm:h-48 transition-transform transform hover:scale-105 shadow-lg flex-shrink-0 snap-start'
         />

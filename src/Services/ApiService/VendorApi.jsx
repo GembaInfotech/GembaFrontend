@@ -1,7 +1,4 @@
 import axios from 'axios';
-
-// localhost:4005/vendor/get-vendor
-
 const instance = axios.create({
   baseURL: '/v1/api/vendor',
 });

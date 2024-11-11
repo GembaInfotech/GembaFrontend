@@ -58,7 +58,7 @@ const Profile = () => {
       <div className='flex p-20 shadow-lg bg-gray-100'>
         <div className="relative mr-20 mb-4 md:mb-0">
           <img
-            src={`http://localhost:3456/v1/api/guard/send-image/${guard.data.profileImage}`}
+            src={`http://know2parking.com:3456/v1/api/guard/send-image/${guard.data.profileImage}`}
             alt="Profile"
             className="rounded-full h-64 w-64 object-cover shadow-lg"
           />

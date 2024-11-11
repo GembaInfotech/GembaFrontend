@@ -17,6 +17,10 @@ const Profile = () => {
     if (vendor.status == "idle") dispatch(vendorDataAsync());
 
   }, [dispatch]);
+  const getPdfUrl = (type, docName) => {
+    console.log("docName", docName);
+    return `http://know2parking.com:3456/v1/api/vendor/getPdf/${type}/${docName}`;
+  };
 
   return (
     <div className='bg-slate-200'>
@@ -31,36 +35,74 @@ const Profile = () => {
 
 
         <div className='flex justify-between shadow-lg  h-[100%]  '>
-          
+
           <div className='flex flex-wrap gap-4 m-4 px-10 '>
-          <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>
-              <img src={`http://localhost:3456/v1/api/vendor/send-profile/${vendor?.data?.profileImage}`} alt="Vendor Profile" />
+                <img src={`http://know2parking.com:3456/v1/api/vendor/send-profile/${vendor?.data?.profileImage}`} alt="Vendor Profile" />
               </div>
             </div>
 
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
-              <div>
-                <img src={`http://localhost:3456/v1/api/vendor/send-docs/aadhar/${vendor?.data?.adhaarImage}`}/>
+              <div>Aadhaar</div>
+              {vendor?.data?.adhaarImage && (
+                <object
+                  data={getPdfUrl('aadhaar', vendor?.data?.adhaarImage[0])}
+                  type="application/pdf"
+                  width="100%"
+                  height="100%"
+                  className="rounded-lg"
+                >
+                  <p>Your browser does not support PDFs. <a href={getPdfUrl('aadhaar', vendor?.data?.adhaarImage[0])}>Download the PDF</a>.</p>
+                </object>
+              )}
+            </div>
 
-              </div>
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg flex flex-col justify-center items-center border border-gray-100">
+              <div>PAN</div>
+              {vendor?.data?.panImage && (
+                <object
+                  data={getPdfUrl('pan', vendor?.data?.panImage[0])}
+                  type="application/pdf"
+                  width="100%"
+                  height="100%"
+                  className="rounded-lg"
+                >
+                  <p>Your browser does not support PDFs. <a href={getPdfUrl('pan', vendor?.data?.panImage[0])}>Download the PDF</a>.</p>
+                </object>
+              )}
             </div>
-            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
-              <div>
-                <img src = {vendor?.data?.gstImage}/>
-              </div>
+            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg flex flex-col justify-center items-center border border-gray-100">
+              <div>GST</div>
+              {vendor?.data?.gstImage && (
+                <object
+                  data={getPdfUrl('gst', vendor?.data?.gstImage[0])}
+                  type="application/pdf"
+                  width="100%"
+                  height="100%"
+                  className="rounded-lg"
+                >
+                  <p>Your browser does not support PDFs.</p>
+                </object>
+              )}
             </div>
-            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
-              <div>
-                <img src = {vendor?.data?.panImage}/>
-              </div>
+
+
+            <div className="bg-white bg-transparent text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg flex flex-col justify-center items-center border border-gray-100">
+              <div>Business License</div>
+              {vendor?.data?.businessLicenceImage && (
+                <object
+                  data={getPdfUrl('license', vendor?.data?.businessLicenceImage[0])}
+                  type="application/pdf"
+                  width="100%"
+                  height="100%"
+                  className="rounded-lg "
+                >
+                  <p>Your browser does not support PDFs. <a href={getPdfUrl('license', vendor?.data?.businessLicenceImage[0])}>Download the PDF</a>.</p>
+                </object>
+              )}
             </div>
-            <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
-              <div>
-                <img src = {vendor?.data?.adhaarImage}/>
-              </div>
-            </div>
-            
+
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>
                 <p className='py-2 text-lg font-bold'>Basic Information :</p>
