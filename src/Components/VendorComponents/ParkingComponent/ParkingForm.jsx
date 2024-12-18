@@ -6,8 +6,19 @@ import { vendorDataAsync } from '../../../SliceFolder/VendorSlice/Vendor';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 const initialValues = {
+  timings: {
+    Monday: { open: "", close: "" },
+    Tuesday: { open: "", close: "" },
+    Wednesday: { open: "", close: "" },
+    Thursday: { open: "", close: "" },
+    Friday: { open: "", close: "" },
+    Saturday: { open: "", close: "" },
+    Sunday: { open: "", close: "" },
+  },
+
   name: '',
   address_line1: '',
   address_line2: '',
@@ -60,16 +71,52 @@ const initialValues = {
   exceed_priceF_with_GST: ''
 };
 
+const facilitiesOptions = [
+  { value: 'CCTV', label: 'CCTV' },
+  { value: 'Charging Station', label: 'Charging Station' },
+  { value: 'Waiting Areas', label: 'Waiting Areas' },
+  { value: 'Floor Marking', label: 'Floor Marking' },
+];
+
+ 
+const TimeInput = ({ day, setFieldValue }) => (
+  <div className="flex items-center gap-4 mb-4">
+    <label className="w-24 font-bold">{day}</label>
+    <Field
+      name={`timings.${day}.open`}
+      type="time"
+      placeholder="Opening Time"
+      className="w-1/3 px-2 py-1 border border-gray-400 rounded"
+    />
+    <Field
+      name={`timings.${day}.close`}
+      type="time"
+      placeholder="Closing Time"
+      className="w-1/3 px-2 py-1 border border-gray-400 rounded"
+    />
+    <ErrorMessage
+      name={`timings.${day}.open`}
+      component="div"
+      className="text-xs text-red-500"
+    />
+    <ErrorMessage
+      name={`timings.${day}.close`}
+      component="div"
+      className="text-xs text-red-500"
+    />
+  </div>
+);
+
+
 const statesOfIndia = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
   "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
   "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
   "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana",
   "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
-  "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", 
+  "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
   "Lakshadweep", "Delhi", "Puducherry", "Ladakh", "Jammu and Kashmir"
 ];
-
 
 const stateGstCodes = {
   "Andhra Pradesh": "37",
@@ -110,7 +157,6 @@ const stateGstCodes = {
   "Jammu and Kashmir": "01"
 };
 
-
 const fieldLabels = {
   name: 'Parking Name',
   address_line1: 'Address Line 1',
@@ -125,11 +171,11 @@ const fieldLabels = {
   gst: 'GST',
   registeration_no: 'Registration No.',
   price_for: 'Price For (hours)',
-  priceF: 'Price For FourWheeler (Including GST)',
-  priceT: 'Price For TwoWheeler (Including GST)',
+  priceF: 'Price For FourWheeler (excluding GST)',
+  priceT: 'Price For TwoWheeler (excluding GST)',
   exceed_price_for: 'Exceed Price For (minutes)',
-  exceed_priceF: 'Exceed Price For FourWheeler (Including GST)',
-  exceed_priceT: 'Exceed Price For TwoWheeler (Including GST)',
+  exceed_priceF: 'Exceed Price For FourWheeler (excluding GST)',
+  exceed_priceT: 'Exceed Price For TwoWheeler (excluding GST)',
   sub: 'Subscription',
   subc: 'Subscription Code',
   subamt: 'Subscription Amount',
@@ -156,33 +202,37 @@ const fieldLabels = {
   IGST_for_four_wheeler: 'IGST for four wheeler',
   IGST_for_two_wheeler: 'IGST for two wheeler',
   exceed_IGST_for_four_wheeler: 'Exceed IGST for four wheeler',
-  exceed_IGST_for_two_wheeler: 'Exceed IGST for two wheeler'
-};
+  exceed_IGST_for_two_wheeler: 'Exceed IGST for two wheeler',
 
+  Total_price_four_wheeler_includingtax: 'Price: FourWheeler (with GST)',
+  Total_price_two_wheeler_includingtax: 'Price: TwoWheeler (with GST)',
+  Total_exceed_price_four_wheeler_includingtax: ' Exceed Price: 4Wheeler (with GST)',
+  Total_exceed_price_two_wheeler_includingtax: ' Exceed Price: 2Wheeler (with GST)',
+
+};
 
 const defaultRate = '18%';
 
 const CustomInput = ({ name, label, type = "text" }) => (
   <div className="mb-2">
-    <label htmlFor={name} className="block text-gray-700 text-sm font-bold mb-1">{label}</label>
+    <label htmlFor={name} className="block mb-1 text-sm font-bold text-gray-700">{label}</label>
     <Field
       type={type}
       id={name}
       name={name}
-      className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+      className="w-full px-2 py-1 leading-tight text-gray-700 border border-gray-400 rounded appearance-none focus:outline-none focus:border-blue-500"
     />
-    <ErrorMessage name={name} component="div" className="text-red-500 text-xs mt-1" />
+    <ErrorMessage name={name} component="div" className="mt-1 text-xs text-red-500" />
   </div>
 );
-
 const SelectInput = ({ name, label, options, onChange, value }) => (
   <div className="mb-2">
-    <label htmlFor={name} className="block text-gray-700 text-sm font-bold mb-1">{label}</label>
+    <label htmlFor={name} className="block mb-1 text-sm font-bold text-gray-700">{label}</label>
     <Field
       as="select"
       id={name}
       name={name}
-      className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+      className="w-full px-2 py-1 leading-tight text-gray-700 border border-gray-400 rounded appearance-none focus:outline-none focus:border-blue-500"
       onChange={onChange}
       value={value}
     >
@@ -191,7 +241,7 @@ const SelectInput = ({ name, label, options, onChange, value }) => (
         <option key={option} value={option}>{option}</option>
       ))}
     </Field>
-    <ErrorMessage name={name} component="div" className="text-red-500 text-xs mt-1" />
+    <ErrorMessage name={name} component="div" className="mt-1 text-xs text-red-500" />
   </div>
 );
 
@@ -199,11 +249,11 @@ const GstRow = ({ labels, fieldNames, values, setFieldValue }) => (
   <div className="flex mb-4">
     {labels.map((label, index) => (
       <div key={index} className="flex-1 pr-2">
-        <label className="block text-gray-700 text-sm font-bold mb-1">{label}</label>
+        <label className="block mb-1 text-sm font-bold text-gray-700">{label}</label>
         <Field
           name={fieldNames[index]}
           type="text"
-          className="appearance-none border border-gray-400 rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          className="w-full px-2 py-1 leading-tight text-gray-700 border border-gray-400 rounded appearance-none focus:outline-none focus:border-blue-500"
           value={values[fieldNames[index]]}
           onChange={(e) => setFieldValue(fieldNames[index], e.target.value)}
         />
@@ -211,7 +261,24 @@ const GstRow = ({ labels, fieldNames, values, setFieldValue }) => (
     ))}
   </div>
 );
+const TotalPrice = ({ labels, fieldNames, values, setFieldValue }) => (
+  <div className="flex mb-4 mt-9 font-bold text-lg">
+    <h1 className='mt-5'>TOTAL</h1>
+    {labels.map((label, index) => (
+      <div key={index} className="pr-1 ml-3">
+        <label className="block mb-1 text-sm font-bold text-gray-700">{label}</label>
 
+        <Field
+          name={fieldNames[index]}
+          type="text"
+          className="w-[14.4rem] px-2 py-1 leading-tight text-gray-700 border border-gray-400 rounded appearance-none focus:outline-none focus:border-blue-500"
+          value={values[fieldNames[index]]}
+          onChange={(e) => setFieldValue(fieldNames[index], e.target.value)}
+        />
+      </div>
+    ))}
+  </div>
+);
 
 const ParkingForm = () => {
   const navigate = useNavigate()
@@ -233,35 +300,30 @@ const ParkingForm = () => {
       coordinates: [lat, lng]
     };
     values.location = location;
-    values.price_for = parseInt(price_for); // Convert to number
-    values.exceed_price_for = parseInt(exceed_price_for); // Convert to number
-    console.log(values);
+    values.price_for = parseInt(price_for);
+    values.exceed_price_for = parseInt(exceed_price_for);
+    console.log("parking values", values);
 
     try {
       await dispatch(addParkingAsync({ values }));
-      // Show success notification
       toast.success('Your parking created successfully!');
-
-      // Redirect to another page after a short delay
       setTimeout(() => {
-        navigate('/parkings'); // Replace with your target route
-      }, 5000); // 5 seconds delay before redirect
+        navigate('/parkings');
+      }, 5000);
     } catch (error) {
-      // Handle the error and show an error notification if needed
       toast.error('Failed to create parking. Please try again.');
     }
   };
-
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, setFieldValue }) => {
-        // Calculate GST amounts
         const calculateGST = (price) => ({
           SGST: (price * 0.09).toFixed(2),
           CGST: (price * 0.09).toFixed(2),
-          IGST: (price * 0.18).toFixed(2)
-        });
+          IGST: (price * 0.18).toFixed(2),
+          TOTAL: (price + (price * 0.18)).toFixed(2),
 
+        });
         const priceF = parseFloat(values.priceF || 0);
         const priceT = parseFloat(values.priceT || 0);
         const exceedPriceF = parseFloat(values.exceed_priceF || 0);
@@ -272,12 +334,11 @@ const ParkingForm = () => {
 
         const exceedGstForFourWheeler = calculateGST(exceedPriceF);
         const exceedGstForTwoWheeler = calculateGST(exceedPriceT);
-
         return (
           <Form>
-            <div className="pl-14 pr-2 py-6">
-              <h2 className="text-lg font-bold mb-4">Basic Info</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="p-4">
+              <h2 className="mb-4 text-lg font-bold">Basic Info</h2>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {['name', 'address_line1', 'address_line2', 'city', 'state', 'country', 'pincode', 'landmark', 'latitude', 'longitude', 'gst', 'registeration_no'].map(key => (
                   key === 'state' ? (
                     <SelectInput
@@ -288,7 +349,7 @@ const ParkingForm = () => {
                       value={values[key]}
                       onChange={(e) => {
                         const selectedState = e.target.value;
-                        const vendorPAN = vendor.data.panNo || ''; // Ensure this is fetched correctly
+                        const vendorPAN = vendor.data.panNo || '';
                         const gstValue = `${stateGstCodes[selectedState]}${vendorPAN}`;
                         setFieldValue(key, selectedState);
                         setFieldValue('gst', gstValue);
@@ -300,8 +361,8 @@ const ParkingForm = () => {
                 ))}
               </div>
 
-              <h2 className="text-lg font-bold mt-8 mb-4">Commercial Info</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <h2 className="mt-8 mb-4 text-lg font-bold">Commercial Info</h2>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {['price_for', 'priceF', 'priceT', 'exceed_price_for', 'exceed_priceF', 'exceed_priceT', 'sub', 'subc', 'subamt', 'twoWheelerCapacity', 'fourWheelerCapacity', 'totalCapacity', 'description', 'validity_FromDate', 'validity_ToDate'].map(key => (
                   key === "price_for" ? (
                     <SelectInput
@@ -335,9 +396,32 @@ const ParkingForm = () => {
                 ))}
               </div>
 
+              <div className="mb-4">
+            <label className="block mb-2 text-sm font-bold text-gray-700">Facilities</label>
+            <Select
+              isMulti
+              name="facilities"
+              options={facilitiesOptions}
+              className="basic-multi-select"
+              classNamePrefix="select"
+              value={values.facilities}
+              onChange={(selectedOptions) => setFieldValue('facilities', selectedOptions)}
+            />
+          </div>
 
-              <h2 className="text-lg font-bold mt-8 mb-4">GST Information</h2>
-              <div className='font-bold mt-8 mb-4'>GST Rate</div>
+          <div className="mb-4">
+  <h2 className="mb-4 text-lg font-bold">Set Timings</h2>
+  {Object.keys(initialValues.timings).map((day) => (
+    <TimeInput
+      key={day}
+      day={day}
+      setFieldValue={setFieldValue}
+    />
+  ))}
+</div>
+
+              <h2 className="mt-8 mb-4 text-lg font-bold">GST Information</h2>
+              <div className='mt-8 mb-4 font-bold'>GST Rate</div>
               <div className="flex flex-wrap mb-4">
                 {['0.25%', '3%', '5%', '12%', '18%', '28%'].map((rate) => (
                   <label key={rate}
@@ -406,8 +490,6 @@ const ParkingForm = () => {
                   }}
                   setFieldValue={setFieldValue}
                 />
-
-                {/* IGST Row */}
                 <GstRow
                   labels={[
                     fieldLabels.IGSTRate,
@@ -432,10 +514,35 @@ const ParkingForm = () => {
                   }}
                   setFieldValue={setFieldValue}
                 />
+                <TotalPrice
+                  labels={[
+                    fieldLabels.Total_price_four_wheeler_includingtax,
+                    fieldLabels.Total_price_two_wheeler_includingtax,
+                    fieldLabels.Total_exceed_price_four_wheeler_includingtax,
+                    fieldLabels.Total_exceed_price_two_wheeler_includingtax
+                  ]}
+                  fieldNames={[
+                    'Total_price_four_wheeler_includingtax',
+                    'Total_price_two_wheeler_includingtax',
+                    'Total_exceed_price_four_wheeler_includingtax',
+                    'Total_exceed_price_two_wheeler_includingtax'
+                  ]}
+                  values={{
 
+                    Total_price_four_wheeler_includingtax: gstForFourWheeler.TOTAL,
+                    Total_price_two_wheeler_includingtax: gstForTwoWheeler.TOTAL,
+                    Total_exceed_price_four_wheeler_includingtax: exceedGstForFourWheeler.TOTAL,
+                    Total_exceed_price_two_wheeler_includingtax: exceedGstForTwoWheeler.TOTAL,
+                  }}
+                  setFieldValue={setFieldValue}
+                />
               </div>
             </div>
-            <button type="submit" className="bg-gray-800 px-4 py-1 mx-14 rounded-md w-fit text-white font-normal hover:bg-black text-lg">Submit</button>
+            <div className="flex justify-end">
+              <button type="submit" className="px-4 py-1 mb-6 text-lg font-normal text-white bg-gray-800 rounded-lg mx-7 w-fit hover:bg-black">
+                Submit
+              </button>
+            </div>
           </Form>
         );
       }}
