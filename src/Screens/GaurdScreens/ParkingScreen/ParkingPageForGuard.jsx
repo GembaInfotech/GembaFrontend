@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 // import CrudButton from '../../../Components/Tools/CrudButton';
 import { useDispatch } from 'react-redux';
 import { deleteParkingAsync } from '../../../SliceFolder/ParkingSlice/Parking';
+import appConfig from '../../../Config/app.config';
 
 function ParkingPageForGuard({ parking, edit = true }) {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function ParkingPageForGuard({ parking, edit = true }) {
       {parking[0]?.image.map((img, index) => (
         <img
           key={index}
-          src={`http://know2parking.com:3456/v1/api/parking/send-parking-image/${img}`}
+          src={`${appConfig.apiBaseUrl}v1/api/parking/send-parking-image/${img}`}
           alt={`Parking Image ${index + 1}`}
           className='rounded-2xl h-32 sm:h-48 transition-transform transform hover:scale-105 shadow-lg flex-shrink-0 snap-start'
         />

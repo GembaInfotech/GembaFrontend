@@ -5,6 +5,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGuardsAsync } from "../../../SliceFolder/GuardSlice/guard";
 import UpdateGuard from "../../../Components/VendorComponents/GuardComponent/UpdateGuard";
+import appConfig from "../../../Config/app.config";
 
 const GuardDetail = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const GuardDetail = () => {
               </div>
               <div className=" mr-20 mb-4 md:mb-0">
                 <img
-                  src={`http://know2parking.com:3456/v1/api/guard/send-image/${guard.data.profileImage}`}
+                  src={`${appConfig.apiBaseUrl}v1/api/guard/send-image/${guard.data.profileImage}`}
                   alt="Profile"
                   className="rounded-full h-64 w-64 object-cover shadow-lg "
                 />

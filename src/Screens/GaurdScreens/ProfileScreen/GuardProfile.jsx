@@ -3,6 +3,7 @@ import { fetchGuardsAsync } from "../../../SliceFolder/GuardSlice/guard";
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlinePlus } from 'react-icons/ai'; // Import the plus icon
 import axios from 'axios';
+import appConfig from '../../../Config/app.config';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Profile = () => {
   
       try {
         const response = await axios.post(
-          "http://localhost:3456/v1/api/guard/upload-guard-profile",
+          `${appConfig.apiBaseUrl}v1/api/guard/upload-guard-profile`,
           formData,
           { 
             headers: { 
@@ -58,7 +59,7 @@ const Profile = () => {
       <div className='flex p-20 shadow-lg bg-gray-100'>
         <div className="relative mr-20 mb-4 md:mb-0">
           <img
-            src={`http://know2parking.com:3456/v1/api/guard/send-image/${guard.data.profileImage}`}
+            src={`${appConfig.apiBaseUrl}v1/api/guard/send-image/${guard.data.profileImage}`}
             alt="Profile"
             className="rounded-full h-64 w-64 object-cover shadow-lg"
           />

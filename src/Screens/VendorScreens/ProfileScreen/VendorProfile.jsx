@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { vendorDataAsync } from '../../../SliceFolder/VendorSlice/Vendor';
 import PulseLoader from "react-spinners/PulseLoader";
+import appConfig from '../../../Config/app.config';
 
 const Profile = () => {
   const token = JSON.parse(localStorage.getItem('token'));
@@ -19,7 +20,7 @@ const Profile = () => {
   }, [dispatch]);
   const getPdfUrl = (type, docName) => {
     console.log("docName", docName);
-    return `http://know2parking.com:3456/v1/api/vendor/getPdf/${type}/${docName}`;
+    return `${appConfig.apiBaseUrl}v1/api/vendor/getPdf/${type}/${docName}`;
   };
 
   return (
@@ -39,7 +40,7 @@ const Profile = () => {
           <div className='flex flex-wrap gap-4 m-4 px-10 '>
             <div className="bg-white text-gray-700 p-2 m-1 w-80 h-80 rounded-lg shadow-lg  flex flex-col justify-center items-center border border-gray-100">
               <div>
-                <img src={`http://know2parking.com:3456/v1/api/vendor/send-profile/${vendor?.data?.profileImage}`} alt="Vendor Profile" />
+                <img src={`${appConfig.apiBaseUrl}v1/api/vendor/send-profile/${vendor?.data?.profileImage}`} alt="Vendor Profile" />
               </div>
             </div>
 
